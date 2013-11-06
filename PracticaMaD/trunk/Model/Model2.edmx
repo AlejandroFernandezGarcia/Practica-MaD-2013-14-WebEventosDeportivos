@@ -1,0 +1,531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PracticaMaDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="PracticaMaDModelStoreContainer">
+          <EntitySet Name="Category" EntityType="PracticaMaDModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Comment" EntityType="PracticaMaDModel.Store.Comment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Event" EntityType="PracticaMaDModel.Store.Event" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Recommendation" EntityType="PracticaMaDModel.Store.Recommendation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfile" EntityType="PracticaMaDModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfile_UserGroups" EntityType="PracticaMaDModel.Store.UserProfile_UserGroups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsersGroup" EntityType="PracticaMaDModel.Store.UsersGroup" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Category_Event" Association="PracticaMaDModel.Store.FK_Category_Event">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Comment" Association="PracticaMaDModel.Store.FK_Event_Comment">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Recommendation" Association="PracticaMaDModel.Store.FK_Event_Recommendation">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="Recommendation" EntitySet="Recommendation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_Comment" Association="PracticaMaDModel.Store.FK_UserProfile_Comment">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_UserGroups_UserProfile" Association="PracticaMaDModel.Store.FK_UserProfile_UserGroups_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserProfile_UserGroups" EntitySet="UserProfile_UserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_UsersGroup_UsersGroup" Association="PracticaMaDModel.Store.FK_UserProfile_UsersGroup_UsersGroup">
+            <End Role="UsersGroup" EntitySet="UsersGroup" />
+            <End Role="UserProfile_UserGroups" EntitySet="UserProfile_UserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersGroup_Recommendation" Association="PracticaMaDModel.Store.FK_UsersGroup_Recommendation">
+            <End Role="UsersGroup" EntitySet="UsersGroup" />
+            <End Role="Recommendation" EntitySet="Recommendation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersGroup_UserProfile" Association="PracticaMaDModel.Store.FK_UsersGroup_UserProfile">
+            <End Role="UsersGroup" EntitySet="UsersGroup" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="date" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="text" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="eventId" Type="int" Nullable="false" />
+          <Property Name="userProfileId" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="date" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="categoryId" Type="int" Nullable="false" />
+          <Property Name="commentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Recommendation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="text" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="eventId" Type="int" Nullable="false" />
+          <Property Name="usersGroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="loginName" />
+          </Key>
+          <Property Name="loginName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="enPassword" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="firstName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="surname" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="60" />
+          <Property Name="language" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="country" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="usersGroupId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserProfile_UserGroups">
+          <Key>
+            <PropertyRef Name="loginName" />
+            <PropertyRef Name="groupId" />
+          </Key>
+          <Property Name="loginName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="groupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="recommendationId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Category_Event">
+          <End Role="Category" Type="PracticaMaDModel.Store.Category" Multiplicity="1" />
+          <End Role="Event" Type="PracticaMaDModel.Store.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Comment">
+          <End Role="Event" Type="PracticaMaDModel.Store.Event" Multiplicity="1" />
+          <End Role="Comment" Type="PracticaMaDModel.Store.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Recommendation">
+          <End Role="Event" Type="PracticaMaDModel.Store.Event" Multiplicity="1" />
+          <End Role="Recommendation" Type="PracticaMaDModel.Store.Recommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Recommendation">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_Comment">
+          <End Role="UserProfile" Type="PracticaMaDModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="Comment" Type="PracticaMaDModel.Store.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="loginName" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="userProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_UserGroups_UserProfile">
+          <End Role="UserProfile" Type="PracticaMaDModel.Store.UserProfile" Multiplicity="1" />
+          <End Role="UserProfile_UserGroups" Type="PracticaMaDModel.Store.UserProfile_UserGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="loginName" />
+            </Principal>
+            <Dependent Role="UserProfile_UserGroups">
+              <PropertyRef Name="loginName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_UsersGroup_UsersGroup">
+          <End Role="UsersGroup" Type="PracticaMaDModel.Store.UsersGroup" Multiplicity="1" />
+          <End Role="UserProfile_UserGroups" Type="PracticaMaDModel.Store.UserProfile_UserGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersGroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserProfile_UserGroups">
+              <PropertyRef Name="groupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersGroup_Recommendation">
+          <End Role="UsersGroup" Type="PracticaMaDModel.Store.UsersGroup" Multiplicity="1" />
+          <End Role="Recommendation" Type="PracticaMaDModel.Store.Recommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersGroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Recommendation">
+              <PropertyRef Name="usersGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersGroup_UserProfile">
+          <End Role="UsersGroup" Type="PracticaMaDModel.Store.UsersGroup" Multiplicity="0..1" />
+          <End Role="UserProfile" Type="PracticaMaDModel.Store.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersGroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="usersGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PracticaMaDModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="PracticaMaDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="PracticaMaDModel.Category" />
+          <EntitySet Name="Comments" EntityType="PracticaMaDModel.Comment" />
+          <EntitySet Name="Events" EntityType="PracticaMaDModel.Event" />
+          <EntitySet Name="Recommendations" EntityType="PracticaMaDModel.Recommendation" />
+          <EntitySet Name="UserProfiles" EntityType="PracticaMaDModel.UserProfile" />
+          <EntitySet Name="UsersGroups" EntityType="PracticaMaDModel.UsersGroup" />
+          <AssociationSet Name="FK_Category_Event" Association="PracticaMaDModel.FK_Category_Event">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Comment" Association="PracticaMaDModel.FK_Event_Comment">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_Comment" Association="PracticaMaDModel.FK_UserProfile_Comment">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Recommendation" Association="PracticaMaDModel.FK_Event_Recommendation">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="Recommendation" EntitySet="Recommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersGroup_Recommendation" Association="PracticaMaDModel.FK_UsersGroup_Recommendation">
+            <End Role="UsersGroup" EntitySet="UsersGroups" />
+            <End Role="Recommendation" EntitySet="Recommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersGroup_UserProfile" Association="PracticaMaDModel.FK_UsersGroup_UserProfile">
+            <End Role="UsersGroup" EntitySet="UsersGroups" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="UserProfile_UserGroups" Association="PracticaMaDModel.UserProfile_UserGroups">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UsersGroup" EntitySet="UsersGroups" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Events" Relationship="PracticaMaDModel.FK_Category_Event" FromRole="Category" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="eventId" Type="Int32" Nullable="false" />
+          <Property Name="userProfileId" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Event" Relationship="PracticaMaDModel.FK_Event_Comment" FromRole="Comment" ToRole="Event" />
+          <NavigationProperty Name="UserProfile" Relationship="PracticaMaDModel.FK_UserProfile_Comment" FromRole="Comment" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="date" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="categoryId" Type="Int32" Nullable="false" />
+          <Property Name="commentId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="PracticaMaDModel.FK_Category_Event" FromRole="Event" ToRole="Category" />
+          <NavigationProperty Name="Comments" Relationship="PracticaMaDModel.FK_Event_Comment" FromRole="Event" ToRole="Comment" />
+          <NavigationProperty Name="Recommendations" Relationship="PracticaMaDModel.FK_Event_Recommendation" FromRole="Event" ToRole="Recommendation" />
+        </EntityType>
+        <EntityType Name="Recommendation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="text" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="eventId" Type="Int32" Nullable="false" />
+          <Property Name="usersGroupId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="PracticaMaDModel.FK_Event_Recommendation" FromRole="Recommendation" ToRole="Event" />
+          <NavigationProperty Name="UsersGroup" Relationship="PracticaMaDModel.FK_UsersGroup_Recommendation" FromRole="Recommendation" ToRole="UsersGroup" />
+        </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="loginName" />
+          </Key>
+          <Property Name="loginName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="enPassword" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="60" Unicode="false" FixedLength="false" />
+          <Property Name="language" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="country" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="usersGroupId" Type="Int32" />
+          <NavigationProperty Name="Comments" Relationship="PracticaMaDModel.FK_UserProfile_Comment" FromRole="UserProfile" ToRole="Comment" />
+          <NavigationProperty Name="UsersGroup" Relationship="PracticaMaDModel.FK_UsersGroup_UserProfile" FromRole="UserProfile" ToRole="UsersGroup" />
+          <NavigationProperty Name="UsersGroups" Relationship="PracticaMaDModel.UserProfile_UserGroups" FromRole="UserProfile" ToRole="UsersGroup" />
+        </EntityType>
+        <EntityType Name="UsersGroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="recommendationId" Type="Int32" />
+          <NavigationProperty Name="Recommendations" Relationship="PracticaMaDModel.FK_UsersGroup_Recommendation" FromRole="UsersGroup" ToRole="Recommendation" />
+          <NavigationProperty Name="UserProfiles" Relationship="PracticaMaDModel.FK_UsersGroup_UserProfile" FromRole="UsersGroup" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfiles1" Relationship="PracticaMaDModel.UserProfile_UserGroups" FromRole="UsersGroup" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_Category_Event">
+          <End Role="Category" Type="PracticaMaDModel.Category" Multiplicity="1" />
+          <End Role="Event" Type="PracticaMaDModel.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="categoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Comment">
+          <End Role="Event" Type="PracticaMaDModel.Event" Multiplicity="1" />
+          <End Role="Comment" Type="PracticaMaDModel.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_Comment">
+          <End Role="UserProfile" Type="PracticaMaDModel.UserProfile" Multiplicity="1" />
+          <End Role="Comment" Type="PracticaMaDModel.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="loginName" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="userProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Recommendation">
+          <End Role="Event" Type="PracticaMaDModel.Event" Multiplicity="1" />
+          <End Role="Recommendation" Type="PracticaMaDModel.Recommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Recommendation">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersGroup_Recommendation">
+          <End Role="UsersGroup" Type="PracticaMaDModel.UsersGroup" Multiplicity="1" />
+          <End Role="Recommendation" Type="PracticaMaDModel.Recommendation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersGroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Recommendation">
+              <PropertyRef Name="usersGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersGroup_UserProfile">
+          <End Role="UsersGroup" Type="PracticaMaDModel.UsersGroup" Multiplicity="0..1" />
+          <End Role="UserProfile" Type="PracticaMaDModel.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsersGroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="usersGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserProfile_UserGroups">
+          <End Role="UserProfile" Type="PracticaMaDModel.UserProfile" Multiplicity="*" />
+          <End Role="UsersGroup" Type="PracticaMaDModel.UsersGroup" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PracticaMaDModelStoreContainer" CdmEntityContainer="PracticaMaDEntities">
+          <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="PracticaMaDModel.Category"><MappingFragment StoreEntitySet="Category">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="name" ColumnName="name" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Comments"><EntityTypeMapping TypeName="PracticaMaDModel.Comment"><MappingFragment StoreEntitySet="Comment">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="date" ColumnName="date" />
+            <ScalarProperty Name="text" ColumnName="text" />
+            <ScalarProperty Name="eventId" ColumnName="eventId" />
+            <ScalarProperty Name="userProfileId" ColumnName="userProfileId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Events"><EntityTypeMapping TypeName="PracticaMaDModel.Event"><MappingFragment StoreEntitySet="Event">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="name" ColumnName="name" />
+            <ScalarProperty Name="date" ColumnName="date" />
+            <ScalarProperty Name="description" ColumnName="description" />
+            <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+            <ScalarProperty Name="commentId" ColumnName="commentId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Recommendations"><EntityTypeMapping TypeName="PracticaMaDModel.Recommendation"><MappingFragment StoreEntitySet="Recommendation">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="text" ColumnName="text" />
+            <ScalarProperty Name="eventId" ColumnName="eventId" />
+            <ScalarProperty Name="usersGroupId" ColumnName="usersGroupId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles"><EntityTypeMapping TypeName="PracticaMaDModel.UserProfile"><MappingFragment StoreEntitySet="UserProfile">
+            <ScalarProperty Name="loginName" ColumnName="loginName" />
+            <ScalarProperty Name="enPassword" ColumnName="enPassword" />
+            <ScalarProperty Name="firstName" ColumnName="firstName" />
+            <ScalarProperty Name="surname" ColumnName="surname" />
+            <ScalarProperty Name="email" ColumnName="email" />
+            <ScalarProperty Name="language" ColumnName="language" />
+            <ScalarProperty Name="country" ColumnName="country" />
+            <ScalarProperty Name="usersGroupId" ColumnName="usersGroupId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UsersGroups"><EntityTypeMapping TypeName="PracticaMaDModel.UsersGroup"><MappingFragment StoreEntitySet="UsersGroup">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="name" ColumnName="name" />
+            <ScalarProperty Name="description" ColumnName="description" />
+            <ScalarProperty Name="userId" ColumnName="userId" />
+            <ScalarProperty Name="recommendationId" ColumnName="recommendationId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="UserProfile_UserGroups" TypeName="PracticaMaDModel.UserProfile_UserGroups" StoreEntitySet="UserProfile_UserGroups">
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="loginName" ColumnName="loginName" />
+            </EndProperty>
+            <EndProperty Name="UsersGroup">
+              <ScalarProperty Name="id" ColumnName="groupId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model2">
+        <EntityTypeShape EntityType="PracticaMaDModel.Category" Width="1.5" PointX="1.5" PointY="10.125" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticaMaDModel.Comment" Width="1.5" PointX="3" PointY="1.75" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticaMaDModel.Event" Width="1.5" PointX="0.75" PointY="6.625" Height="2.7494921874999987" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticaMaDModel.Recommendation" Width="1.5" PointX="5.25" PointY="6" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticaMaDModel.UserProfile" Width="1.5" PointX="0.75" PointY="2.375" Height="3.1340950520833339" IsExpanded="true" />
+        <EntityTypeShape EntityType="PracticaMaDModel.UsersGroup" Width="1.5" PointX="3" PointY="5.75" Height="2.5571907552083317" IsExpanded="true" />
+        <AssociationConnector Association="PracticaMaDModel.FK_Category_Event" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.875" PointY="10.125" />
+          <ConnectorPoint PointX="1.875" PointY="9.3744921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="PracticaMaDModel.FK_Event_Comment" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.625" />
+          <ConnectorPoint PointX="2.625" PointY="6.25" />
+          <ConnectorPoint PointX="2.625" PointY="2.9324446614583328" />
+          <ConnectorPoint PointX="3" PointY="2.9324446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="PracticaMaDModel.FK_UserProfile_Comment" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.5861669921874992" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="3.5861669921874988" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="3.5861669921874992" />
+          <ConnectorPoint PointX="3" PointY="3.5861669921874992" />
+        </AssociationConnector>
+        <AssociationConnector Association="PracticaMaDModel.FK_Event_Recommendation" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.8720914713541656" />
+          <ConnectorPoint PointX="6" PointY="8.8720914713541656" />
+          <ConnectorPoint PointX="6" PointY="8.172587890625" />
+        </AssociationConnector>
+        <AssociationConnector Association="PracticaMaDModel.FK_UsersGroup_Recommendation" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="7.0862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="7.0862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="PracticaMaDModel.FK_UsersGroup_UserProfile" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.0253836153846154" PointY="5.75" />
+          <ConnectorPoint PointX="2.6839255650988791" PointY="5.4085419497142624" />
+          <ConnectorPoint PointX="2.5660744349011209" PointY="5.290690819516505" />
+          <ConnectorPoint PointX="2.4375" PointY="5.1621163846153841" />
+          <ConnectorPoint PointX="2.4375" PointY="5.6712094366987182" />
+          <ConnectorPoint PointX="2.25" PointY="5.4837094366987182" />
+        </AssociationConnector>
+        <AssociationConnector Association="PracticaMaDModel.UserProfile_UserGroups" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.5021709751602561" />
+          <ConnectorPoint PointX="2.5660744349011213" PointY="5.818245410061377" />
+          <ConnectorPoint PointX="2.6839255650988791" PointY="5.9360965402591352" />
+          <ConnectorPoint PointX="2.78125" PointY="6.0334209751602561" />
+          <ConnectorPoint PointX="2.78125" PointY="5.5554807692307691" />
+          <ConnectorPoint PointX="3" PointY="5.7742307692307691" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
