@@ -24,7 +24,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             UserProfile userProfile = null;
 
             String query =
-                "SELECT VALUE u FORM PracticaMaDEntitiesContainer.UserProfiles AS u WHERE u.loginName=@loginName";
+                "SELECT VALUE u FORM PracticaMaDEntities.UserProfiles AS u WHERE u.loginName=@loginName";
 
             ObjectParameter param = new ObjectParameter("loginName", loginName);
 
