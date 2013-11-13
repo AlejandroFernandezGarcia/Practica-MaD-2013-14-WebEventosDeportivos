@@ -72,6 +72,8 @@
     <Compile Include="CommentDao\ICommentDao.cs" />
     <Compile Include="EventDao\EventDaoEntityFramework.cs" />
     <Compile Include="EventDao\IEventDao.cs" />
+    <Compile Include="UserProfileUserGroupsDao\UserProfileUserGroupsDaoEntityFramework.cs" />
+    <Compile Include="UserProfileUserGroupsDao\IUserProfileUserGroupsDao.cs" />
     <Compile Include="PracticaMaDEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
