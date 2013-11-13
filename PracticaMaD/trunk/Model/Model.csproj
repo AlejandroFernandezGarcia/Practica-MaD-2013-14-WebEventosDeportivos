@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="CategoryDao\CategoryDaoEntityFramework.cs" />
     <Compile Include="CategoryDao\ICategoryDao.cs" />
+    <Compile Include="CommentDao\ICommentDao.cs" />
     <Compile Include="EventDao\EventDaoEntityFramework.cs" />
     <Compile Include="EventDao\IEventDao.cs" />
     <Compile Include="PracticaMaDEntities.Designer.cs">
