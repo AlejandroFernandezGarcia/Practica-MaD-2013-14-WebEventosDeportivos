@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Es.Udc.DotNet.MiniPortal.Model.UserService.Exceptions;
 using Es.Udc.DotNet.MiniPortal.Model.UserService.Util;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
@@ -48,7 +45,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
                 UserProfileDao.Create(userProfile);
 
-                return userProfile.usrId;
+                return userProfile.id;
 
             }
         }
@@ -77,7 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 }
             }
 
-            return new LoginResult(userProfile.usrId, userProfile.firstName,
+            return new LoginResult(userProfile.id, userProfile.firstName,
                 storedPassword, userProfile.language, userProfile.country);
         }
 
