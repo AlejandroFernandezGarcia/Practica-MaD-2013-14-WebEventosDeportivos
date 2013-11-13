@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
-using System.Text;
 using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
@@ -10,7 +10,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
     {
         public List<Comment> FindByEventId(long id, int startIndex, int count)
         {
-            throw new NotImplementedException();
+            String query =
+                "SELECT VALUE c FROM PracticaMaDEntities.Comment AS c WHERE c.eventId = @id ORDER BY c.date DESC";
+
+            ObjectParameter param = new ObjectParameter("id", id);
+
+            List<Comment> result = this.Context.CreateQuery<Comment>(query, param).Skip(startIndex).Take(count).ToList();
+
+            return result;
         }
     }
 }
