@@ -42,6 +42,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
             try
             {
                 UserProfileUsersGroupDao.FindByUserIdAndGroupId(usersGroup.id, userP.id);
+
+                throw new DuplicateInstanceException("GroupId: " + usersGroup.id + "UserId: " + userP.id,
+                    typeof(UsersGroupService).FullName);
             }
             catch (InstanceNotFoundException)
             {
@@ -50,11 +53,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
 
                 UserProfileUsersGroupDao.AddUserToGroup(userProfileUsersGroupNew);
 
-                return;//puede que falle
             }
 
-            throw new DuplicateInstanceException("GroupId: "+usersGroup.id+"UserId: "+userP.id,
-                    typeof(UsersGroupService).FullName);
+            
         }
     }
 }

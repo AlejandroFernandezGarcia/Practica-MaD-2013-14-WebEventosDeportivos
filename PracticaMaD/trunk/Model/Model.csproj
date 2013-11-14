@@ -137,7 +137,9 @@
     <Content Include="Sql\SqlServerCreateTables.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\DataSources\PracticaMaDEntities.datasource" />
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
         {
             String query = "SELECT VALUE e FROM PracticaMaDEntities.Event AS e " +
                            "WHERE e.name.Contains(@keywords) ";
-            if (categoryId != null)
+            if (categoryId != -1)
             {
                 query += "AND e.categoryId = @categoryId ";
             }
@@ -23,7 +23,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 
             List<Event> result;
 
-            if (categoryId != null)
+            if (categoryId != -1)
             {
                 ObjectParameter param2 = new ObjectParameter("categoryId", categoryId);
                 result = this.Context.CreateQuery<Event>(query, param, param2).ToList();
