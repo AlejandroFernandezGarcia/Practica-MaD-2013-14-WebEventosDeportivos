@@ -141,17 +141,18 @@ CREATE TABLE UserProfile(
 GO
 
 /*Drop table UserProfile_UserGroups*/
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[UserProfile_UserGroups]') AND type in ('U'))
-DROP TABLE [UserProfile_UserGroups]
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[UserProfileUserGroups]') AND type in ('U'))
+DROP TABLE [UserProfileUserGroups]
 GO
 
 /*UserProfile_UserGroups: Tabla creation*/
-CREATE TABLE UserProfile_UserGroups(
+CREATE TABLE UserProfileUsersGroup(
 	id BIGINT NOT NULL,
 	userId BIGINT NOT NULL,
 	groupId BIGINT NOT NULL,
 
-	CONSTRAINT [PK_UserProfile_UserGroups] PRIMARY KEY (id)
+	CONSTRAINT [PK_UserProfile_UsersGroup] PRIMARY KEY (id),
+	CONSTRAINT [ROW_UNIQUE] UNIQUE (userId, groupId)
 )
 GO
 
@@ -164,8 +165,8 @@ ALTER TABLE Comment ADD	CONSTRAINT [FK_UserProfile_Comment] FOREIGN KEY (userPro
 ALTER TABLE Recommendation ADD CONSTRAINT [FK_Event_Recommendation] FOREIGN KEY (eventId) REFERENCES Event (id)
 ALTER TABLE Recommendation ADD CONSTRAINT [FK_UsersGroup_Recommendation] FOREIGN KEY (usersGroupId) REFERENCES UsersGroup (id)
 
-ALTER TABLE UserProfile_UserGroups ADD CONSTRAINT [FK_UserProfile_UserGroups_UserProfile] FOREIGN KEY (userId) REFERENCES UserProfile (id)
-ALTER TABLE UserProfile_UserGroups ADD CONSTRAINT [FK_UserProfile_UsersGroup_UsersGroup] FOREIGN KEY (groupId) REFERENCES UsersGroup (id)
+ALTER TABLE UserProfileUsersGroup ADD CONSTRAINT [FK_UserProfile_UsersGroup_UserProfile] FOREIGN KEY (userId) REFERENCES UserProfile (id)
+ALTER TABLE UserProfileUsersGroup ADD CONSTRAINT [FK_UserProfile_UsersGroup_UsersGroup] FOREIGN KEY (groupId) REFERENCES UsersGroup (id)
 
 
 

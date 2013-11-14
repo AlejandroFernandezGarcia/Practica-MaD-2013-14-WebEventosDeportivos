@@ -8,5 +8,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
 {
     public interface IRecommendationDao : IGenericDao<Recommendation, Int64>
     {
+
     }
 }
