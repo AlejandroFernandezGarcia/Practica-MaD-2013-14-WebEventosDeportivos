@@ -72,8 +72,8 @@
     <Compile Include="CommentDao\ICommentDao.cs" />
     <Compile Include="EventDao\EventDaoEntityFramework.cs" />
     <Compile Include="EventDao\IEventDao.cs" />
-    <Compile Include="UserProfileUserGroupsDao\UserProfileUserGroupsDaoEntityFramework.cs" />
-    <Compile Include="UserProfileUserGroupsDao\IUserProfileUserGroupsDao.cs" />
+    <Compile Include="EventService\EventService.cs" />
+    <Compile Include="EventService\IEventService.cs" />
     <Compile Include="PracticaMaDEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,8 +82,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecommendationDao\IRecommendationDao.cs" />
     <Compile Include="RecommendationDao\RecommendationDaoEntityFramework.cs" />
+    <Compile Include="RecommendationService\IRecommendationService.cs" />
+    <Compile Include="RecommendationService\RecommendationService.cs" />
     <Compile Include="UserProfileDao\IUserProfileDao.cs" />
     <Compile Include="UserProfileDao\UserProfileDaoEntityFramework.cs" />
+    <Compile Include="UserProfileUsersGroupDao\IUserProfileUsersGroupDao.cs" />
+    <Compile Include="UserProfileUsersGroupDao\UserProfileUsersGroupDaoEntityFramework.cs" />
     <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="UserService\IUserService.cs" />
     <Compile Include="UserService\LoginResult.cs" />
@@ -92,6 +96,9 @@
     <Compile Include="UserService\Util\PasswordEncrypter.cs" />
     <Compile Include="UsersGroupDao\IUsersGroupDao.cs" />
     <Compile Include="UsersGroupDao\UsersGroupDaoEntityFramework.cs" />
+    <Compile Include="UsersGroupService\Exceptions\UsersBelongGroupException.cs" />
+    <Compile Include="UsersGroupService\IUsersGroupService.cs" />
+    <Compile Include="UsersGroupService\UsersGroupService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="PracticaMaDEntities.edmx">
@@ -131,8 +138,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="Properties\DataSources\PracticaMaDEntities.datasource" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UsersGroupService\Util\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

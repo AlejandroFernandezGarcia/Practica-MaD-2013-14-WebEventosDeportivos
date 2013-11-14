@@ -11,7 +11,7 @@
           <EntitySet Name="Event" EntityType="PracticaMaDModel.Store.Event" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Recommendation" EntityType="PracticaMaDModel.Store.Recommendation" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserProfile" EntityType="PracticaMaDModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UserProfile_UserGroups" EntityType="PracticaMaDModel.Store.UserProfile_UserGroups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfileUsersGroup" EntityType="PracticaMaDModel.Store.UserProfileUsersGroup" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UsersGroup" EntityType="PracticaMaDModel.Store.UsersGroup" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Category_Event" Association="PracticaMaDModel.Store.FK_Category_Event">
             <End Role="Category" EntitySet="Category" />
@@ -29,13 +29,13 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserProfile_UserGroups_UserProfile" Association="PracticaMaDModel.Store.FK_UserProfile_UserGroups_UserProfile">
+          <AssociationSet Name="FK_UserProfile_UsersGroup_UserProfile" Association="PracticaMaDModel.Store.FK_UserProfile_UsersGroup_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="UserProfile_UserGroups" EntitySet="UserProfile_UserGroups" />
+            <End Role="UserProfileUsersGroup" EntitySet="UserProfileUsersGroup" />
           </AssociationSet>
           <AssociationSet Name="FK_UserProfile_UsersGroup_UsersGroup" Association="PracticaMaDModel.Store.FK_UserProfile_UsersGroup_UsersGroup">
             <End Role="UsersGroup" EntitySet="UsersGroup" />
-            <End Role="UserProfile_UserGroups" EntitySet="UserProfile_UserGroups" />
+            <End Role="UserProfileUsersGroup" EntitySet="UserProfileUsersGroup" />
           </AssociationSet>
           <AssociationSet Name="FK_UsersGroup_Recommendation" Association="PracticaMaDModel.Store.FK_UsersGroup_Recommendation">
             <End Role="UsersGroup" EntitySet="UsersGroup" />
@@ -91,7 +91,7 @@
           <Property Name="language" Type="varchar" Nullable="false" MaxLength="2" />
           <Property Name="country" Type="varchar" Nullable="false" MaxLength="2" />
         </EntityType>
-        <EntityType Name="UserProfile_UserGroups">
+        <EntityType Name="UserProfileUsersGroup">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -155,26 +155,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserProfile_UserGroups_UserProfile">
+        <Association Name="FK_UserProfile_UsersGroup_UserProfile">
           <End Role="UserProfile" Type="PracticaMaDModel.Store.UserProfile" Multiplicity="1" />
-          <End Role="UserProfile_UserGroups" Type="PracticaMaDModel.Store.UserProfile_UserGroups" Multiplicity="*" />
+          <End Role="UserProfileUsersGroup" Type="PracticaMaDModel.Store.UserProfileUsersGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="UserProfile_UserGroups">
+            <Dependent Role="UserProfileUsersGroup">
               <PropertyRef Name="userId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserProfile_UsersGroup_UsersGroup">
           <End Role="UsersGroup" Type="PracticaMaDModel.Store.UsersGroup" Multiplicity="1" />
-          <End Role="UserProfile_UserGroups" Type="PracticaMaDModel.Store.UserProfile_UserGroups" Multiplicity="*" />
+          <End Role="UserProfileUsersGroup" Type="PracticaMaDModel.Store.UserProfileUsersGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UsersGroup">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="UserProfile_UserGroups">
+            <Dependent Role="UserProfileUsersGroup">
               <PropertyRef Name="groupId" />
             </Dependent>
           </ReferentialConstraint>
@@ -201,7 +201,7 @@
           <EntitySet Name="Event" EntityType="PracticaMaDModel.Event" />
           <EntitySet Name="Recommendation" EntityType="PracticaMaDModel.Recommendation" />
           <EntitySet Name="UserProfile" EntityType="PracticaMaDModel.UserProfile" />
-          <EntitySet Name="UserProfile_UserGroups" EntityType="PracticaMaDModel.UserProfile_UserGroups" />
+          <EntitySet Name="UserProfileUsersGroup" EntityType="PracticaMaDModel.UserProfileUsersGroup" />
           <EntitySet Name="UsersGroup" EntityType="PracticaMaDModel.UsersGroup" />
           <AssociationSet Name="FK_Category_Event" Association="PracticaMaDModel.FK_Category_Event">
             <End Role="Category" EntitySet="Category" />
@@ -223,13 +223,13 @@
             <End Role="UsersGroup" EntitySet="UsersGroup" />
             <End Role="Recommendation" EntitySet="Recommendation" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserProfile_UserGroups_UserProfile" Association="PracticaMaDModel.FK_UserProfile_UserGroups_UserProfile">
+          <AssociationSet Name="FK_UserProfile_UsersGroup_UserProfile" Association="PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="UserProfile_UserGroups" EntitySet="UserProfile_UserGroups" />
+            <End Role="UserProfileUsersGroup" EntitySet="UserProfileUsersGroup" />
           </AssociationSet>
           <AssociationSet Name="FK_UserProfile_UsersGroup_UsersGroup" Association="PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup">
             <End Role="UsersGroup" EntitySet="UsersGroup" />
-            <End Role="UserProfile_UserGroups" EntitySet="UserProfile_UserGroups" />
+            <End Role="UserProfileUsersGroup" EntitySet="UserProfileUsersGroup" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
@@ -289,17 +289,17 @@
           <Property Type="String" Name="language" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="country" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Comment" Relationship="PracticaMaDModel.FK_UserProfile_Comment" FromRole="UserProfile" ToRole="Comment" />
-          <NavigationProperty Name="UserProfile_UserGroups" Relationship="PracticaMaDModel.FK_UserProfile_UserGroups_UserProfile" FromRole="UserProfile" ToRole="UserProfile_UserGroups" />
+          <NavigationProperty Name="UserProfileUsersGroup" Relationship="PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile" FromRole="UserProfile" ToRole="UserProfileUsersGroup" />
         </EntityType>
-        <EntityType Name="UserProfile_UserGroups">
+        <EntityType Name="UserProfileUsersGroup">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int64" Name="id" Nullable="false" />
           <Property Type="Int64" Name="userId" Nullable="false" />
           <Property Type="Int64" Name="groupId" Nullable="false" />
-          <NavigationProperty Name="UserProfile" Relationship="PracticaMaDModel.FK_UserProfile_UserGroups_UserProfile" FromRole="UserProfile_UserGroups" ToRole="UserProfile" />
-          <NavigationProperty Name="UsersGroup" Relationship="PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup" FromRole="UserProfile_UserGroups" ToRole="UsersGroup" />
+          <NavigationProperty Name="UserProfile" Relationship="PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile" FromRole="UserProfileUsersGroup" ToRole="UserProfile" />
+          <NavigationProperty Name="UsersGroup" Relationship="PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup" FromRole="UserProfileUsersGroup" ToRole="UsersGroup" />
         </EntityType>
         <EntityType Name="UsersGroup">
           <Key>
@@ -309,7 +309,7 @@
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="description" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Recommendation" Relationship="PracticaMaDModel.FK_UsersGroup_Recommendation" FromRole="UsersGroup" ToRole="Recommendation" />
-          <NavigationProperty Name="UserProfile_UserGroups" Relationship="PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup" FromRole="UsersGroup" ToRole="UserProfile_UserGroups" />
+          <NavigationProperty Name="UserProfileUsersGroup" Relationship="PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup" FromRole="UsersGroup" ToRole="UserProfileUsersGroup" />
         </EntityType>
         <Association Name="FK_Category_Event">
           <End Type="PracticaMaDModel.Category" Role="Category" Multiplicity="1" />
@@ -371,26 +371,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserProfile_UserGroups_UserProfile">
+        <Association Name="FK_UserProfile_UsersGroup_UserProfile">
           <End Type="PracticaMaDModel.UserProfile" Role="UserProfile" Multiplicity="1" />
-          <End Type="PracticaMaDModel.UserProfile_UserGroups" Role="UserProfile_UserGroups" Multiplicity="*" />
+          <End Type="PracticaMaDModel.UserProfileUsersGroup" Role="UserProfileUsersGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="UserProfile_UserGroups">
+            <Dependent Role="UserProfileUsersGroup">
               <PropertyRef Name="userId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserProfile_UsersGroup_UsersGroup">
           <End Type="PracticaMaDModel.UsersGroup" Role="UsersGroup" Multiplicity="1" />
-          <End Type="PracticaMaDModel.UserProfile_UserGroups" Role="UserProfile_UserGroups" Multiplicity="*" />
+          <End Type="PracticaMaDModel.UserProfileUsersGroup" Role="UserProfileUsersGroup" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UsersGroup">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="UserProfile_UserGroups">
+            <Dependent Role="UserProfileUsersGroup">
               <PropertyRef Name="groupId" />
             </Dependent>
           </ReferentialConstraint>
@@ -455,9 +455,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserProfile_UserGroups">
-            <EntityTypeMapping TypeName="PracticaMaDModel.UserProfile_UserGroups">
-              <MappingFragment StoreEntitySet="UserProfile_UserGroups">
+          <EntitySetMapping Name="UserProfileUsersGroup">
+            <EntityTypeMapping TypeName="PracticaMaDModel.UserProfileUsersGroup">
+              <MappingFragment StoreEntitySet="UserProfileUsersGroup">
                 <ScalarProperty Name="groupId" ColumnName="groupId" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -493,55 +493,55 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model2">
-        <EntityTypeShape EntityType="PracticaMaDModel.Category" Width="1.5" PointX="0.75" PointY="4" Height="1.5291797411441808" />
-        <EntityTypeShape EntityType="PracticaMaDModel.Comment" Width="1.5" PointX="5.25" PointY="3.625" Height="2.2540495685736328" />
-        <EntityTypeShape EntityType="PracticaMaDModel.Event" Width="1.5" PointX="3" PointY="3.625" Height="2.4352670254309969" />
-        <EntityTypeShape EntityType="PracticaMaDModel.Recommendation" Width="1.5" PointX="5.25" PointY="0.75" Height="2.07283211171627" />
-        <EntityTypeShape EntityType="PracticaMaDModel.UserProfile" Width="1.5" PointX="3" PointY="10.375" Height="2.7977019391457247" />
-        <EntityTypeShape EntityType="PracticaMaDModel.UserProfile_UserGroups" Width="1.5" PointX="5.25" PointY="9.375" Height="1.8916146548589055" />
-        <EntityTypeShape EntityType="PracticaMaDModel.UsersGroup" Width="1.5" PointX="3" PointY="7.375" Height="1.8916146548589037" />
+      <Diagram Name="Model2" ZoomLevel="60">
+        <EntityTypeShape EntityType="PracticaMaDModel.Category" Width="1.5" PointX="0.75" PointY="4" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="PracticaMaDModel.Comment" Width="1.5" PointX="5.25" PointY="3.625" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="PracticaMaDModel.Event" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083335" />
+        <EntityTypeShape EntityType="PracticaMaDModel.Recommendation" Width="1.5" PointX="5.25" PointY="0.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="PracticaMaDModel.UserProfile" Width="1.5" PointX="3" PointY="10.375" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="PracticaMaDModel.UserProfileUsersGroup" Width="1.5" PointX="5.25" PointY="9.5" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="PracticaMaDModel.UsersGroup" Width="1.5" PointX="3" PointY="7.625" Height="1.9802864583333335" />
         <AssociationConnector Association="PracticaMaDModel.FK_Category_Event" >
-          <ConnectorPoint PointX="2.25" PointY="4.76458987057209" />
-          <ConnectorPoint PointX="3" PointY="4.76458987057209" />
+          <ConnectorPoint PointX="2.25" PointY="4.797841796875" />
+          <ConnectorPoint PointX="3" PointY="4.797841796875" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_Event_Comment" >
-          <ConnectorPoint PointX="4.5" PointY="4.7520247842868164" />
-          <ConnectorPoint PointX="4.979166666666667" PointY="4.7520247842868155" />
-          <ConnectorPoint PointX="5.145833333333333" PointY="4.7520247842868164" />
-          <ConnectorPoint PointX="5.25" PointY="4.7520247842868164" />
+          <ConnectorPoint PointX="4.5" PointY="4.8074446614583328" />
+          <ConnectorPoint PointX="4.979166666666667" PointY="4.8074446614583319" />
+          <ConnectorPoint PointX="5.145833333333333" PointY="4.8074446614583328" />
+          <ConnectorPoint PointX="5.25" PointY="4.8074446614583328" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_UserProfile_Comment" >
           <ConnectorPoint PointX="4.5" PointY="10.376152846153847" />
           <ConnectorPoint PointX="4.875" PointY="10.001152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="5.3467891764302244" />
-          <ConnectorPoint PointX="4.979166666666667" PointY="5.3467891764302236" />
-          <ConnectorPoint PointX="5.145833333333333" PointY="5.3467891764302244" />
-          <ConnectorPoint PointX="5.25" PointY="5.3467891764302244" />
+          <ConnectorPoint PointX="4.875" PointY="5.4299189921874991" />
+          <ConnectorPoint PointX="4.979166666666667" PointY="5.4299189921874982" />
+          <ConnectorPoint PointX="5.145833333333333" PointY="5.4299189921874991" />
+          <ConnectorPoint PointX="5.25" PointY="5.4299189921874991" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_Event_Recommendation" >
-          <ConnectorPoint PointX="3.75" PointY="3.625" />
-          <ConnectorPoint PointX="3.75" PointY="1.786416055858135" />
-          <ConnectorPoint PointX="5.25" PointY="1.786416055858135" />
+          <ConnectorPoint PointX="3.75" PointY="3.5" />
+          <ConnectorPoint PointX="3.75" PointY="1.8362939453124998" />
+          <ConnectorPoint PointX="5.25" PointY="1.8362939453124998" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_UsersGroup_Recommendation" >
-          <ConnectorPoint PointX="4.5" PointY="7.4373066923076925" />
-          <ConnectorPoint PointX="4.8160744349011209" PointY="7.1212322574065725" />
-          <ConnectorPoint PointX="4.9339255650988791" PointY="7.0033811272088151" />
-          <ConnectorPoint PointX="5.0625" PointY="6.8748066923076934" />
-          <ConnectorPoint PointX="5.0625" PointY="2.3358760837872032" />
-          <ConnectorPoint PointX="5.25" PointY="2.3358760837872032" />
+          <ConnectorPoint PointX="4.5" PointY="7.6873066923076925" />
+          <ConnectorPoint PointX="4.8160744349011209" PointY="7.3712322574065725" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="7.2533811272088151" />
+          <ConnectorPoint PointX="5.0625" PointY="7.1248066923076934" />
+          <ConnectorPoint PointX="5.0625" PointY="2.4106929179687504" />
+          <ConnectorPoint PointX="5.25" PointY="2.4106929179687504" />
         </AssociationConnector>
-        <AssociationConnector Association="PracticaMaDModel.FK_UserProfile_UserGroups_UserProfile" >
-          <ConnectorPoint PointX="4.5" PointY="10.852636250506377" />
-          <ConnectorPoint PointX="5.25" PointY="10.852636250506377" />
+        <AssociationConnector Association="PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile" >
+          <ConnectorPoint PointX="4.5" PointY="10.95947215224359" />
+          <ConnectorPoint PointX="5.25" PointY="10.95947215224359" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup" >
-          <ConnectorPoint PointX="4.5" PointY="8.3832131735833" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="8.3832131735833" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="8.3832131735833" />
-          <ConnectorPoint PointX="6" PointY="8.3832131735833" />
-          <ConnectorPoint PointX="6" PointY="9.375" />
+          <ConnectorPoint PointX="4.5" PointY="8.624905346153847" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="8.624905346153847" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="8.624905346153847" />
+          <ConnectorPoint PointX="6" PointY="8.624905346153847" />
+          <ConnectorPoint PointX="6" PointY="9.5" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
