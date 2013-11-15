@@ -5,16 +5,16 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 
 
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
     [TestClass()] 
-    class IUserServiceTest
+    public class IUserServiceTest
     {
         private static IUnityContainer container;
         private static IUserService userService;
