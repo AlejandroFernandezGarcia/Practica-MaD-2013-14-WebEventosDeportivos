@@ -6,7 +6,7 @@ using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
 {
-    class UsersGroupEntityFramework : GenericDaoEntityFramework<UsersGroup, Int64>, IUsersGroupDao
+    class UsersGroupDaoEntityFramework : GenericDaoEntityFramework<UsersGroup, Int64>, IUsersGroupDao
     {
         public List<UsersGroup> FindByUserId(long userId, int startIndex, int count)
         {
