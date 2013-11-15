@@ -24,7 +24,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private const String loginName = "loginNameTest";
         private const String clearPassword = "password";
         private const String firstName = "name";
-        private const String lastName = "lastName";
+        private const String surname = "surname";
         private const String email = "user@udc.es";
         private const String language = "es";
         private const String country = "ES";
@@ -93,7 +93,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             // Register user and find profile
             long userId =
                 userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, lastName, email, language, country));
+                new UserProfileDetails(firstName, surname, email, language, country));
 
             UserProfile userProfile = userProfileDao.Find(userId);
 
@@ -102,7 +102,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             Assert.AreEqual(loginName, userProfile.loginName);
             Assert.AreEqual(PasswordEncrypter.Crypt(clearPassword), userProfile.enPassword);
             Assert.AreEqual(firstName, userProfile.firstName);
-            Assert.AreEqual(lastName, userProfile.surname);
+            Assert.AreEqual(surname, userProfile.surname);
             Assert.AreEqual(email, userProfile.email);
             Assert.AreEqual(language, userProfile.language);
             Assert.AreEqual(country, userProfile.country);
@@ -118,10 +118,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user
             userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, lastName, email, language, country));
+                new UserProfileDetails(firstName, surname, email, language, country));
             // Register the same user
             userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, lastName, email, language, country));
+                new UserProfileDetails(firstName, surname, email, language, country));
         }
 
         ///// <summary>
@@ -132,7 +132,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, lastName, email, language, country));
+                new UserProfileDetails(firstName, surname, email, language, country));
 
             LoginResult expected = new LoginResult(userId, firstName,
                 PasswordEncrypter.Crypt(clearPassword), language, country);
@@ -155,7 +155,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, lastName, email, language, country));
+                new UserProfileDetails(firstName, surname, email, language, country));
 
             LoginResult expected = new LoginResult(userId, firstName,
                 PasswordEncrypter.Crypt(clearPassword), language, country);
@@ -178,7 +178,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, lastName, email, language, country));
+                new UserProfileDetails(firstName, surname, email, language, country));
 
             // Login with incorrect (clear) password
             LoginResult actual =
@@ -204,7 +204,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         public void FindUserProfileDetailsTest()
         {
             UserProfileDetails expected =
-                new UserProfileDetails(firstName, lastName, email, language, country);
+                new UserProfileDetails(firstName, surname, email, language, country);
 
             long userId =
                 userService.RegisterUser(loginName, clearPassword, expected);
@@ -234,10 +234,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user and update profile details
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, lastName, email, language, country));
+                new UserProfileDetails(firstName, surname, email, language, country));
 
             UserProfileDetails expected =
-                    new UserProfileDetails(firstName + "X", lastName + "X",
+                    new UserProfileDetails(firstName + "X", surname + "X",
                         email + "X", "XX", "XX");
 
             userService.UpdateUserProfileDetails(userId, expected);
@@ -257,7 +257,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         public void UpdateUserProfileDetailsForNonExistingUserTest()
         {
             userService.UpdateUserProfileDetails(NON_EXISTENT_USER_ID,
-                new UserProfileDetails(firstName, lastName, email, language, country));
+                new UserProfileDetails(firstName, surname, email, language, country));
         }
       
         /// <summary>
@@ -268,7 +268,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, lastName, email, language, country));
+                new UserProfileDetails(firstName, surname, email, language, country));
 
             // Change password
             String newClearPassword = clearPassword + "X";
@@ -288,7 +288,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, lastName, email, language, country));
+                new UserProfileDetails(firstName, surname, email, language, country));
 
             // Change password
             String newClearPassword = clearPassword + "X";
@@ -306,5 +306,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 clearPassword, clearPassword + "X");
         }
     }
-    }
+    
 }

@@ -1,26 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Practices.Unity;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroupDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroupDao;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Microsoft.Practices.Unity;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
 {
     public class UsersGroupService : IUsersGroupService
     {
         [Dependency]
-        IUserProfileDao UserProfileDao { private get;  set; }
+        public IUsersGroupDao UsersGroupDao { private get; set; }
 
         [Dependency]
-        IUsersGroupDao UsersGroupDao { private get; set; }
-
-        [Dependency]
-        IUserProfileUsersGroupDao UserProfileUsersGroupDao { private get; set; }
+        public IUserProfileUsersGroupDao UserProfileUsersGroupDao { private get; set; }
 
         public void Create(UsersGroup usersGroup)
         {
@@ -57,6 +50,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
 
             
         }
-
     }
 }

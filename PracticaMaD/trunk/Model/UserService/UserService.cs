@@ -1,8 +1,8 @@
 ﻿using System;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Microsoft.Practices.Unity;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
