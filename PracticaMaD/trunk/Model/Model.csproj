@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Es.Udc.DotNet.PracticaMaD.Model</RootNamespace>
-    <AssemblyName>Model</AssemblyName>
+    <AssemblyName>PracticaMaD.Model</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
