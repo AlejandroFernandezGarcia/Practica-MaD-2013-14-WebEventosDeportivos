@@ -8,7 +8,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 {
     class EventDaoEntityFramework : GenericDaoEntityFramework<Event, Int64>, IEventDao
     {
-        public List<Event> FindByKeywords(String keywords, int categoryId)
+        public List<Event> FindByKeywords(String keywords, long categoryId)
         {
             String query = "SELECT VALUE e FROM PracticaMaDEntities.Event AS e " +
                            "WHERE e.name.Contains(@keywords) ";
