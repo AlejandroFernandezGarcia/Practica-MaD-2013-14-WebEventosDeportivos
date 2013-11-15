@@ -2,6 +2,8 @@
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroupDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
 {
@@ -9,6 +11,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
     {
         [Dependency]
         IUserProfileDao UserProfileDao { set; }
+
+        [Dependency]
+        IUsersGroupDao UsersGroupDao { set; }
+
+        [Dependency]
+        IUserProfileUsersGroupDao UserProfileUsersGroupDao { set; }
 
         [Transactional]
         void Create(UsersGroup usersGroup);
