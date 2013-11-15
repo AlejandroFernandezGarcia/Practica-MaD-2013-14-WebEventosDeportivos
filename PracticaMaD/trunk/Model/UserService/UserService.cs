@@ -1,6 +1,6 @@
 ﻿using System;
-using Es.Udc.DotNet.MiniPortal.Model.UserService.Exceptions;
-using Es.Udc.DotNet.MiniPortal.Model.UserService.Util;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Microsoft.Practices.Unity;
