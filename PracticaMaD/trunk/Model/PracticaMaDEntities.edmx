@@ -46,14 +46,14 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="date" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="text" Type="varchar" Nullable="false" MaxLength="1000" />
           <Property Name="eventId" Type="bigint" Nullable="false" />
@@ -63,7 +63,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="date" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="description" Type="varchar" Nullable="false" MaxLength="1000" />
@@ -73,7 +73,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="text" Type="varchar" Nullable="false" MaxLength="1000" />
           <Property Name="eventId" Type="bigint" Nullable="false" />
           <Property Name="usersGroupId" Type="bigint" Nullable="false" />
@@ -82,7 +82,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="loginName" Type="varchar" Nullable="false" MaxLength="30" />
           <Property Name="enPassword" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="firstName" Type="varchar" Nullable="false" MaxLength="30" />
@@ -95,7 +95,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="userId" Type="bigint" Nullable="false" />
           <Property Name="groupId" Type="bigint" Nullable="false" />
         </EntityType>
@@ -103,7 +103,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="description" Type="varchar" Nullable="false" MaxLength="1000" />
         </EntityType>
@@ -236,7 +236,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Event" Relationship="PracticaMaDModel.FK_Category_Event" FromRole="Category" ToRole="Event" />
         </EntityType>
@@ -244,7 +244,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Binary" Name="date" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Type="String" Name="text" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="Int64" Name="eventId" Nullable="false" />
@@ -256,7 +256,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Binary" Name="date" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Type="String" Name="description" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
@@ -269,7 +269,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="text" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="Int64" Name="eventId" Nullable="false" />
           <Property Type="Int64" Name="usersGroupId" Nullable="false" />
@@ -280,7 +280,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="loginName" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="enPassword" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="firstName" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -295,7 +295,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int64" Name="userId" Nullable="false" />
           <Property Type="Int64" Name="groupId" Nullable="false" />
           <NavigationProperty Name="UserProfile" Relationship="PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile" FromRole="UserProfileUsersGroup" ToRole="UserProfile" />
@@ -305,7 +305,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="description" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Recommendation" Relationship="PracticaMaDModel.FK_UsersGroup_Recommendation" FromRole="UsersGroup" ToRole="Recommendation" />
@@ -493,48 +493,48 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model2" ZoomLevel="60">
+      <Diagram Name="Model2" ZoomLevel="42">
         <EntityTypeShape EntityType="PracticaMaDModel.Category" Width="1.5" PointX="0.75" PointY="4" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="PracticaMaDModel.Comment" Width="1.5" PointX="5.25" PointY="3.625" Height="2.3648893229166656" />
-        <EntityTypeShape EntityType="PracticaMaDModel.Event" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083335" />
-        <EntityTypeShape EntityType="PracticaMaDModel.Recommendation" Width="1.5" PointX="5.25" PointY="0.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="PracticaMaDModel.Comment" Width="1.5" PointX="5.25" PointY="3.625" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="PracticaMaDModel.Event" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083353" />
+        <EntityTypeShape EntityType="PracticaMaDModel.Recommendation" Width="1.5" PointX="5.25" PointY="0.75" Height="2.1725878906250031" />
         <EntityTypeShape EntityType="PracticaMaDModel.UserProfile" Width="1.5" PointX="3" PointY="10.375" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="PracticaMaDModel.UserProfileUsersGroup" Width="1.5" PointX="5.25" PointY="9.5" Height="1.9802864583333317" />
-        <EntityTypeShape EntityType="PracticaMaDModel.UsersGroup" Width="1.5" PointX="3" PointY="7.625" Height="1.9802864583333335" />
+        <EntityTypeShape EntityType="PracticaMaDModel.UserProfileUsersGroup" Width="1.5" PointX="5.25" PointY="9.5" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="PracticaMaDModel.UsersGroup" Width="1.5" PointX="3" PointY="7.625" Height="1.9802864583333388" />
         <AssociationConnector Association="PracticaMaDModel.FK_Category_Event" >
           <ConnectorPoint PointX="2.25" PointY="4.797841796875" />
           <ConnectorPoint PointX="3" PointY="4.797841796875" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_Event_Comment" >
-          <ConnectorPoint PointX="4.5" PointY="4.8074446614583328" />
-          <ConnectorPoint PointX="4.979166666666667" PointY="4.8074446614583319" />
-          <ConnectorPoint PointX="5.145833333333333" PointY="4.8074446614583328" />
-          <ConnectorPoint PointX="5.25" PointY="4.8074446614583328" />
+          <ConnectorPoint PointX="4.5" PointY="4.8074446614583337" />
+          <ConnectorPoint PointX="4.979166666666667" PointY="4.8074446614583328" />
+          <ConnectorPoint PointX="5.145833333333333" PointY="4.8074446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="4.8074446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_UserProfile_Comment" >
           <ConnectorPoint PointX="4.5" PointY="10.376152846153847" />
           <ConnectorPoint PointX="4.875" PointY="10.001152846153847" />
-          <ConnectorPoint PointX="4.875" PointY="5.4299189921874991" />
-          <ConnectorPoint PointX="4.979166666666667" PointY="5.4299189921874982" />
-          <ConnectorPoint PointX="5.145833333333333" PointY="5.4299189921874991" />
-          <ConnectorPoint PointX="5.25" PointY="5.4299189921874991" />
+          <ConnectorPoint PointX="4.875" PointY="5.4299189921875008" />
+          <ConnectorPoint PointX="4.979166666666667" PointY="5.4299189921875" />
+          <ConnectorPoint PointX="5.145833333333333" PointY="5.4299189921875008" />
+          <ConnectorPoint PointX="5.25" PointY="5.4299189921875008" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_Event_Recommendation" >
           <ConnectorPoint PointX="3.75" PointY="3.5" />
-          <ConnectorPoint PointX="3.75" PointY="1.8362939453124998" />
-          <ConnectorPoint PointX="5.25" PointY="1.8362939453124998" />
+          <ConnectorPoint PointX="3.75" PointY="1.8362939453125016" />
+          <ConnectorPoint PointX="5.25" PointY="1.8362939453125016" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_UsersGroup_Recommendation" >
           <ConnectorPoint PointX="4.5" PointY="7.6873066923076925" />
           <ConnectorPoint PointX="4.8160744349011209" PointY="7.3712322574065725" />
           <ConnectorPoint PointX="4.9339255650988791" PointY="7.2533811272088151" />
           <ConnectorPoint PointX="5.0625" PointY="7.1248066923076934" />
-          <ConnectorPoint PointX="5.0625" PointY="2.4106929179687504" />
-          <ConnectorPoint PointX="5.25" PointY="2.4106929179687504" />
+          <ConnectorPoint PointX="5.0625" PointY="2.4106929179687531" />
+          <ConnectorPoint PointX="5.25" PointY="2.4106929179687531" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile" >
-          <ConnectorPoint PointX="4.5" PointY="10.95947215224359" />
-          <ConnectorPoint PointX="5.25" PointY="10.95947215224359" />
+          <ConnectorPoint PointX="4.5" PointY="10.959472152243594" />
+          <ConnectorPoint PointX="5.25" PointY="10.959472152243594" />
         </AssociationConnector>
         <AssociationConnector Association="PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup" >
           <ConnectorPoint PointX="4.5" PointY="8.624905346153847" />
