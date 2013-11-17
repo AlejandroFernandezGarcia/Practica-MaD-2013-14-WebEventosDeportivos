@@ -11,7 +11,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
         public List<Event> FindByKeywords(String keywords, long categoryId)
         {
             String query = "SELECT VALUE e FROM PracticaMaDEntities.Event AS e " +
-                           "WHERE e.name.Contains(@keywords) ";
+                           "WHERE e.name LIKE '%' + @keywords + '%' ";
             if (categoryId != -1)
             {
                 query += "AND e.categoryId = @categoryId ";

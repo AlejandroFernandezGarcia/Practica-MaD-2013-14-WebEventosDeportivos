@@ -493,7 +493,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model2" ZoomLevel="42">
+      <Diagram Name="Model2" ZoomLevel="72">
         <EntityTypeShape EntityType="PracticaMaDModel.Category" Width="1.5" PointX="0.75" PointY="4" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="PracticaMaDModel.Comment" Width="1.5" PointX="5.25" PointY="3.625" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="PracticaMaDModel.Event" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083353" />
