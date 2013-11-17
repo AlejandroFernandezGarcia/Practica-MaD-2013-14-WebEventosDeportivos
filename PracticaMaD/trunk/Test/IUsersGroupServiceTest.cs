@@ -88,7 +88,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             String encryptedPassword = PasswordEncrypter.Crypt("pass");
 
-            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia", "pepe@udc.es", "Spanish", "Spain");
+            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia", "pepe@udc.es", "es", "ES");
 
             userProfileDao.Create(userProfile);
 
@@ -110,7 +110,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             String encryptedPassword = PasswordEncrypter.Crypt("pass");
 
-            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia", "pepe@udc.es", "Spanish", "Spain");
+            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia", "pepe@udc.es", "es", "ES");
 
             userProfileDao.Create(userProfile);
 
@@ -126,7 +126,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             String encryptedPassword = PasswordEncrypter.Crypt("pass");
 
-            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia", "pepe@udc.es", "Spanish", "Spain");
+            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia", "pepe@udc.es", "es", "ES");
 
             userProfileDao.Create(userProfile);
             
@@ -145,7 +145,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             String encryptedPassword = PasswordEncrypter.Crypt("pass");
 
-            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia", "pepe@udc.es", "Spanish", "Spain");
+            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia", "pepe@udc.es", "es", "ES");
 
             userProfileDao.Create(userProfile);
 
