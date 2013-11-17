@@ -163,21 +163,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             DateTime date = new DateTime();
             byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
 
-            Event e1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
-
-            eventDao.Create(e1);
+            Event event1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
+            eventDao.Create(event1);
 
             String encryptedPassword = PasswordEncrypter.Crypt("pass");
-
-            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia","pepe@udc.es", "Spanish", "Spain");
-
+            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia","pepe@udc.es", "es", "ES");
             userProfileDao.Create(userProfile);
 
-            eventService.AddComment(e1, "Prueba de comentarios", userProfile);
+            String expectedText = "Prueba de comentarios";
+            eventService.AddComment(event1, expectedText, userProfile);
+            Comment comment1 = event1.Comment.ToList()[0];
 
-            Assert.AreEqual(e1.Comment.ToList()[0].text, "Prueba de comentarios");
-                
-
+            Assert.AreEqual(comment1.text, expectedText);
+            Assert.AreEqual(comment1.userProfileId, userProfile.id);
         }
     }
 }
