@@ -87,17 +87,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             UsersGroup ug = UsersGroup.CreateUsersGroup(0,"Partidos de futbol","Grupo para partidos de futbol");
             usersGroupDao.Create(ug);
 
-            recommendationService.Create(e1, ug, "Metete en este grupo");
+            String reText = "Este evento es la polla";
+            long reId = recommendationService.Create(e1, ug, reText);
 
-            Recommendation re = recommendationDao.Find(1);
+            Recommendation re = recommendationDao.Find(reId);
 
-            Recommendation re1 = new Recommendation();
-            re1.id = 1;
-            re1.eventId = e1.id;
-            re1.usersGroupId = ug.id;
-            re1.text = "Metete en este grupo";
-
-            Assert.AreEqual(re, re1);
+            Assert.AreEqual(re.id, reId);
+            Assert.AreEqual(re.eventId, e1.id);
+            Assert.AreEqual(re.usersGroupId, ug.id);
+            Assert.AreEqual(re.text, reText);
         }
     }
 }
