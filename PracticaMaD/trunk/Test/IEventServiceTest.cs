@@ -11,6 +11,7 @@ using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
+using System.Data.Objects.DataClasses;
 
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
@@ -172,7 +173,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             eventService.AddComment(e1, "Prueba de comentarios", userProfile);
 
-            Assert.AreEqual(e1.Comment.Count, 1);
+            Assert.AreEqual(e1.Comment.ToList()[0].text, "Prueba de comentarios");
                 
 
         }
