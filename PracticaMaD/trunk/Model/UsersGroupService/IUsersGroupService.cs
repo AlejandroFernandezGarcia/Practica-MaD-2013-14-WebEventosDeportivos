@@ -15,7 +15,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         IUserProfileUsersGroupDao UserProfileUsersGroupDao { set; }
 
         [Transactional]
-        void Create(UsersGroup usersGroup);
+        long Create(String name, String description);
 
         [Transactional]
         void RemoveUserFromGroup(UsersGroup usersGroup, UserProfile userP);
