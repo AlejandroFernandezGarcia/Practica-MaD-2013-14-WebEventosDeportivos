@@ -15,9 +15,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         [Dependency]
         public IUserProfileUsersGroupDao UserProfileUsersGroupDao { private get; set; }
 
-        public void Create(UsersGroup usersGroup)
+        public long Create(String name, String description)
         {
-            UsersGroupDao.Create(usersGroup);
+            UsersGroup ug = UsersGroup.CreateUsersGroup(0, name, description);
+
+            UsersGroupDao.Create(ug);
+
+            return ug.id;
         }
 
         public void RemoveUserFromGroup(UsersGroup usersGroup, UserProfile userP)
@@ -26,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
             {
                 UserProfileUsersGroupDao.RemoveUserFromGroup(usersGroup.id, userP.id);
             }catch(InstanceNotFoundException){
-                throw new UsersBelongGroupException(usersGroup.id, userP.id);
+                throw new UserNotBelongGroupException(usersGroup.id, userP.id);
             }
         }
 

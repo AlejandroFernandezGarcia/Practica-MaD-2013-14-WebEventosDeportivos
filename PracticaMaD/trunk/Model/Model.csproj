@@ -102,7 +102,7 @@
     <Compile Include="UserService\Util\PasswordEncrypter.cs" />
     <Compile Include="UsersGroupDao\IUsersGroupDao.cs" />
     <Compile Include="UsersGroupDao\UsersGroupDaoEntityFramework.cs" />
-    <Compile Include="UsersGroupService\Exceptions\UsersBelongGroupException.cs" />
+    <Compile Include="UsersGroupService\Exceptions\UserNotBelongGroupException.cs" />
     <Compile Include="UsersGroupService\IUsersGroupService.cs" />
     <Compile Include="UsersGroupService\UsersGroupService.cs" />
   </ItemGroup>

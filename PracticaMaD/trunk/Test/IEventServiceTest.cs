@@ -16,7 +16,7 @@ using System.Data.Objects.DataClasses;
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
 
-    [TestClass]
+    [TestClass()]
     public class IEventServiceTest
     {
         private static IUnityContainer container;
@@ -78,7 +78,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             DateTime date = new DateTime();
             byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
 
-            Event.CreateEvent(0,"Evento 1", dateBytes, "Evento de prueba 1", category1.id);
+            Event e1 = Event.CreateEvent(0,"Evento 1", dateBytes, "Evento de prueba 1", category1.id);
+
+            eventDao.Create(e1);
 
             List<Event> list = eventService.FindByKeywords("prueba", null);
             Assert.AreEqual(list.Count, 0);

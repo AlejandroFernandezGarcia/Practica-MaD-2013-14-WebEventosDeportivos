@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.ModelUtil.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroupDao
 {

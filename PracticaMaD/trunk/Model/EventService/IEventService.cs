@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.ModelUtil.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 {
@@ -18,6 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 
         List<Event> FindByKeywords(String keywords, Category category);
 
+        [Transactional]
         void AddComment(Event even, String text, UserProfile userProfile);
     }
 }
