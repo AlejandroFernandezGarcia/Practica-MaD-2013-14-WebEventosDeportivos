@@ -8,23 +8,24 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
 
-[assembly: EdmRelationshipAttribute("PracticaMaDModel", "FK_Category_Event", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.Category), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Event), true)]
-[assembly: EdmRelationshipAttribute("PracticaMaDModel", "FK_Event_Comment", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.Event), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Comment), true)]
-[assembly: EdmRelationshipAttribute("PracticaMaDModel", "FK_UserProfile_Comment", "UserProfile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfile), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Comment), true)]
-[assembly: EdmRelationshipAttribute("PracticaMaDModel", "FK_Event_Recommendation", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.Event), "Recommendation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Recommendation), true)]
-[assembly: EdmRelationshipAttribute("PracticaMaDModel", "FK_UsersGroup_Recommendation", "UsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UsersGroup), "Recommendation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Recommendation), true)]
-[assembly: EdmRelationshipAttribute("PracticaMaDModel", "FK_UserProfile_UsersGroup_UserProfile", "UserProfile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfile), "UserProfileUsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup), true)]
-[assembly: EdmRelationshipAttribute("PracticaMaDModel", "FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UsersGroup), "UserProfileUsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup), true)]
+[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Category_Event", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.Category), "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Event), true)]
+[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Event_Comment", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.Event), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Comment), true)]
+[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_Comment", "UserProfile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfile), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Comment), true)]
+[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Event_Recommendation", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.Event), "Recommendation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Recommendation), true)]
+[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UsersGroup_Recommendation", "UsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UsersGroup), "Recommendation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Recommendation), true)]
+[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UserProfile", "UserProfile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfile), "UserProfileUsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup), true)]
+[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UsersGroup), "UserProfileUsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup), true)]
 
 #endregion
 
@@ -189,6 +190,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         private ObjectSet<UsersGroup> _UsersGroup;
 
         #endregion
+
         #region Métodos AddTo
     
         /// <summary>
@@ -248,17 +250,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entidades
     
     /// <summary>
     /// No hay documentación de metadatos disponible.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="PracticaMaDModel", Name="Category")]
+    [EdmEntityTypeAttribute(NamespaceName="Es.Udc.DotNet.PracticaMaD.Model", Name="Category")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Category : EntityObject
@@ -279,6 +281,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -333,6 +336,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OnnameChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -342,29 +346,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_Category_Event", "Event")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Category_Event", "Event")]
         public EntityCollection<Event> Event
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("PracticaMaDModel.FK_Category_Event", "Event");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Event>("Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event", "Event");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("PracticaMaDModel.FK_Category_Event", "Event", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Event>("Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event", "Event", value);
                 }
             }
         }
 
         #endregion
+
     }
     
     /// <summary>
     /// No hay documentación de metadatos disponible.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="PracticaMaDModel", Name="Comment")]
+    [EdmEntityTypeAttribute(NamespaceName="Es.Udc.DotNet.PracticaMaD.Model", Name="Comment")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Comment : EntityObject
@@ -391,6 +396,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -517,6 +523,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OnuserProfileIdChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -526,16 +533,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_Event_Comment", "Event")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Event_Comment", "Event")]
         public Event Event
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("PracticaMaDModel.FK_Event_Comment", "Event").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment", "Event").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("PracticaMaDModel.FK_Event_Comment", "Event").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment", "Event").Value = value;
             }
         }
         /// <summary>
@@ -547,13 +554,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("PracticaMaDModel.FK_Event_Comment", "Event");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment", "Event");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Event>("PracticaMaDModel.FK_Event_Comment", "Event", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Event>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment", "Event", value);
                 }
             }
         }
@@ -564,16 +571,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_UserProfile_Comment", "UserProfile")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_Comment", "UserProfile")]
         public UserProfile UserProfile
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("PracticaMaDModel.FK_UserProfile_Comment", "UserProfile").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment", "UserProfile").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("PracticaMaDModel.FK_UserProfile_Comment", "UserProfile").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment", "UserProfile").Value = value;
             }
         }
         /// <summary>
@@ -585,24 +592,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("PracticaMaDModel.FK_UserProfile_Comment", "UserProfile");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment", "UserProfile");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserProfile>("PracticaMaDModel.FK_UserProfile_Comment", "UserProfile", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment", "UserProfile", value);
                 }
             }
         }
 
         #endregion
+
     }
     
     /// <summary>
     /// No hay documentación de metadatos disponible.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="PracticaMaDModel", Name="Event")]
+    [EdmEntityTypeAttribute(NamespaceName="Es.Udc.DotNet.PracticaMaD.Model", Name="Event")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Event : EntityObject
@@ -629,6 +637,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -755,6 +764,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OncategoryIdChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -764,16 +774,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_Category_Event", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Category_Event", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("PracticaMaDModel.FK_Category_Event", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("PracticaMaDModel.FK_Category_Event", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event", "Category").Value = value;
             }
         }
         /// <summary>
@@ -785,13 +795,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("PracticaMaDModel.FK_Category_Event", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("PracticaMaDModel.FK_Category_Event", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event", "Category", value);
                 }
             }
         }
@@ -802,18 +812,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_Event_Comment", "Comment")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Event_Comment", "Comment")]
         public EntityCollection<Comment> Comment
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Comment>("PracticaMaDModel.FK_Event_Comment", "Comment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Comment>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment", "Comment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Comment>("PracticaMaDModel.FK_Event_Comment", "Comment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Comment>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment", "Comment", value);
                 }
             }
         }
@@ -824,29 +834,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_Event_Recommendation", "Recommendation")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Event_Recommendation", "Recommendation")]
         public EntityCollection<Recommendation> Recommendation
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Recommendation>("PracticaMaDModel.FK_Event_Recommendation", "Recommendation");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Recommendation>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation", "Recommendation");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Recommendation>("PracticaMaDModel.FK_Event_Recommendation", "Recommendation", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Recommendation>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation", "Recommendation", value);
                 }
             }
         }
 
         #endregion
+
     }
     
     /// <summary>
     /// No hay documentación de metadatos disponible.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="PracticaMaDModel", Name="Recommendation")]
+    [EdmEntityTypeAttribute(NamespaceName="Es.Udc.DotNet.PracticaMaD.Model", Name="Recommendation")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Recommendation : EntityObject
@@ -871,6 +882,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -973,6 +985,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OnusersGroupIdChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -982,16 +995,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_Event_Recommendation", "Event")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Event_Recommendation", "Event")]
         public Event Event
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("PracticaMaDModel.FK_Event_Recommendation", "Event").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation", "Event").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("PracticaMaDModel.FK_Event_Recommendation", "Event").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation", "Event").Value = value;
             }
         }
         /// <summary>
@@ -1003,13 +1016,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("PracticaMaDModel.FK_Event_Recommendation", "Event");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Event>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation", "Event");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Event>("PracticaMaDModel.FK_Event_Recommendation", "Event", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Event>("Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation", "Event", value);
                 }
             }
         }
@@ -1020,16 +1033,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_UsersGroup_Recommendation", "UsersGroup")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UsersGroup_Recommendation", "UsersGroup")]
         public UsersGroup UsersGroup
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("PracticaMaDModel.FK_UsersGroup_Recommendation", "UsersGroup").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation", "UsersGroup").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("PracticaMaDModel.FK_UsersGroup_Recommendation", "UsersGroup").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation", "UsersGroup").Value = value;
             }
         }
         /// <summary>
@@ -1041,24 +1054,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("PracticaMaDModel.FK_UsersGroup_Recommendation", "UsersGroup");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation", "UsersGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UsersGroup>("PracticaMaDModel.FK_UsersGroup_Recommendation", "UsersGroup", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation", "UsersGroup", value);
                 }
             }
         }
 
         #endregion
+
     }
     
     /// <summary>
     /// No hay documentación de metadatos disponible.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="PracticaMaDModel", Name="UserProfile")]
+    [EdmEntityTypeAttribute(NamespaceName="Es.Udc.DotNet.PracticaMaD.Model", Name="UserProfile")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class UserProfile : EntityObject
@@ -1091,6 +1105,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1289,6 +1304,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OncountryChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -1298,18 +1314,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_UserProfile_Comment", "Comment")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_Comment", "Comment")]
         public EntityCollection<Comment> Comment
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Comment>("PracticaMaDModel.FK_UserProfile_Comment", "Comment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Comment>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment", "Comment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Comment>("PracticaMaDModel.FK_UserProfile_Comment", "Comment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Comment>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment", "Comment", value);
                 }
             }
         }
@@ -1320,29 +1336,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_UserProfile_UsersGroup_UserProfile", "UserProfileUsersGroup")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UserProfile", "UserProfileUsersGroup")]
         public EntityCollection<UserProfileUsersGroup> UserProfileUsersGroup
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserProfileUsersGroup>("PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile", "UserProfileUsersGroup");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserProfileUsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfileUsersGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserProfileUsersGroup>("PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile", "UserProfileUsersGroup", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserProfileUsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfileUsersGroup", value);
                 }
             }
         }
 
         #endregion
+
     }
     
     /// <summary>
     /// No hay documentación de metadatos disponible.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="PracticaMaDModel", Name="UserProfileUsersGroup")]
+    [EdmEntityTypeAttribute(NamespaceName="Es.Udc.DotNet.PracticaMaD.Model", Name="UserProfileUsersGroup")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class UserProfileUsersGroup : EntityObject
@@ -1365,6 +1382,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1443,6 +1461,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OngroupIdChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -1452,16 +1471,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_UserProfile_UsersGroup_UserProfile", "UserProfile")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UserProfile", "UserProfile")]
         public UserProfile UserProfile
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile", "UserProfile").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfile").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile", "UserProfile").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfile").Value = value;
             }
         }
         /// <summary>
@@ -1473,13 +1492,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile", "UserProfile");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfile");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserProfile>("PracticaMaDModel.FK_UserProfile_UsersGroup_UserProfile", "UserProfile", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfile", value);
                 }
             }
         }
@@ -1490,16 +1509,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup")]
         public UsersGroup UsersGroup
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup").Value = value;
             }
         }
         /// <summary>
@@ -1511,24 +1530,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UsersGroup>("PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup", value);
                 }
             }
         }
 
         #endregion
+
     }
     
     /// <summary>
     /// No hay documentación de metadatos disponible.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="PracticaMaDModel", Name="UsersGroup")]
+    [EdmEntityTypeAttribute(NamespaceName="Es.Udc.DotNet.PracticaMaD.Model", Name="UsersGroup")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class UsersGroup : EntityObject
@@ -1551,6 +1571,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1629,6 +1650,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OndescriptionChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -1638,18 +1660,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_UsersGroup_Recommendation", "Recommendation")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UsersGroup_Recommendation", "Recommendation")]
         public EntityCollection<Recommendation> Recommendation
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Recommendation>("PracticaMaDModel.FK_UsersGroup_Recommendation", "Recommendation");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Recommendation>("Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation", "Recommendation");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Recommendation>("PracticaMaDModel.FK_UsersGroup_Recommendation", "Recommendation", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Recommendation>("Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation", "Recommendation", value);
                 }
             }
         }
@@ -1660,25 +1682,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("PracticaMaDModel", "FK_UserProfile_UsersGroup_UsersGroup", "UserProfileUsersGroup")]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UsersGroup", "UserProfileUsersGroup")]
         public EntityCollection<UserProfileUsersGroup> UserProfileUsersGroup
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserProfileUsersGroup>("PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup", "UserProfileUsersGroup");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserProfileUsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UserProfileUsersGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserProfileUsersGroup>("PracticaMaDModel.FK_UserProfile_UsersGroup_UsersGroup", "UserProfileUsersGroup", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserProfileUsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UserProfileUsersGroup", value);
                 }
             }
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }
