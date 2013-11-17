@@ -70,17 +70,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         }
 
         [TestMethod()]
-        public void CreateUsersGroup() 
+        public void CreateUsersGroup()
         {
-            long id = usersGroupService.Create("Grupo futbol", "Grupo para hablar de futbol");
+            String name = "Grupo futbol";
+            String description = "Grupo para hablar de futbol";
+            long id = usersGroupService.Create(name, description);
 
-            UsersGroup ug = new UsersGroup();
+            UsersGroup ug = usersGroupDao.Find(id);
 
-            //ug.id = id;
-            ug.name = "Grupo futbol"; 
-            ug.description = "Grupo para hablar de futbol";
-
-            Assert.AreEqual(ug, usersGroupDao.Find(id));
+            Assert.AreEqual(ug.id, id);
+            Assert.AreEqual(ug.name, name);
+            Assert.AreEqual(ug.description, description);
         }
 
         [TestMethod()]
