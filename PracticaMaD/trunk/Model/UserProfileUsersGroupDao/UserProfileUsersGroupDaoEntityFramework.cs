@@ -27,20 +27,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroupDao
         {
             UserProfileUsersGroup upug = null;
             
-            String query = "SELECT VALUE e FROM PracticaMaDEntities.UserProfileUsersGroupDao AS e " +
+            String query = "SELECT VALUE e FROM PracticaMaDEntities.UserProfileUsersGroup AS e " +
                            "WHERE e.userId = @userProfileId " +
                            "AND e.groupID = @usersGroupId ";
 
             ObjectParameter param = new ObjectParameter("userProfileId", userProfileId);
             ObjectParameter param2 = new ObjectParameter("usersGroupId", usersGroupId);
 
-            ObjectQuery<UserProfileUsersGroup> oQuery = this.Context.CreateQuery<UserProfileUsersGroup>(query, param,
-                                                                                                        param2);
-            // el test falla aquí, si descomentas esta excepción la verás:
-            //throw new Exception("Antes del Execute");
-            ObjectResult<UserProfileUsersGroup> result = oQuery.Execute(MergeOption.AppendOnly);
-            // pero si solo descomentas esta no la verás:
-            //throw new Exception("Después del Execute");
+            ObjectResult<UserProfileUsersGroup> result = this.Context.CreateQuery<UserProfileUsersGroup>(query, param, param2).Execute(MergeOption.AppendOnly);
 
             try
             {
