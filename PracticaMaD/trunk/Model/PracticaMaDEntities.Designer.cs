@@ -8,13 +8,12 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
@@ -24,8 +23,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_Comment", "UserProfile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfile), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Comment), true)]
 [assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Event_Recommendation", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.Event), "Recommendation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Recommendation), true)]
 [assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UsersGroup_Recommendation", "UsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UsersGroup), "Recommendation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Recommendation), true)]
-[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UserProfile", "UserProfile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfile), "UserProfileUsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup), true)]
-[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UsersGroup), "UserProfileUsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup), true)]
+[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "UserProfileUsersGroup", "UserProfile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfile), "UsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.UsersGroup))]
 
 #endregion
 
@@ -160,22 +158,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<UserProfileUsersGroup> UserProfileUsersGroup
-        {
-            get
-            {
-                if ((_UserProfileUsersGroup == null))
-                {
-                    _UserProfileUsersGroup = base.CreateObjectSet<UserProfileUsersGroup>("UserProfileUsersGroup");
-                }
-                return _UserProfileUsersGroup;
-            }
-        }
-        private ObjectSet<UserProfileUsersGroup> _UserProfileUsersGroup;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<UsersGroup> UsersGroup
         {
             get
@@ -190,7 +172,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         private ObjectSet<UsersGroup> _UsersGroup;
 
         #endregion
-
         #region Métodos AddTo
     
         /// <summary>
@@ -234,14 +215,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet UserProfileUsersGroup. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToUserProfileUsersGroup(UserProfileUsersGroup userProfileUsersGroup)
-        {
-            base.AddObject("UserProfileUsersGroup", userProfileUsersGroup);
-        }
-    
-        /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet UsersGroup. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
         public void AddToUsersGroup(UsersGroup usersGroup)
@@ -250,11 +223,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
     }
+    
 
     #endregion
-
+    
     #region Entidades
     
     /// <summary>
@@ -281,7 +254,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -336,7 +308,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OnnameChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -363,7 +334,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -396,7 +366,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -523,7 +492,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OnuserProfileIdChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -604,7 +572,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -637,7 +604,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -764,7 +730,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OncategoryIdChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -851,7 +816,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -882,7 +846,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -985,7 +948,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OnusersGroupIdChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -1066,7 +1028,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1105,7 +1066,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -1304,7 +1264,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OncountryChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -1336,213 +1295,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UserProfile", "UserProfileUsersGroup")]
-        public EntityCollection<UserProfileUsersGroup> UserProfileUsersGroup
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "UserProfileUsersGroup", "UsersGroup")]
+        public EntityCollection<UsersGroup> UsersGroup
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserProfileUsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfileUsersGroup");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup", "UsersGroup");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserProfileUsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfileUsersGroup", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup", "UsersGroup", value);
                 }
             }
         }
 
         #endregion
-
-    }
-    
-    /// <summary>
-    /// No hay documentación de metadatos disponible.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Es.Udc.DotNet.PracticaMaD.Model", Name="UserProfileUsersGroup")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class UserProfileUsersGroup : EntityObject
-    {
-        #region Método de generador
-    
-        /// <summary>
-        /// Crear un nuevo objeto UserProfileUsersGroup.
-        /// </summary>
-        /// <param name="id">Valor inicial de la propiedad id.</param>
-        /// <param name="userId">Valor inicial de la propiedad userId.</param>
-        /// <param name="groupId">Valor inicial de la propiedad groupId.</param>
-        public static UserProfileUsersGroup CreateUserProfileUsersGroup(global::System.Int64 id, global::System.Int64 userId, global::System.Int64 groupId)
-        {
-            UserProfileUsersGroup userProfileUsersGroup = new UserProfileUsersGroup();
-            userProfileUsersGroup.id = id;
-            userProfileUsersGroup.userId = userId;
-            userProfileUsersGroup.groupId = groupId;
-            return userProfileUsersGroup;
-        }
-
-        #endregion
-
-        #region Propiedades primitivas
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 id
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                if (_id != value)
-                {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id");
-                    OnidChanged();
-                }
-            }
-        }
-        private global::System.Int64 _id;
-        partial void OnidChanging(global::System.Int64 value);
-        partial void OnidChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 userId
-        {
-            get
-            {
-                return _userId;
-            }
-            set
-            {
-                OnuserIdChanging(value);
-                ReportPropertyChanging("userId");
-                _userId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("userId");
-                OnuserIdChanged();
-            }
-        }
-        private global::System.Int64 _userId;
-        partial void OnuserIdChanging(global::System.Int64 value);
-        partial void OnuserIdChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 groupId
-        {
-            get
-            {
-                return _groupId;
-            }
-            set
-            {
-                OngroupIdChanging(value);
-                ReportPropertyChanging("groupId");
-                _groupId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("groupId");
-                OngroupIdChanged();
-            }
-        }
-        private global::System.Int64 _groupId;
-        partial void OngroupIdChanging(global::System.Int64 value);
-        partial void OngroupIdChanged();
-
-        #endregion
-
-    
-        #region Propiedades de navegación
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UserProfile", "UserProfile")]
-        public UserProfile UserProfile
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfile").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfile").Value = value;
-            }
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<UserProfile> UserProfileReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfile");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UserProfile", "UserProfile", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup")]
-        public UsersGroup UsersGroup
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup").Value = value;
-            }
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<UsersGroup> UsersGroupReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UsersGroup", value);
-                }
-            }
-        }
-
-        #endregion
-
     }
     
     /// <summary>
@@ -1571,7 +1340,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
-
         #region Propiedades primitivas
     
         /// <summary>
@@ -1650,7 +1418,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OndescriptionChanged();
 
         #endregion
-
     
         #region Propiedades de navegación
     
@@ -1682,27 +1449,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_UsersGroup_UsersGroup", "UserProfileUsersGroup")]
-        public EntityCollection<UserProfileUsersGroup> UserProfileUsersGroup
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "UserProfileUsersGroup", "UserProfile")]
+        public EntityCollection<UserProfile> UserProfile
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserProfileUsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UserProfileUsersGroup");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup", "UserProfile");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserProfileUsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_UsersGroup_UsersGroup", "UserProfileUsersGroup", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserProfile>("Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup", "UserProfile", value);
                 }
             }
         }
 
         #endregion
-
     }
 
     #endregion
-
     
 }

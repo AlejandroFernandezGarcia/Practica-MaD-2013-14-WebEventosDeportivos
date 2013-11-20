@@ -92,8 +92,8 @@
     <Compile Include="RecommendationService\RecommendationService.cs" />
     <Compile Include="UserProfileDao\IUserProfileDao.cs" />
     <Compile Include="UserProfileDao\UserProfileDaoEntityFramework.cs" />
-    <Compile Include="UserProfileUsersGroupDao\IUserProfileUsersGroupDao.cs" />
-    <Compile Include="UserProfileUsersGroupDao\UserProfileUsersGroupDaoEntityFramework.cs" />
+    <Compile Include="UserProfileUsersGroupDaoNoUsarSoloVer\IUserProfileUsersGroupDao.cs" />
+    <Compile Include="UserProfileUsersGroupDaoNoUsarSoloVer\UserProfileUsersGroupDaoEntityFramework.cs" />
     <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="UserService\IUserService.cs" />
     <Compile Include="UserService\LoginResult.cs" />
