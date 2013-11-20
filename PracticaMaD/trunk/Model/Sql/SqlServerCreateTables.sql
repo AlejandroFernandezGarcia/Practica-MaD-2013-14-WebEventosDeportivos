@@ -142,11 +142,10 @@ GO
 
 /*UserProfile_UserGroups: Tabla creation*/
 CREATE TABLE UserProfileUsersGroup(
-	id BIGINT IDENTITY(1,1) NOT NULL,
 	userId BIGINT NOT NULL,
 	groupId BIGINT NOT NULL,
 
-	CONSTRAINT [PK_UserProfile_UsersGroup] PRIMARY KEY (id),
+	CONSTRAINT [PK_UserProfile_UsersGroup] PRIMARY KEY (userId,groupId),
 	CONSTRAINT [ROW_UNIQUE] UNIQUE (userId, groupId)
 )
 GO
