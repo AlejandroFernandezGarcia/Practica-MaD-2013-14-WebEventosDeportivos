@@ -8,29 +8,37 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
 {
     class UsersGroupDaoEntityFramework : GenericDaoEntityFramework<UsersGroup, Int64>, IUsersGroupDao
     {
-        public List<UsersGroup> FindByUserId(long userId, int startIndex, int count)
+        public List<UsersGroup> FindByUserId(UserProfile userProfile, int startIndex, int count)
         {
-            String query = "SELECT VALUE e FROM PracticaMaDEntities.UserProfileUsersGroup AS e " +
-                           "WHERE e.userId = @userId " +
-                            "ORDER BY e.date DESC";
-
-            ObjectParameter param = new ObjectParameter("userId", userId);
-
-            List<UsersGroup> result = this.Context.CreateQuery<UsersGroup>(query, param)
-                                            .Skip(startIndex).Take(count).ToList();
-
-            return result;
+            return userProfile.UsersGroup.Skip(startIndex).Take(count).ToList();
         }
 
-        public int GetNumberOfUserGroups(long userId)
+        public int GetNumberOfUserGroups(UserProfile userProfile)
         {
-            String query = "SELECT VALUE e FROM PracticaMaDEntities.UserProfileUsersGroup AS e " +
-                            "WHERE e.userId = @userId";
-
-            ObjectParameter param = new ObjectParameter("userId", userId);
-
-            return this.Context.CreateQuery<UsersGroup>(query, param).Count();
+            return userProfile.UsersGroup.Count();
         }
 
+        public void RemoveUserFromGroup(List<long> usersGroupIds, long userProfileId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddUserToGroup(List<long> usersGroupIds, long userProfileId)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        public List<UsersGroup> FindAllGroups()
+        {
+            String query = "SELECT VALUE v FROM PracticaMaDEntities.UsersGroup AS v";
+
+            return this.Context.CreateQuery<UsersGroup>(query).ToList();
+        }
+
+        public List<UsersGroup> FindAllGroupsOfUser(UserProfile userProfile)
+        {
+            return userProfile.UsersGroup.ToList();
+        }
     }
 }

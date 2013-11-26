@@ -78,6 +78,7 @@
     <Compile Include="CommentDao\ICommentDao.cs" />
     <Compile Include="EventDao\EventDaoEntityFramework.cs" />
     <Compile Include="EventDao\IEventDao.cs" />
+    <Compile Include="EventService\EventCategoryDto.cs" />
     <Compile Include="EventService\EventService.cs" />
     <Compile Include="EventService\IEventService.cs" />
     <Compile Include="PracticaMaDEntities.Designer.cs">
@@ -92,8 +93,6 @@
     <Compile Include="RecommendationService\RecommendationService.cs" />
     <Compile Include="UserProfileDao\IUserProfileDao.cs" />
     <Compile Include="UserProfileDao\UserProfileDaoEntityFramework.cs" />
-    <Compile Include="UserProfileUsersGroupDaoNoUsarSoloVer\IUserProfileUsersGroupDao.cs" />
-    <Compile Include="UserProfileUsersGroupDaoNoUsarSoloVer\UserProfileUsersGroupDaoEntityFramework.cs" />
     <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="UserService\IUserService.cs" />
     <Compile Include="UserService\LoginResult.cs" />
