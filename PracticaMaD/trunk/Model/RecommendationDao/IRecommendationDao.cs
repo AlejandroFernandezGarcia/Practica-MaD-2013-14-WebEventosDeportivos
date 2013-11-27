@@ -10,8 +10,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
 {
     public interface IRecommendationDao : IGenericDao<Recommendation, Int64>
     {
-        [Dependency]
-        IEventDao EventDao { set; }
 
         List<Recommendation> FindRecommendationsForEvent(Event evento);
 

@@ -18,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         public ICommentDao CommentDao { private get; set; }
 
         [Dependency]
-        ICategoryDao CategoryDao { private get; set; }
+        public ICategoryDao CategoryDao { private get; set; }
 
         public List<EventCategoryDto> FindByKeywords(string keywords, long categoryId)
         {
@@ -64,6 +64,39 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         public List<Comment> FindCommentsForEvent(long eventId, int startIndex, int count)
         {
             return CommentDao.FindByEventId(eventId, startIndex, count);
+        }
+
+        public List<EventCategoryDto> FindByKeywords(string keywords, long categoryId, int startIndex, int count)
+        {
+            List<Event> listEvent = EventDao.FindByKeywords(keywords, categoryId, startIndex, count);
+
+            List<EventCategoryDto> result = new List<EventCategoryDto>();
+
+            foreach (Event e in listEvent)
+            {
+                result.Add(new EventCategoryDto(e, e.Category));
+            }
+
+            return result;
+        }
+
+        public List<EventCategoryDto> FindByKeywords(string keywords, int startIndex, int count)
+        {
+            List<Event> listEvent = EventDao.FindByKeywords(keywords, -1, startIndex, count);
+
+            List<EventCategoryDto> result = new List<EventCategoryDto>();
+
+            foreach (Event e in listEvent)
+            {
+                result.Add(new EventCategoryDto(e, e.Category));
+            }
+
+            return result;
+        }
+
+        public List<Comment> FindCommentsForEvent(long eventId)
+        {
+            return CommentDao.FindByEventId(eventId);
         }
     }
 }

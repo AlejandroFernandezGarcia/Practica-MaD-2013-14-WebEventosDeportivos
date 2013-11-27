@@ -103,6 +103,7 @@
     <Compile Include="UsersGroupDao\UsersGroupDaoEntityFramework.cs" />
     <Compile Include="UsersGroupService\Exceptions\UserNotBelongGroupException.cs" />
     <Compile Include="UsersGroupService\IUsersGroupService.cs" />
+    <Compile Include="UsersGroupService\UsersGroupDto.cs" />
     <Compile Include="UsersGroupService\UsersGroupService.cs" />
   </ItemGroup>
   <ItemGroup>

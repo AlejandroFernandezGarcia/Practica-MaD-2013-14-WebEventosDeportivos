@@ -14,14 +14,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <param name="startIndex">the index of the first account to return (starting in 0)</param>
         /// <param name="count">the maximum number of accounts to return</param>
         /// <returns>the list of accounts</returns>
-        List<UsersGroup> FindByUserId(long userId, int startIndex, int count);
+        List<UsersGroup> FindByUserId(UserProfile userProfile, int startIndex, int count);
 
         /// <summary>
         /// Returns the number of groups which the user is member of.
         /// </summary>
         /// <param name="userId">the user identifier</param>
         /// <returns>the number of groups</returns>
-        int GetNumberOfUserGroups(long userId);
+        int GetNumberOfUserGroups(UserProfile userProfile);
 
         void RemoveUserFromGroup(List<long> usersGroupIds, long userProfileId);
 
@@ -29,6 +29,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
 
         List<UsersGroup> FindAllGroups();
 
-        List<UsersGroup> FindAllGroupsOfUser(long userProfileId);
+        List<UsersGroup> FindByUserId(UserProfile userProfile);
+
+        int GetNumberOfUsersForGroup(long usersGroupId);
+
+        int GetNumberOfRecommendationsForGroup(long usersGroupId);
+
+        bool IsUsersBelongGroup(UsersGroup usersGroups, UserProfile userProfile);
     }
 }

@@ -77,6 +77,7 @@
           <Property Name="text" Type="varchar" Nullable="false" MaxLength="1000" />
           <Property Name="eventId" Type="bigint" Nullable="false" />
           <Property Name="usersGroupId" Type="bigint" Nullable="false" />
+          <Property Name="date" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -268,6 +269,7 @@
           <Property Type="String" Name="text" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="Int64" Name="eventId" Nullable="false" />
           <Property Type="Int64" Name="usersGroupId" Nullable="false" />
+          <Property Type="Binary" Name="date" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Event" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation" FromRole="Recommendation" ToRole="Event" />
           <NavigationProperty Name="UsersGroup" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation" FromRole="Recommendation" ToRole="UsersGroup" />
         </EntityType>
@@ -399,6 +401,7 @@
           <EntitySetMapping Name="Recommendation">
             <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Recommendation">
               <MappingFragment StoreEntitySet="Recommendation">
+                <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="usersGroupId" ColumnName="usersGroupId" />
                 <ScalarProperty Name="eventId" ColumnName="eventId" />
                 <ScalarProperty Name="text" ColumnName="text" />
@@ -458,41 +461,47 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model2" ZoomLevel="72">
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Category" Width="1.5" PointX="0.75" PointY="4" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Comment" Width="1.5" PointX="5.25" PointY="3.625" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Event" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083353" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Recommendation" Width="1.5" PointX="5.25" PointY="0.75" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.UserProfile" Width="1.5" PointX="0.75" PointY="7.625" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.UsersGroup" Width="1.5" PointX="3" PointY="8" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Category" Width="1.5" PointX="0.75" PointY="4" Height="1.5956835937499991" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Comment" Width="1.5" PointX="5.25" PointY="3.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Event" Width="1.5" PointX="3" PointY="3.5" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Recommendation" Width="1.5" PointX="8.25" PointY="3.5" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.UserProfile" Width="1.5" PointX="3" PointY="8.25" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.UsersGroup" Width="1.5" PointX="6" PointY="0.75" Height="1.9802864583333317" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event" >
           <ConnectorPoint PointX="2.25" PointY="4.797841796875" />
           <ConnectorPoint PointX="3" PointY="4.797841796875" />
         </AssociationConnector>
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment" >
-          <ConnectorPoint PointX="4.5" PointY="4.8074446614583337" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="4.8074446614583328" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="4.8074446614583337" />
-          <ConnectorPoint PointX="5.25" PointY="4.8074446614583337" />
+          <ConnectorPoint PointX="4.5" PointY="4.6824446614583337" />
+          <ConnectorPoint PointX="5.25" PointY="4.6824446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment" >
-          <ConnectorPoint PointX="2.25" PointY="10.304790039062503" />
-          <ConnectorPoint PointX="6" PointY="10.304790039062503" />
-          <ConnectorPoint PointX="6" PointY="5.9898893229166674" />
+          <ConnectorPoint PointX="4.5" PointY="9.7208968098958337" />
+          <ConnectorPoint PointX="6" PointY="9.7208968098958337" />
+          <ConnectorPoint PointX="6" PointY="5.8648893229166674" />
         </AssociationConnector>
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation" >
-          <ConnectorPoint PointX="3.75" PointY="3.5" />
-          <ConnectorPoint PointX="3.75" PointY="1.8362939453125016" />
-          <ConnectorPoint PointX="5.25" PointY="1.8362939453125016" />
+          <ConnectorPoint PointX="4.5" PointY="6.0571907552083317" />
+          <ConnectorPoint PointX="4.875" PointY="6.4321907552083317" />
+          <ConnectorPoint PointX="4.875" PointY="6.2398893229166674" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="6.2398893229166665" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="6.2398893229166674" />
+          <ConnectorPoint PointX="7.072916666666667" PointY="6.2398893229166665" />
+          <ConnectorPoint PointX="7.239583333333333" PointY="6.2398893229166674" />
+          <ConnectorPoint PointX="7.875" PointY="6.2398893229166674" />
+          <ConnectorPoint PointX="8.25" PointY="5.8648893229166674" />
         </AssociationConnector>
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation" >
-          <ConnectorPoint PointX="4.5" PointY="8.0011528461538468" />
-          <ConnectorPoint PointX="4.875" PointY="7.6261528461538468" />
-          <ConnectorPoint PointX="4.875" PointY="2.4106929179687531" />
-          <ConnectorPoint PointX="5.25" PointY="2.4106929179687531" />
+          <ConnectorPoint PointX="7.5" PointY="1.7401432291666659" />
+          <ConnectorPoint PointX="9" PointY="1.7401432291666659" />
+          <ConnectorPoint PointX="9" PointY="3.5" />
         </AssociationConnector>
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup" >
-          <ConnectorPoint PointX="2.25" PointY="8.99014322916667" />
-          <ConnectorPoint PointX="3" PointY="8.99014322916667" />
+          <ConnectorPoint PointX="4.5" PointY="8.9541959049479161" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="8.9541959049479161" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="8.9541959049479161" />
+          <ConnectorPoint PointX="7.15625" PointY="8.9541959049479161" />
+          <ConnectorPoint PointX="7.15625" PointY="2.7302864583333317" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
