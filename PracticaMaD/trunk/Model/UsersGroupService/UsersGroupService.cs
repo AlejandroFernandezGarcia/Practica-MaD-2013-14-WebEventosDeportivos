@@ -34,8 +34,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
                 throw new UserNotBelongGroupException(usersGroupId, userProfileId);
             }
 
-            listOfUsers.Remove(up);
+            ug.UserProfile.Remove(up);
+            up.UsersGroup.Remove(ug);
 
+            UsersGroupDao.Update(ug);
+            UserProfileDao.Update(up);
+
+        }
+
+        public void RemoveUserFromGroup(List<long> usersGroupIds, long userProfileId)
+        {
+            foreach (long i in usersGroupIds)
+            {
+                RemoveUserFromGroup(i, userProfileId);
+            }
         }
 
         public void AddUserToGroup(long usersGroupId, long userProfileId)
@@ -51,9 +63,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
                 throw new DuplicateInstanceException(up, "UsersGroupSevice");
             }
 
-            listOfUsers.Add(up);
+            ug.UserProfile.Add(up);
+            up.UsersGroup.Add(ug);
+
+            UsersGroupDao.Update(ug);
+            UserProfileDao.Update(up);
         }
 
+        public void AddUserToGroup(List<long> usersGroupIds, long userProfileId)
+        {
+            foreach (long i in usersGroupIds)
+            {
+                AddUserToGroup(i, userProfileId);
+            }
+        }
 
         public long Create(string name, string description, long userProfileId)
         {
@@ -65,7 +88,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
 
             return ug.id;
         }
-
 
         public List<UsersGroupDto> FindAllGroups()
         {
@@ -99,5 +121,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         {
             return UsersGroupDao.IsUsersBelongGroup(UsersGroupDao.Find(usersGroupId), UserProfileDao.Find(userProfileId));
         }
+
+
+        
     }
 }

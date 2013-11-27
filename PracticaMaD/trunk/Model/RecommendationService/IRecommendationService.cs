@@ -25,5 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationService
 
         List<Recommendation> FindRecommendationsForEvent(long eventId);
 
+        List<Recommendation> FindRecommendationsForEvent(long eventId, int startIndex, int count);
+
     }
 }

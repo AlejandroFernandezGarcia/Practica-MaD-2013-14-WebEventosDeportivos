@@ -13,5 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
 
         List<Recommendation> FindRecommendationsForEvent(Event evento);
 
+        List<Recommendation> FindRecommendationsForEvent(Event evento, int startIndex, int count);
+
     }
 }
