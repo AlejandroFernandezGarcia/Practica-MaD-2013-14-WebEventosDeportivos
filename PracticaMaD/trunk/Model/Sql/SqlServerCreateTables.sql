@@ -119,6 +119,7 @@ CREATE TABLE Recommendation(
 	text VARCHAR(1000) NOT NULL,
 	eventId BIGINT NOT NULL,
 	usersGroupId BIGINT NOT NULL,
+	date TIMESTAMP NOT NULL,
 
 	CONSTRAINT [PK_Recommendation] PRIMARY KEY (id)
 )

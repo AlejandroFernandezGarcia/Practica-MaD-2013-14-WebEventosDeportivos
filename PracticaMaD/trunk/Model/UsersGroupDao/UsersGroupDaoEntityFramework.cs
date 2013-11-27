@@ -36,9 +36,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
             return this.Context.CreateQuery<UsersGroup>(query).ToList();
         }
 
-        public List<UsersGroup> FindAllGroupsOfUser(UserProfile userProfile)
+        public List<UsersGroup> FindByUserId(UserProfile userProfile)
         {
             return userProfile.UsersGroup.ToList();
+        }
+
+
+        public int GetNumberOfUsersForGroup(long usersGroupId)
+        {
+            UsersGroup usersGroup = Find(usersGroupId);
+
+            return usersGroup.UserProfile.Count();
+        }
+
+        public int GetNumberOfRecommendationsForGroup(long usersGroupId)
+        {
+            UsersGroup usersGroup = Find(usersGroupId);
+
+            return usersGroup.Recommendation.Count();
+        }
+
+        public bool IsUsersBelongGroup(UsersGroup usersGroups, UserProfile userProfile)
+        {
+            return usersGroups.UserProfile.ToList().Contains(userProfile);
         }
     }
 }

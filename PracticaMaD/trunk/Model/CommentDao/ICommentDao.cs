@@ -17,5 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         /// <returns></returns>
         List<Comment> FindByEventId(long id, int startIndex, int count);
 
+        List<Comment> FindByEventId(long id);
+
     }
 }

@@ -835,13 +835,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// <param name="text">Valor inicial de la propiedad text.</param>
         /// <param name="eventId">Valor inicial de la propiedad eventId.</param>
         /// <param name="usersGroupId">Valor inicial de la propiedad usersGroupId.</param>
-        public static Recommendation CreateRecommendation(global::System.Int64 id, global::System.String text, global::System.Int64 eventId, global::System.Int64 usersGroupId)
+        /// <param name="date">Valor inicial de la propiedad date.</param>
+        public static Recommendation CreateRecommendation(global::System.Int64 id, global::System.String text, global::System.Int64 eventId, global::System.Int64 usersGroupId, global::System.Byte[] date)
         {
             Recommendation recommendation = new Recommendation();
             recommendation.id = id;
             recommendation.text = text;
             recommendation.eventId = eventId;
             recommendation.usersGroupId = usersGroupId;
+            recommendation.date = date;
             return recommendation;
         }
 
@@ -946,6 +948,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         private global::System.Int64 _usersGroupId;
         partial void OnusersGroupIdChanging(global::System.Int64 value);
         partial void OnusersGroupIdChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] date
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_date);
+            }
+            set
+            {
+                OndateChanging(value);
+                ReportPropertyChanging("date");
+                _date = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("date");
+                OndateChanged();
+            }
+        }
+        private global::System.Byte[] _date;
+        partial void OndateChanging(global::System.Byte[] value);
+        partial void OndateChanged();
 
         #endregion
     

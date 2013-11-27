@@ -19,5 +19,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
             return result;
         }
+
+        public List<Comment> FindByEventId(long id)
+        {
+            String query =
+                "SELECT VALUE c FROM PracticaMaDEntities.Comment AS c WHERE c.eventId = @id ORDER BY c.date DESC";
+
+            ObjectParameter param = new ObjectParameter("id", id);
+
+            List<Comment> result = this.Context.CreateQuery<Comment>(query, param).ToList();
+
+            return result;
+        }
     }
 }

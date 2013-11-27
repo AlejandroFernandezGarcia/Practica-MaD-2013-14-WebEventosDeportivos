@@ -36,5 +36,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
             return result;
             
         }
+
+        public List<Event> FindByKeywords(String keywords, long categoryId, int startIndex, int count)
+        {
+            String query = "SELECT VALUE e FROM PracticaMaDEntities.Event AS e " +
+                           "WHERE e.name LIKE '%' + @keywords + '%' ";
+            if (categoryId != -1)
+            {
+                query += "AND e.categoryId = @categoryId ";
+            }
+
+            query += "ORDER BY e.date DESC";
+
+            ObjectParameter param = new ObjectParameter("keywords", keywords);
+
+            List<Event> result;
+
+            if (categoryId != -1)
+            {
+                ObjectParameter param2 = new ObjectParameter("categoryId", categoryId);
+                result = this.Context.CreateQuery<Event>(query, param, param2).Skip(startIndex).Take(count).ToList();
+            }
+            else
+            {
+                result = this.Context.CreateQuery<Event>(query, param).Skip(startIndex).Take(count).ToList();
+            }
+
+            return result;
+
+        }
     }
 }

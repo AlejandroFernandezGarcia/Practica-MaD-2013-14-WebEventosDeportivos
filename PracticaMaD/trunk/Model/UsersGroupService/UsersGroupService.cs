@@ -1,9 +1,12 @@
 ﻿using System;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroupDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService.Exceptions;
 using Microsoft.Practices.Unity;
+using System.Linq;
+using System.Collections.Generic;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
 {
@@ -13,46 +16,88 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         public IUsersGroupDao UsersGroupDao { private get; set; }
 
         [Dependency]
-        public IUserProfileUsersGroupDao UserProfileUsersGroupDao { private get; set; }
+        public IUserProfileDao UserProfileDao { private get; set; }
 
-        public long Create(String name, String description)
+        [Dependency]
+        public IRecommendationDao RecommendationDao { private get; set; }
+
+        public void RemoveUserFromGroup(long usersGroupId, long userProfileId)
+        {
+            UsersGroup ug = UsersGroupDao.Find(usersGroupId);
+
+            List<UserProfile> listOfUsers = ug.UserProfile.ToList();
+
+            UserProfile up = UserProfileDao.Find(userProfileId);
+
+            if (!listOfUsers.Contains(up))
+            {
+                throw new UserNotBelongGroupException(usersGroupId, userProfileId);
+            }
+
+            listOfUsers.Remove(up);
+
+        }
+
+        public void AddUserToGroup(long usersGroupId, long userProfileId)
+        {
+            UsersGroup ug = UsersGroupDao.Find(usersGroupId);
+
+            List<UserProfile> listOfUsers = ug.UserProfile.ToList();
+
+            UserProfile up = UserProfileDao.Find(userProfileId);
+
+            if (listOfUsers.Contains(up))
+            {
+                throw new DuplicateInstanceException(up, "UsersGroupSevice");
+            }
+
+            listOfUsers.Add(up);
+        }
+
+
+        public long Create(string name, string description, long userProfileId)
         {
             UsersGroup ug = UsersGroup.CreateUsersGroup(0, name, description);
 
             UsersGroupDao.Create(ug);
 
+            AddUserToGroup(ug.id, userProfileId);
+
             return ug.id;
         }
 
-        public void RemoveUserFromGroup(UsersGroup usersGroup, UserProfile userP)
+
+        public List<UsersGroupDto> FindAllGroups()
         {
-            try
-            {
-                UserProfileUsersGroupDao.RemoveUserFromGroup(usersGroup.id, userP.id);
-            }catch(InstanceNotFoundException){
-                throw new UserNotBelongGroupException(usersGroup.id, userP.id);
+            List<UsersGroup> listOfGroups = UsersGroupDao.FindAllGroups();
+
+            List<UsersGroupDto> result = new List<UsersGroupDto>();
+
+            foreach (UsersGroup i in listOfGroups) 
+            { 
+                result.Add(new UsersGroupDto(i,UsersGroupDao.GetNumberOfUsersForGroup(i.id),UsersGroupDao.GetNumberOfRecommendationsForGroup(i.id)));
             }
+
+            return result;
         }
 
-        public void AddUserToGroup(UsersGroup usersGroup, UserProfile userP)
+        public List<UsersGroupDto> FindByUserId(long userProfileId)
         {
-            try
+            List<UsersGroup> listOfGroups = UsersGroupDao.FindByUserId(UserProfileDao.Find(userProfileId));
+
+            List<UsersGroupDto> result = new List<UsersGroupDto>();
+
+            foreach (UsersGroup i in listOfGroups)
             {
-                UserProfileUsersGroupDao.FindByUserIdAndGroupId(usersGroup.id, userP.id);
-
-                throw new DuplicateInstanceException("GroupId: " + usersGroup.id + "UserId: " + userP.id,
-                    typeof(UsersGroupService).FullName);
-            }
-            catch (InstanceNotFoundException)
-            {
-                UserProfileUsersGroup userProfileUsersGroupNew =
-                    UserProfileUsersGroup.CreateUserProfileUsersGroup(0, userP.id, usersGroup.id);
-
-                UserProfileUsersGroupDao.AddUserToGroup(userProfileUsersGroupNew);
-
+                result.Add(new UsersGroupDto(i, UsersGroupDao.GetNumberOfUsersForGroup(i.id), UsersGroupDao.GetNumberOfRecommendationsForGroup(i.id)));
             }
 
-            
+            return result;
+        }
+
+        public bool UserBelongGroup(long userProfileId, long usersGroupId)
+        {
+            return UsersGroupDao.IsUsersBelongGroup(UsersGroupDao.Find(usersGroupId), UserProfileDao.Find(userProfileId));
         }
     }
 }

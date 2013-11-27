@@ -21,9 +21,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         [Dependency]
         ICategoryDao CategoryDao { set; }
 
+        List<EventCategoryDto> FindByKeywords(String keywords, long categoryId, int startIndex, int count);
+
+        List<EventCategoryDto> FindByKeywords(String keywords, int startIndex, int count);
+
         List<EventCategoryDto> FindByKeywords(String keywords, long categoryId);
 
         List<EventCategoryDto> FindByKeywords(String keywords);
+
 
         [Transactional]
         void AddComment(long eventId, String text, long userProfileId);
@@ -31,5 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         List<Category> FindAllCategories();
 
         List<Comment> FindCommentsForEvent(long eventId);
+
+        List<Comment> FindCommentsForEvent(long eventId, int startIndex, int count);
     }
 }
