@@ -18,16 +18,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
             return userProfile.UsersGroup.Count();
         }
 
-        public void RemoveUserFromGroup(List<long> usersGroupIds, long userProfileId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddUserToGroup(List<long> usersGroupIds, long userProfileId)
-        {
-            throw new NotImplementedException();
-
-        }
 
         public List<UsersGroup> FindAllGroups()
         {

@@ -23,10 +23,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <returns>the number of groups</returns>
         int GetNumberOfUserGroups(UserProfile userProfile);
 
-        void RemoveUserFromGroup(List<long> usersGroupIds, long userProfileId);
-
-        void AddUserToGroup(List<long> usersGroupIds, long userProfileId);
-
         List<UsersGroup> FindAllGroups();
 
         List<UsersGroup> FindByUserId(UserProfile userProfile);

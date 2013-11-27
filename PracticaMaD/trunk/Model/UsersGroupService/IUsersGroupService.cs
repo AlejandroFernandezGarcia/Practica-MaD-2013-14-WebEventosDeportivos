@@ -27,7 +27,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         void RemoveUserFromGroup(long usersGroupId, long userProfileId);
 
         [Transactional]
+        void RemoveUserFromGroup(List<long> usersGroupId, long userProfileId);
+
+        [Transactional]
         void AddUserToGroup(long usersGroupId, long userProfileId);
+
+        [Transactional]
+        void AddUserToGroup(List<long> usersGroupIds, long userProfileId);
 
         List<UsersGroupDto> FindAllGroups();
 
