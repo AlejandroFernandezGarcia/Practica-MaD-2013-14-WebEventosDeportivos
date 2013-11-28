@@ -72,7 +72,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryDao\Category.cs" />
     <Compile Include="CategoryDao\CategoryDaoEntityFramework.cs" />
     <Compile Include="CategoryDao\ICategoryDao.cs" />
     <Compile Include="CommentDao\CommentDaoEntityFramework.cs" />
@@ -82,6 +81,11 @@
     <Compile Include="EventService\EventCategoryDto.cs" />
     <Compile Include="EventService\EventService.cs" />
     <Compile Include="EventService\IEventService.cs" />
+    <Compile Include="PartialEntities\Category.cs" />
+    <Compile Include="PartialEntities\Comment.cs" />
+    <Compile Include="PartialEntities\Event.cs" />
+    <Compile Include="PartialEntities\Recommendation.cs" />
+    <Compile Include="PartialEntities\UsersGroup.cs" />
     <Compile Include="PracticaMaDEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
