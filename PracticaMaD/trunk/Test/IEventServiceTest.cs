@@ -70,112 +70,130 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         }
 
         [TestMethod()]
-        public void EmptyResultSearch()
+        public void Probe()
         {
-            Category category1 = Category.CreateCategory(0,"Futbol");
-            categoryDao.Create(category1);
+            Category c = Category.CreateCategory(0, "Futbol");
+            Category d = Category.CreateCategory(2, "Basket");
 
             DateTime date = new DateTime();
             byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
 
-            Event e1 = Event.CreateEvent(0,"Evento 1", dateBytes, "Evento de prueba 1", category1.id);
+            Event e1 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", c.id);
 
-            eventDao.Create(e1);
+            Event e2 = Event.CreateEvent(0, "Evento 2", dateBytes, "Evento de prueba 2", d.id);
+            //Assert.IsTrue(c.Equals(c));
+            //Assert.IsTrue(d.Equals(d));
 
-            List<Event> list = eventService.FindByKeywords("prueba", null);
-            Assert.AreEqual(list.Count, 0);
+            Assert.AreEqual(e1, e2);
+        }
+
+    //    [TestMethod()]
+    //    public void EmptyResultSearch()
+    //    {
+    //        Category category1 = Category.CreateCategory(0,"Futbol");
+    //        categoryDao.Create(category1);
+
+    //        DateTime date = new DateTime();
+    //        byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
+
+    //        Event e1 = Event.CreateEvent(0,"Evento 1", dateBytes, "Evento de prueba 1", category1.id);
+
+    //        eventDao.Create(e1);
+
+    //        List<Event> list = eventService.FindByKeywords("prueba", null);
+    //        Assert.AreEqual(list.Count, 0);
             
-        }
+    //    }
 
-        [TestMethod()]
-        public void SearchByKeywordsAndCategory1()
-        {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-            Category category2 = Category.CreateCategory(0, "Baloncesto");
-            categoryDao.Create(category2);
+    //    [TestMethod()]
+    //    public void SearchByKeywordsAndCategory1()
+    //    {
+    //        Category category1 = Category.CreateCategory(0, "Futbol");
+    //        categoryDao.Create(category1);
+    //        Category category2 = Category.CreateCategory(0, "Baloncesto");
+    //        categoryDao.Create(category2);
 
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
+    //        DateTime date = new DateTime();
+    //        byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
 
-            Event e1 = Event.CreateEvent(0,"Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
-            Event e2 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 1", category2.id);
+    //        Event e1 = Event.CreateEvent(0,"Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
+    //        Event e2 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 1", category2.id);
 
-            eventDao.Create(e1);
-            eventDao.Create(e2);
+    //        eventDao.Create(e1);
+    //        eventDao.Create(e2);
 
-            List<Event> list = eventService.FindByKeywords("Evento", category1);
-            Assert.AreEqual(list[0], e1);
+    //        List<Event> list = eventService.FindByKeywords("Evento", category1);
+    //        Assert.AreEqual(list[0], e1);
 
-        }
+    //    }
 
-        [TestMethod()]
-        public void SearchByKeywordsAndCategory2()
-        {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-            Category category2 = Category.CreateCategory(0, "Baloncesto");
-            categoryDao.Create(category2);
+    //    [TestMethod()]
+    //    public void SearchByKeywordsAndCategory2()
+    //    {
+    //        Category category1 = Category.CreateCategory(0, "Futbol");
+    //        categoryDao.Create(category1);
+    //        Category category2 = Category.CreateCategory(0, "Baloncesto");
+    //        categoryDao.Create(category2);
 
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
+    //        DateTime date = new DateTime();
+    //        byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
 
-            Event e1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
-            Event e2 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 1", category2.id);
+    //        Event e1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
+    //        Event e2 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 1", category2.id);
 
-            eventDao.Create(e1);
-            eventDao.Create(e2);
+    //        eventDao.Create(e1);
+    //        eventDao.Create(e2);
 
 
-            List<Event> list = eventService.FindByKeywords("manzana", category1);
-            Assert.AreEqual(list.Count, 0);
+    //        List<Event> list = eventService.FindByKeywords("manzana", category1);
+    //        Assert.AreEqual(list.Count, 0);
 
-        }
+    //    }
 
-        [TestMethod()]
-        public void SearchByKeywordsAndCategory3()
-        {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-            Category category2 = Category.CreateCategory(0, "Baloncesto");
-            categoryDao.Create(category2);
+    //    [TestMethod()]
+    //    public void SearchByKeywordsAndCategory3()
+    //    {
+    //        Category category1 = Category.CreateCategory(0, "Futbol");
+    //        categoryDao.Create(category1);
+    //        Category category2 = Category.CreateCategory(0, "Baloncesto");
+    //        categoryDao.Create(category2);
 
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
+    //        DateTime date = new DateTime();
+    //        byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
 
-            Event e1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
-            Event e2 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 1", category2.id);
+    //        Event e1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
+    //        Event e2 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 1", category2.id);
 
-            eventDao.Create(e1);
-            eventDao.Create(e2);
+    //        eventDao.Create(e1);
+    //        eventDao.Create(e2);
 
-            List<Event> list = eventService.FindByKeywords("Evento", null);
-            Assert.AreEqual(list.Count, 2);
+    //        List<Event> list = eventService.FindByKeywords("Evento", null);
+    //        Assert.AreEqual(list.Count, 2);
 
-        }
+    //    }
 
-        [TestMethod()]
-        public void AddComment()
-        {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
+    //    [TestMethod()]
+    //    public void AddComment()
+    //    {
+    //        Category category1 = Category.CreateCategory(0, "Futbol");
+    //        categoryDao.Create(category1);
 
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
+    //        DateTime date = new DateTime();
+    //        byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
 
-            Event event1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
-            eventDao.Create(event1);
+    //        Event event1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
+    //        eventDao.Create(event1);
 
-            String encryptedPassword = PasswordEncrypter.Crypt("pass");
-            UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia","pepe@udc.es", "es", "ES");
-            userProfileDao.Create(userProfile);
+    //        String encryptedPassword = PasswordEncrypter.Crypt("pass");
+    //        UserProfile userProfile = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia","pepe@udc.es", "es", "ES");
+    //        userProfileDao.Create(userProfile);
 
-            String expectedText = "Prueba de comentarios";
-            eventService.AddComment(event1, expectedText, userProfile);
-            Comment comment1 = event1.Comment.ToList()[0];
+    //        String expectedText = "Prueba de comentarios";
+    //        eventService.AddComment(event1, expectedText, userProfile);
+    //        Comment comment1 = event1.Comment.ToList()[0];
 
-            Assert.AreEqual(comment1.text, expectedText);
-            Assert.AreEqual(comment1.userProfileId, userProfile.id);
-        }
+    //        Assert.AreEqual(comment1.text, expectedText);
+    //        Assert.AreEqual(comment1.userProfileId, userProfile.id);
+    //    }
     }
 }
