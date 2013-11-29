@@ -69,6 +69,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             transaction.Dispose();
         }
 
+
         [TestMethod()]
         public void Probe()
         {
@@ -78,13 +79,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             DateTime date = new DateTime();
             byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
 
+            
             Event e1 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", c.id);
 
-            Event e2 = Event.CreateEvent(0, "Evento 2", dateBytes, "Evento de prueba 2", d.id);
+            Event e2 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", d.id);
+            
             //Assert.IsTrue(c.Equals(c));
-            //Assert.IsTrue(d.Equals(d));
+            //Assert.IsTrue(e1.Equals(e2));
 
-            Assert.AreEqual(e1, e2);
+            Asserto.AreEqual(e1, e1);
         }
 
     //    [TestMethod()]

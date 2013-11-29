@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model
 { 
@@ -12,7 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
                 && (this.text == target.text)
                 && (this.eventId == target.eventId)
                 && (this.usersGroupId == target.usersGroupId)
-                && (this.date == target.date);
+                && (this.date.SequenceEqual(target.date));
         }
     }
 }
