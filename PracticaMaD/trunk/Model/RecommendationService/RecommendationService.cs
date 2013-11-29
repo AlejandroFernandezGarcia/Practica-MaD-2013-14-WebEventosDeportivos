@@ -64,5 +64,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationService
         {
             return RecommendationDao.FindRecommendationsForEvent(EventDao.Find(eventId), startIndex, count);
         }
+
+        //TODO
+        public List<Recommendation> FindRecommendationsReceivedByUser(long userProfileId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model
 {
@@ -9,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
             Comment target = (Comment)obj;
 
             return (this.id == target.id)
-                && (this.date == target.date)
+                && (this.date.SequenceEqual(target.date))
                 && (this.text == target.text)
                 && (this.eventId == target.eventId)
                 && (this.userProfileId == target.userProfileId);

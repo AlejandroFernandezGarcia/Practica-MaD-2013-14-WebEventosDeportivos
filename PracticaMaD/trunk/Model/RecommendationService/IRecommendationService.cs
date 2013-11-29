@@ -27,5 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationService
 
         List<Recommendation> FindRecommendationsForEvent(long eventId, int startIndex, int count);
 
+        //recomendaciones que le han hecho a los grupos de un usuario
+        List<Recommendation> FindRecommendationsReceivedByUser(long userProfileId);
     }
 }
