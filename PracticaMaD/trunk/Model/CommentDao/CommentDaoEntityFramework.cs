@@ -6,8 +6,18 @@ using Es.Udc.DotNet.ModelUtil.Dao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 {
-    class CommentDaoEntityFramework : GenericDaoEntityFramework<Comment, Int64>, ICommentDao
+    /// <summary>
+    /// The implementation of DAO of the entity Comment.
+    /// </summary>
+    internal class CommentDaoEntityFramework : GenericDaoEntityFramework<Comment, Int64>, ICommentDao
     {
+        /// <summary>
+        /// Finds the by event identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
         public List<Comment> FindByEventId(long id, int startIndex, int count)
         {
             String query =
@@ -20,6 +30,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
             return result;
         }
 
+        /// <summary>
+        /// Finds the by event identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public List<Comment> FindByEventId(long id)
         {
             String query =

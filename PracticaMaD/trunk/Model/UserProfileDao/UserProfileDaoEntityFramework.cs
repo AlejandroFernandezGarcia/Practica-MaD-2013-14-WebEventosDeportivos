@@ -6,10 +6,17 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 {
-    class UserProfileDaoEntityFramework : GenericDaoEntityFramework<UserProfile, Int64>, IUserProfileDao
+    /// <summary>
+    /// The DAO implementation of the UserProfile entity.
+    /// </summary>
+    internal class UserProfileDaoEntityFramework : GenericDaoEntityFramework<UserProfile, Int64>, IUserProfileDao
     {
-
-        public UserProfileDaoEntityFramework() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserProfileDaoEntityFramework"/> class.
+        /// </summary>
+        public UserProfileDaoEntityFramework()
+        {
+        }
 
         #region IUserProfileDao Members
 
@@ -18,6 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
         /// </summary>
         /// <param name="loginName">Name of the login.</param>
         /// <returns></returns>
+        /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.InstanceNotFoundException"></exception>
         /// <exception cref="System.NotImplementedException"></exception>
         public UserProfile FindByLoginName(string loginName)
         {
@@ -37,12 +45,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             }
             catch (Exception)
             {
-                
                 userProfile = null;
             }
 
             if (userProfile == null)
-                throw new InstanceNotFoundException(loginName, typeof(UserProfile).FullName);
+                throw new InstanceNotFoundException(loginName, typeof (UserProfile).FullName);
             return userProfile;
         }
 
