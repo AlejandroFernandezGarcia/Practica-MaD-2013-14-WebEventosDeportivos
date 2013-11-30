@@ -6,8 +6,17 @@ using System.Data.Objects;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 {
-    class EventDaoEntityFramework : GenericDaoEntityFramework<Event, Int64>, IEventDao
+    /// <summary>
+    /// The DAO implementation of the entity Event.
+    /// </summary>
+    internal class EventDaoEntityFramework : GenericDaoEntityFramework<Event, Int64>, IEventDao
     {
+        /// <summary>
+        /// Finds the by keywords.
+        /// </summary>
+        /// <param name="keywords">The keywords.</param>
+        /// <param name="categoryId">The category identifier.</param>
+        /// <returns></returns>
         public List<Event> FindByKeywords(String keywords, long categoryId)
         {
             String query = "SELECT VALUE e FROM PracticaMaDEntities.Event AS e " +
@@ -34,9 +43,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
             }
 
             return result;
-            
         }
 
+        /// <summary>
+        /// Finds the by keywords.
+        /// </summary>
+        /// <param name="keywords">The keywords.</param>
+        /// <param name="categoryId">The category identifier.</param>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
         public List<Event> FindByKeywords(String keywords, long categoryId, int startIndex, int count)
         {
             String query = "SELECT VALUE e FROM PracticaMaDEntities.Event AS e " +
@@ -63,7 +79,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
             }
 
             return result;
-
         }
     }
 }
