@@ -10,7 +10,6 @@ using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
-
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
     [TestClass()]
@@ -30,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         private const String country = "ES";
         private const long NON_EXISTENT_USER_ID = -1;
 
-        TransactionScope transaction;
+        private TransactionScope transaction;
 
         private TestContext testContextInstance;
 
@@ -40,14 +39,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         ///</summary>
         public TestContext TestContext
         {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
+            get { return testContextInstance; }
+            set { testContextInstance = value; }
         }
 
         #region Additional test attributes
@@ -93,7 +86,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             // Register user and find profile
             long userId =
                 userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, surname, email, language, country));
+                                         new UserProfileDetails(firstName, surname, email, language, country));
 
             UserProfile userProfile = userProfileDao.Find(userId);
 
@@ -106,22 +99,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             Assert.AreEqual(email, userProfile.email);
             Assert.AreEqual(language, userProfile.language);
             Assert.AreEqual(country, userProfile.country);
-
         }
 
         /// <summary>
         ///A test for registering a user that already exists in the database
         ///</summary>
         [TestMethod()]
-        [ExpectedException(typeof(DuplicateInstanceException))]
+        [ExpectedException(typeof (DuplicateInstanceException))]
         public void RegisterDuplicatedUserTest()
         {
             // Register user
             userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, surname, email, language, country));
+                                     new UserProfileDetails(firstName, surname, email, language, country));
             // Register the same user
             userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, surname, email, language, country));
+                                     new UserProfileDetails(firstName, surname, email, language, country));
         }
 
         ///// <summary>
@@ -132,19 +124,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, surname, email, language, country));
+                                                   new UserProfileDetails(firstName, surname, email, language, country));
 
             LoginResult expected = new LoginResult(userId, firstName,
-                PasswordEncrypter.Crypt(clearPassword), language, country);
+                                                   PasswordEncrypter.Crypt(clearPassword), language, country);
 
             // Login with clear password
             LoginResult actual =
-                   userService.Login(loginName,
-                   clearPassword, false);
+                userService.Login(loginName,
+                                  clearPassword, false);
 
             // Check data
             Assert.AreEqual(expected, actual);
-
         }
 
         ///// <summary>
@@ -155,15 +146,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, surname, email, language, country));
+                                                   new UserProfileDetails(firstName, surname, email, language, country));
 
             LoginResult expected = new LoginResult(userId, firstName,
-                PasswordEncrypter.Crypt(clearPassword), language, country);
+                                                   PasswordEncrypter.Crypt(clearPassword), language, country);
 
             // Login with encrypted password
             LoginResult obtained =
-                   userService.Login(loginName,
-                   PasswordEncrypter.Crypt(clearPassword), true);
+                userService.Login(loginName,
+                                  PasswordEncrypter.Crypt(clearPassword), true);
 
             // Check data
             Assert.AreEqual(expected, obtained);
@@ -173,28 +164,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         /////A test for Login with incorrect password
         /////</summary>
         [TestMethod()]
-        [ExpectedException(typeof(IncorrectPasswordException))]
+        [ExpectedException(typeof (IncorrectPasswordException))]
         public void LoginIncorrectPasswordTest()
         {
             // Register user
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, surname, email, language, country));
+                                                   new UserProfileDetails(firstName, surname, email, language, country));
 
             // Login with incorrect (clear) password
             LoginResult actual =
-                   userService.Login(loginName, clearPassword + "X", false);
+                userService.Login(loginName, clearPassword + "X", false);
         }
 
         ///// <summary>
         /////A test for Login with a non-existing user
         /////</summary>
         [TestMethod()]
-        [ExpectedException(typeof(InstanceNotFoundException))]
+        [ExpectedException(typeof (InstanceNotFoundException))]
         public void LoginNonExistingUserTest()
         {
             // Login for a user that has not been registered
             LoginResult actual =
-                   userService.Login(loginName, clearPassword, false);
+                userService.Login(loginName, clearPassword, false);
         }
 
         /// <summary>
@@ -210,7 +201,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
                 userService.RegisterUser(loginName, clearPassword, expected);
 
             UserProfileDetails obtained =
-                   userService.FindUserProfileDetails(userId);
+                userService.FindUserProfileDetails(userId);
 
             // Check data
             Assert.AreEqual(expected, obtained);
@@ -220,7 +211,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         ///A test for FindUserProfileDetails when the user does not exist
         ///</summary>
         [TestMethod()]
-        [ExpectedException(typeof(InstanceNotFoundException))]
+        [ExpectedException(typeof (InstanceNotFoundException))]
         public void FindUserProfileDetailsForNonExistingUserTest()
         {
             userService.FindUserProfileDetails(NON_EXISTENT_USER_ID);
@@ -234,11 +225,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user and update profile details
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, surname, email, language, country));
+                                                   new UserProfileDetails(firstName, surname, email, language, country));
 
             UserProfileDetails expected =
-                    new UserProfileDetails(firstName + "X", surname + "X",
-                        email + "X", "XX", "XX");
+                new UserProfileDetails(firstName + "X", surname + "X",
+                                       email + "X", "XX", "XX");
 
             userService.UpdateUserProfileDetails(userId, expected);
 
@@ -253,11 +244,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         ///A test for UpdateUserProfileDetails when the user does not exist
         ///</summary>
         [TestMethod()]
-        [ExpectedException(typeof(InstanceNotFoundException))]
+        [ExpectedException(typeof (InstanceNotFoundException))]
         public void UpdateUserProfileDetailsForNonExistingUserTest()
         {
             userService.UpdateUserProfileDetails(NON_EXISTENT_USER_ID,
-                new UserProfileDetails(firstName, surname, email, language, country));
+                                                 new UserProfileDetails(firstName, surname, email, language, country));
         }
 
         /// <summary>
@@ -268,7 +259,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             // Register user
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, surname, email, language, country));
+                                                   new UserProfileDetails(firstName, surname, email, language, country));
 
             // Change password
             String newClearPassword = clearPassword + "X";
@@ -283,12 +274,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         ///A test for ChangePassword entering a wrong old password
         ///</summary>
         [TestMethod()]
-        [ExpectedException(typeof(IncorrectPasswordException))]
+        [ExpectedException(typeof (IncorrectPasswordException))]
         public void ChangePasswordWithIncorrectPasswordTest()
         {
             // Register user
             long userId = userService.RegisterUser(loginName, clearPassword,
-                new UserProfileDetails(firstName, surname, email, language, country));
+                                                   new UserProfileDetails(firstName, surname, email, language, country));
 
             // Change password
             String newClearPassword = clearPassword + "X";
@@ -299,12 +290,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         ///A test for ChangePassword when the user does not exist
         ///</summary>
         [TestMethod()]
-        [ExpectedException(typeof(InstanceNotFoundException))]
+        [ExpectedException(typeof (InstanceNotFoundException))]
         public void ChangePasswordForNonExistingUserTest()
         {
             userService.ChangePassword(NON_EXISTENT_USER_ID,
-                clearPassword, clearPassword + "X");
+                                       clearPassword, clearPassword + "X");
         }
     }
-
 }

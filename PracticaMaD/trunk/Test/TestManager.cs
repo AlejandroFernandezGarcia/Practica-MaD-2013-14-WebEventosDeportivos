@@ -16,7 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             IUnityContainer container = new UnityContainer();
 
             UnityConfigurationSection section =
-                (UnityConfigurationSection)ConfigurationManager.GetSection(sectionName);
+                (UnityConfigurationSection) ConfigurationManager.GetSection(sectionName);
 
             section.Configure(container, section.Containers.Default.Name);
 
@@ -24,10 +24,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         }
 
 
-        public static void ClearUnityContainer(IUnityContainer container) {
-
+        public static void ClearUnityContainer(IUnityContainer container)
+        {
             container.Dispose();
         }
-
     }
 }

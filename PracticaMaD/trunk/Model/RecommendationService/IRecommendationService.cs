@@ -64,7 +64,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationService
         /// <returns></returns>
         List<Recommendation> FindRecommendationsForEvent(long eventId, int startIndex, int count);
 
-        //recomendaciones que le han hecho a los grupos de un usuario
         /// <summary>
         /// Finds the recommendations received by user group of user.
         /// </summary>
