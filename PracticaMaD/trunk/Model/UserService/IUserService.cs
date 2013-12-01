@@ -19,7 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <returns></returns>
         [Transactional]
         long RegisterUser(String loginName, String clearPassword,
-            UserProfileDetails userProfileDetails);
+                          UserProfileDetails userProfileDetails);
 
         /// <summary>
         /// Logins the specified login name.
@@ -30,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <returns></returns>
         [Transactional]
         LoginResult Login(String loginName, String password,
-            Boolean passwordIsEncrypted);
+                          Boolean passwordIsEncrypted);
 
         /// <summary>
         /// Finds the user profile details.
@@ -47,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="userProfileDetails">The user profile details.</param>
         [Transactional]
         void UpdateUserProfileDetails(long userProfileId,
-            UserProfileDetails userProfileDetails);
+                                      UserProfileDetails userProfileDetails);
 
         /// <summary>
         /// Changes the password.
@@ -57,8 +57,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="newClearPassword">The new clear password.</param>
         [Transactional]
         void ChangePassword(long userProfileId, String oldClearPassword,
-            String newClearPassword);
-
-        
+                            String newClearPassword);
     }
 }

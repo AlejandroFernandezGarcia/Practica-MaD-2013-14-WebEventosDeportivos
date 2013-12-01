@@ -30,8 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 UserProfileDao.FindByLoginName(loginName);
 
                 throw new DuplicateInstanceException(loginName,
-                    typeof(UserProfile).FullName);
-
+                                                     typeof (UserProfile).FullName);
             }
             catch (InstanceNotFoundException)
             {
@@ -39,14 +38,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
                 UserProfile userProfile =
                     UserProfile.CreateUserProfile(0, loginName, encryptedPassword,
-                        userProfileDetails.FirstName, userProfileDetails.Surname,
-                        userProfileDetails.Email, userProfileDetails.Language,
-                        userProfileDetails.Country);
+                                                  userProfileDetails.FirstName, userProfileDetails.Surname,
+                                                  userProfileDetails.Email, userProfileDetails.Language,
+                                                  userProfileDetails.Country);
 
                 UserProfileDao.Create(userProfile);
 
                 return userProfile.id;
-
             }
         }
 
@@ -68,14 +66,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             else
             {
                 if (!PasswordEncrypter.IsClearPasswordCorrect(password,
-                        storedPassword))
+                                                              storedPassword))
                 {
                     throw new IncorrectPasswordException(loginName);
                 }
             }
 
             return new LoginResult(userProfile.id, userProfile.firstName,
-                storedPassword, userProfile.language, userProfile.country);
+                                   storedPassword, userProfile.language, userProfile.country);
         }
 
         /// <exception cref="InstanceNotFoundException"/>
@@ -85,8 +83,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             UserProfileDetails userProfileDetails =
                 new UserProfileDetails(userProfile.firstName,
-                    userProfile.surname, userProfile.email,
-                    userProfile.language, userProfile.country);
+                                       userProfile.surname, userProfile.email,
+                                       userProfile.language, userProfile.country);
 
             return userProfileDetails;
         }
@@ -112,7 +110,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             String storedPassword = userProfile.enPassword;
 
             if (!PasswordEncrypter.IsClearPasswordCorrect(oldClearPassword,
-                storedPassword))
+                                                          storedPassword))
             {
                 throw new IncorrectPasswordException(userProfile.loginName);
             }
@@ -124,6 +122,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         }
 
         #endregion
-
     }
 }

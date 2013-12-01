@@ -5,7 +5,6 @@ using System.Security.Cryptography;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Util
 {
-
     /// <summary>
     /// Static Class with cryptografic utilities
     /// </summary>
@@ -18,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Util
         /// <returns>Returns a String with the <paramref name="password"/> encrypted
         /// </returns>                       
         public static String Crypt(String password)
-        {           
+        {
             HashAlgorithm hashAlg = new SHA256Managed();
 
             byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
@@ -27,12 +26,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Util
 
             String encryptedPassword = Convert.ToBase64String(encryptedPasswordBytes);
 
-            return encryptedPassword;            
+            return encryptedPassword;
         }
 
 
         public static Boolean IsClearPasswordCorrect(String clearPassword,
-            String encryptedPassword)
+                                                     String encryptedPassword)
         {
             string encryptedClearPassword = Crypt(clearPassword);
 
