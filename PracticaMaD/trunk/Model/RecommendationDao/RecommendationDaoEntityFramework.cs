@@ -42,20 +42,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
         /// <returns></returns>
         public List<Recommendation> FindRecommendationForAnUserUsersGroup(UserProfile userProfile)
         {
+            //COCHADA No se como utilizar IN en esta consulta.
             String query = "SELECT VALUE r " +
-                           "FROM PracticaMaDEntities.Recommendations AS r " +
-                           "WHERE r.usersGroupId IN ( @listOfGroups) " +
-                           "ORDER BY r.date DESC";
+                           "FROM PracticaMaDEntities.Recommendation AS r " +
+                           "WHERE r.usersGroupId =";
+                           
 
             List<long> listOfGroups = new List<long>();
+            bool first = true;
             foreach (UsersGroup usersGroup in userProfile.UsersGroup.ToList())
             {
-                listOfGroups.Add(usersGroup.id);
+                if (first)
+                {
+                    first = false;
+                    query += usersGroup.id + " ";
+                }
+                else
+                {
+                    query += "OR r.usersGroupId = " + usersGroup.id + " ";
+                }
             }
 
-            ObjectParameter param = new ObjectParameter("listOfGroups", listOfGroups);
+            query+= "ORDER BY r.date DESC";
 
-            return this.Context.CreateQuery<Recommendation>(query, param).ToList();
+            return this.Context.CreateQuery<Recommendation>(query).ToList();
         }
 
         /// <summary>
@@ -68,20 +78,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
         public List<Recommendation> FindRecommendationForAnUserUsersGroup(UserProfile userProfile, int startIndex,
                                                                           int count)
         {
+            //COCHADA No se como utilizar IN en esta consulta.
             String query = "SELECT VALUE r " +
-                           "FROM PracticaMaDEntities.Recommendations AS r " +
-                           "WHERE r.usersGroupId IN ( @listOfGroups) " +
-                           "ORDER BY r.date DESC";
+                           "FROM PracticaMaDEntities.Recommendation AS r " +
+                           "WHERE r.usersGroupId =";
+
 
             List<long> listOfGroups = new List<long>();
+            bool first = true;
             foreach (UsersGroup usersGroup in userProfile.UsersGroup.ToList())
             {
-                listOfGroups.Add(usersGroup.id);
+                if (first)
+                {
+                    first = false;
+                    query += usersGroup.id + " ";
+                }
+                else
+                {
+                    query += "OR r.usersGroupId = " + usersGroup.id + " ";
+                }
             }
 
-            ObjectParameter param = new ObjectParameter("listOfGroups", listOfGroups);
+            query += "ORDER BY r.date DESC";
 
-            return this.Context.CreateQuery<Recommendation>(query, param).Skip(startIndex).Take(count).ToList();
+            return this.Context.CreateQuery<Recommendation>(query).Skip(startIndex).Take(count).ToList();
         }
     }
 }
