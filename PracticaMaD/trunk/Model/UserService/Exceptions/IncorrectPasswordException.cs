@@ -3,7 +3,6 @@ using Es.Udc.DotNet.ModelUtil.Log;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions
 {
-
     /// <summary>
     /// Public <c>ModelException</c> which captures the error 
     /// with the passwords of the users.

@@ -22,7 +22,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         #endregion
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="UserProfileDetails"/> class.
         /// </summary>
@@ -32,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="language">The language.</param>
         /// <param name="country">The country.</param>
         public UserProfileDetails(String firstName, String Surname,
-           String email, String language, String country)
+                                  String email, String language, String country)
         {
             this.FirstName = firstName;
             this.Surname = Surname;
@@ -43,14 +42,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public override bool Equals(object obj)
         {
-
-            UserProfileDetails target = (UserProfileDetails)obj;
+            UserProfileDetails target = (UserProfileDetails) obj;
 
             return (this.FirstName == target.FirstName)
-                  && (this.Surname == target.Surname)
-                  && (this.Email == target.Email)
-                  && (this.Language == target.Language)
-                  && (this.Country == target.Country);
+                   && (this.Surname == target.Surname)
+                   && (this.Email == target.Email)
+                   && (this.Language == target.Language)
+                   && (this.Country == target.Country);
         }
 
         /// <summary>
@@ -85,6 +83,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             return strUserProfileDetails;
         }
-
     }
 }

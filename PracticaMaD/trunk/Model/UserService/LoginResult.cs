@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="language">The language.</param>
         /// <param name="country">The country.</param>
         public LoginResult(long userProfileId, String firstName,
-            String encryptedPassword, String language, String country)
+                           String encryptedPassword, String language, String country)
         {
             this.UserProfileId = userProfileId;
             this.FirstName = firstName;
@@ -59,13 +59,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <value>The country code.</value>
         public string Country { get; private set; }
 
-
         #endregion
 
         public override bool Equals(object obj)
         {
-
-            LoginResult target = (LoginResult)obj;
+            LoginResult target = (LoginResult) obj;
 
             return (this.UserProfileId == target.UserProfileId)
                    && (this.FirstName == target.FirstName)
@@ -103,6 +101,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
             return strLoginResult;
         }
-
     }
 }
