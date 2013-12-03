@@ -5,24 +5,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PracticaMaDModel.Store" Alias="Self" Provider="System.Data.SqlClient"
-              ProviderManifestToken="2008"
-              xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
-              xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="PracticaMaDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="PracticaMaDModelStoreContainer">
           <EntitySet Name="Category" EntityType="PracticaMaDModel.Store.Category" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Comment" EntityType="PracticaMaDModel.Store.Comment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CommentTag" EntityType="PracticaMaDModel.Store.CommentTag" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Event" EntityType="PracticaMaDModel.Store.Event" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Recommendation" EntityType="PracticaMaDModel.Store.Recommendation" store:Type="Tables"
-                     Schema="dbo" />
-          <EntitySet Name="UserProfile" EntityType="PracticaMaDModel.Store.UserProfile" store:Type="Tables"
-                     Schema="dbo" />
-          <EntitySet Name="UserProfileUsersGroup" EntityType="PracticaMaDModel.Store.UserProfileUsersGroup"
-                     store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Recommendation" EntityType="PracticaMaDModel.Store.Recommendation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tag" EntityType="PracticaMaDModel.Store.Tag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfile" EntityType="PracticaMaDModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserProfileUsersGroup" EntityType="PracticaMaDModel.Store.UserProfileUsersGroup" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UsersGroup" EntityType="PracticaMaDModel.Store.UsersGroup" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Category_Event" Association="PracticaMaDModel.Store.FK_Category_Event">
             <End Role="Category" EntitySet="Category" />
             <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_CommentTag" Association="PracticaMaDModel.Store.FK_Comment_CommentTag">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="CommentTag" EntitySet="CommentTag" />
           </AssociationSet>
           <AssociationSet Name="FK_Event_Comment" Association="PracticaMaDModel.Store.FK_Event_Comment">
             <End Role="Event" EntitySet="Event" />
@@ -32,22 +32,23 @@
             <End Role="Event" EntitySet="Event" />
             <End Role="Recommendation" EntitySet="Recommendation" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tag_CommentTag" Association="PracticaMaDModel.Store.FK_Tag_CommentTag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="CommentTag" EntitySet="CommentTag" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserProfile_Comment" Association="PracticaMaDModel.Store.FK_UserProfile_Comment">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserProfile_UsersGroup_UserProfile"
-                          Association="PracticaMaDModel.Store.FK_UserProfile_UsersGroup_UserProfile">
+          <AssociationSet Name="FK_UserProfile_UsersGroup_UserProfile" Association="PracticaMaDModel.Store.FK_UserProfile_UsersGroup_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="UserProfileUsersGroup" EntitySet="UserProfileUsersGroup" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserProfile_UsersGroup_UsersGroup"
-                          Association="PracticaMaDModel.Store.FK_UserProfile_UsersGroup_UsersGroup">
+          <AssociationSet Name="FK_UserProfile_UsersGroup_UsersGroup" Association="PracticaMaDModel.Store.FK_UserProfile_UsersGroup_UsersGroup">
             <End Role="UsersGroup" EntitySet="UsersGroup" />
             <End Role="UserProfileUsersGroup" EntitySet="UserProfileUsersGroup" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersGroup_Recommendation"
-                          Association="PracticaMaDModel.Store.FK_UsersGroup_Recommendation">
+          <AssociationSet Name="FK_UsersGroup_Recommendation" Association="PracticaMaDModel.Store.FK_UsersGroup_Recommendation">
             <End Role="UsersGroup" EntitySet="UsersGroup" />
             <End Role="Recommendation" EntitySet="Recommendation" />
           </AssociationSet>
@@ -56,7 +57,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="bigint" Nullable="false" />
           <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Comment">
@@ -64,10 +65,18 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="date" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="date" Type="datetime2" Nullable="false" />
           <Property Name="text" Type="varchar" Nullable="false" MaxLength="1000" />
           <Property Name="eventId" Type="bigint" Nullable="false" />
           <Property Name="userProfileId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommentTag">
+          <Key>
+            <PropertyRef Name="tagId" />
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="tagId" Type="bigint" Nullable="false" />
+          <Property Name="commentId" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -75,7 +84,7 @@
           </Key>
           <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="date" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="date" Type="datetime2" Nullable="false" />
           <Property Name="description" Type="varchar" Nullable="false" MaxLength="1000" />
           <Property Name="categoryId" Type="bigint" Nullable="false" />
         </EntityType>
@@ -87,7 +96,14 @@
           <Property Name="text" Type="varchar" Nullable="false" MaxLength="1000" />
           <Property Name="eventId" Type="bigint" Nullable="false" />
           <Property Name="usersGroupId" Type="bigint" Nullable="false" />
-          <Property Name="date" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="date" Type="datetime2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="tagName" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -130,6 +146,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Comment_CommentTag">
+          <End Role="Comment" Type="PracticaMaDModel.Store.Comment" Multiplicity="1" />
+          <End Role="CommentTag" Type="PracticaMaDModel.Store.CommentTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CommentTag">
+              <PropertyRef Name="commentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Event_Comment">
           <End Role="Event" Type="PracticaMaDModel.Store.Event" Multiplicity="1" />
           <End Role="Comment" Type="PracticaMaDModel.Store.Comment" Multiplicity="*" />
@@ -151,6 +179,18 @@
             </Principal>
             <Dependent Role="Recommendation">
               <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_CommentTag">
+          <End Role="Tag" Type="PracticaMaDModel.Store.Tag" Multiplicity="1" />
+          <End Role="CommentTag" Type="PracticaMaDModel.Store.CommentTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CommentTag">
+              <PropertyRef Name="tagId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -202,8 +242,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Model" Alias="Self"
@@ -214,6 +253,7 @@
           <EntitySet Name="Comment" EntityType="Es.Udc.DotNet.PracticaMaD.Model.Comment" />
           <EntitySet Name="Event" EntityType="Es.Udc.DotNet.PracticaMaD.Model.Event" />
           <EntitySet Name="Recommendation" EntityType="Es.Udc.DotNet.PracticaMaD.Model.Recommendation" />
+          <EntitySet Name="Tag" EntityType="Es.Udc.DotNet.PracticaMaD.Model.Tag" />
           <EntitySet Name="UserProfile" EntityType="Es.Udc.DotNet.PracticaMaD.Model.UserProfile" />
           <EntitySet Name="UsersGroup" EntityType="Es.Udc.DotNet.PracticaMaD.Model.UsersGroup" />
           <AssociationSet Name="FK_Category_Event" Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event">
@@ -224,23 +264,23 @@
             <End Role="Event" EntitySet="Event" />
             <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserProfile_Comment"
-                          Association="Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment">
+          <AssociationSet Name="FK_UserProfile_Comment" Association="Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Event_Recommendation"
-                          Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation">
+          <AssociationSet Name="FK_Event_Recommendation" Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation">
             <End Role="Event" EntitySet="Event" />
             <End Role="Recommendation" EntitySet="Recommendation" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersGroup_Recommendation"
-                          Association="Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation">
+          <AssociationSet Name="FK_UsersGroup_Recommendation" Association="Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation">
             <End Role="UsersGroup" EntitySet="UsersGroup" />
             <End Role="Recommendation" EntitySet="Recommendation" />
           </AssociationSet>
-          <AssociationSet Name="UserProfileUsersGroup"
-                          Association="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup">
+          <AssociationSet Name="CommentTag" Association="Es.Udc.DotNet.PracticaMaD.Model.CommentTag">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="UserProfileUsersGroup" Association="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="UsersGroup" EntitySet="UsersGroup" />
           </AssociationSet>
@@ -249,25 +289,22 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="id" Nullable="false" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Event" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event"
-                              FromRole="Category" ToRole="Event" />
+          <NavigationProperty Name="Event" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event" FromRole="Category" ToRole="Event" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Binary" Name="date" Nullable="false" MaxLength="8" FixedLength="true"
-                    annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="DateTime" Name="date" Nullable="false" />
           <Property Type="String" Name="text" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="Int64" Name="eventId" Nullable="false" />
           <Property Type="Int64" Name="userProfileId" Nullable="false" />
-          <NavigationProperty Name="Event" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment"
-                              FromRole="Comment" ToRole="Event" />
-          <NavigationProperty Name="UserProfile" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment"
-                              FromRole="Comment" ToRole="UserProfile" />
+          <NavigationProperty Name="Event" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment" FromRole="Comment" ToRole="Event" />
+          <NavigationProperty Name="UserProfile" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment" FromRole="Comment" ToRole="UserProfile" />
+          <NavigationProperty Name="Tag" Relationship="Es.Udc.DotNet.PracticaMaD.Model.CommentTag" FromRole="Comment" ToRole="Tag" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -275,18 +312,12 @@
           </Key>
           <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Binary" Name="date" Nullable="false" MaxLength="8" FixedLength="true"
-                    annotation:StoreGeneratedPattern="Computed" />
-          <Property Type="String" Name="description" Nullable="false" MaxLength="1000" FixedLength="false"
-                    Unicode="false" />
+          <Property Type="DateTime" Name="date" Nullable="false" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="Int64" Name="categoryId" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event"
-                              FromRole="Event" ToRole="Category" />
-          <NavigationProperty Name="Comment" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment"
-                              FromRole="Event" ToRole="Comment" />
-          <NavigationProperty Name="Recommendation"
-                              Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation" FromRole="Event"
-                              ToRole="Recommendation" />
+          <NavigationProperty Name="Category" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event" FromRole="Event" ToRole="Category" />
+          <NavigationProperty Name="Comment" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment" FromRole="Event" ToRole="Comment" />
+          <NavigationProperty Name="Recommendation" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation" FromRole="Event" ToRole="Recommendation" />
         </EntityType>
         <EntityType Name="Recommendation">
           <Key>
@@ -296,13 +327,17 @@
           <Property Type="String" Name="text" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="Int64" Name="eventId" Nullable="false" />
           <Property Type="Int64" Name="usersGroupId" Nullable="false" />
-          <Property Type="Binary" Name="date" Nullable="false" MaxLength="8" FixedLength="true"
-                    annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Event" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation"
-                              FromRole="Recommendation" ToRole="Event" />
-          <NavigationProperty Name="UsersGroup"
-                              Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation"
-                              FromRole="Recommendation" ToRole="UsersGroup" />
+          <Property Type="DateTime" Name="date" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation" FromRole="Recommendation" ToRole="Event" />
+          <NavigationProperty Name="UsersGroup" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation" FromRole="Recommendation" ToRole="UsersGroup" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="tagName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Comment" Relationship="Es.Udc.DotNet.PracticaMaD.Model.CommentTag" FromRole="Tag" ToRole="Comment" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -316,10 +351,8 @@
           <Property Type="String" Name="email" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="language" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="country" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Comment" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment"
-                              FromRole="UserProfile" ToRole="Comment" />
-          <NavigationProperty Name="UsersGroup" Relationship="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup"
-                              FromRole="UserProfile" ToRole="UsersGroup" />
+          <NavigationProperty Name="Comment" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment" FromRole="UserProfile" ToRole="Comment" />
+          <NavigationProperty Name="UsersGroup" Relationship="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup" FromRole="UserProfile" ToRole="UsersGroup" />
         </EntityType>
         <EntityType Name="UsersGroup">
           <Key>
@@ -327,13 +360,9 @@
           </Key>
           <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="description" Nullable="false" MaxLength="1000" FixedLength="false"
-                    Unicode="false" />
-          <NavigationProperty Name="Recommendation"
-                              Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation"
-                              FromRole="UsersGroup" ToRole="Recommendation" />
-          <NavigationProperty Name="UserProfile" Relationship="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup"
-                              FromRole="UsersGroup" ToRole="UserProfile" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Recommendation" Relationship="Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation" FromRole="UsersGroup" ToRole="Recommendation" />
+          <NavigationProperty Name="UserProfile" Relationship="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup" FromRole="UsersGroup" ToRole="UserProfile" />
         </EntityType>
         <Association Name="FK_Category_Event">
           <End Type="Es.Udc.DotNet.PracticaMaD.Model.Category" Role="Category" Multiplicity="1" />
@@ -395,11 +424,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="CommentTag">
+          <End Type="Es.Udc.DotNet.PracticaMaD.Model.Comment" Role="Comment" Multiplicity="*" />
+          <End Type="Es.Udc.DotNet.PracticaMaD.Model.Tag" Role="Tag" Multiplicity="*" />
+        </Association>
         <Association Name="UserProfileUsersGroup">
           <End Type="Es.Udc.DotNet.PracticaMaD.Model.UserProfile" Role="UserProfile" Multiplicity="*" />
           <End Type="Es.Udc.DotNet.PracticaMaD.Model.UsersGroup" Role="UsersGroup" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -447,6 +480,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tag">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="tagName" ColumnName="tagName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserProfile">
             <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Model.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
@@ -470,9 +511,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="UserProfileUsersGroup"
-                                 TypeName="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup"
-                                 StoreEntitySet="UserProfileUsersGroup">
+          <AssociationSetMapping Name="CommentTag" TypeName="Es.Udc.DotNet.PracticaMaD.Model.CommentTag" StoreEntitySet="CommentTag">
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="id" ColumnName="tagId" />
+            </EndProperty>
+            <EndProperty Name="Comment">
+              <ScalarProperty Name="id" ColumnName="commentId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserProfileUsersGroup" TypeName="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup" StoreEntitySet="UserProfileUsersGroup">
             <EndProperty Name="UsersGroup">
               <ScalarProperty Name="id" ColumnName="groupId" />
             </EndProperty>
@@ -501,53 +548,50 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model2" ZoomLevel="72">
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Category" Width="1.5" PointX="0.75" PointY="4"
-                         Height="1.5956835937499991" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Comment" Width="1.5" PointX="5.25" PointY="3.5"
-                         Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Event" Width="1.5" PointX="3" PointY="3.5"
-                         Height="2.5571907552083317" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Recommendation" Width="1.5" PointX="8.25"
-                         PointY="3.5" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.UserProfile" Width="1.5" PointX="3" PointY="8.25"
-                         Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.UsersGroup" Width="1.5" PointX="6" PointY="0.75"
-                         Height="1.9802864583333317" />
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event">
-          <ConnectorPoint PointX="2.25" PointY="4.797841796875" />
-          <ConnectorPoint PointX="3" PointY="4.797841796875" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Category" Width="1.5" PointX="0.75" PointY="3.125" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Comment" Width="1.5" PointX="5.25" PointY="2.625" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Event" Width="1.5" PointX="3" PointY="2.625" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Recommendation" Width="1.5" PointX="8.25" PointY="2.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.Tag" Width="1.5" PointX="7.5" PointY="6.125" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.UserProfile" Width="1.5" PointX="3" PointY="7.5" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Model.UsersGroup" Width="1.5" PointX="6" PointY="9" Height="1.9802864583333388" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Category_Event" >
+          <ConnectorPoint PointX="2.25" PointY="3.922841796875" />
+          <ConnectorPoint PointX="3" PointY="3.922841796875" />
         </AssociationConnector>
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment">
-          <ConnectorPoint PointX="4.5" PointY="4.6824446614583337" />
-          <ConnectorPoint PointX="5.25" PointY="4.6824446614583337" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Comment" >
+          <ConnectorPoint PointX="4.5" PointY="3.9035953776041659" />
+          <ConnectorPoint PointX="5.25" PointY="3.9035953776041659" />
         </AssociationConnector>
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment">
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_UserProfile_Comment" >
+          <ConnectorPoint PointX="4.5" PointY="8.21875" />
+          <ConnectorPoint PointX="5.59375" PointY="8.21875" />
+          <ConnectorPoint PointX="5.59375" PointY="5.1821907552083317" />
+        </AssociationConnector>
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation" >
+          <ConnectorPoint PointX="4.5" PointY="5.1821907552083317" />
+          <ConnectorPoint PointX="4.875" PointY="5.5571907552083317" />
+          <ConnectorPoint PointX="4.875" PointY="5.4898893229166674" />
+          <ConnectorPoint PointX="5.510416666666667" PointY="5.4898893229166665" />
+          <ConnectorPoint PointX="5.677083333333333" PointY="5.4898893229166674" />
+          <ConnectorPoint PointX="6.1197941666666669" PointY="5.4898893229166665" />
+          <ConnectorPoint PointX="6.2864608333333329" PointY="5.4898893229166674" />
+          <ConnectorPoint PointX="7.875" PointY="5.4898893229166674" />
+          <ConnectorPoint PointX="8.25" PointY="5.1148893229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation" >
+          <ConnectorPoint PointX="7.5" PointY="9.99014322916667" />
+          <ConnectorPoint PointX="9.40625" PointY="9.99014322916667" />
+          <ConnectorPoint PointX="9.40625" PointY="5.1148893229166674" />
+        </AssociationConnector>
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.CommentTag" >
+          <ConnectorPoint PointX="6.2031275" PointY="5.1821907552083317" />
+          <ConnectorPoint PointX="6.2031275" PointY="6.9228417968750016" />
+          <ConnectorPoint PointX="7.5" PointY="6.9228417968750016" />
+        </AssociationConnector>
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup" >
           <ConnectorPoint PointX="4.5" PointY="9.7208968098958337" />
           <ConnectorPoint PointX="6" PointY="9.7208968098958337" />
-          <ConnectorPoint PointX="6" PointY="5.8648893229166674" />
-        </AssociationConnector>
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_Event_Recommendation">
-          <ConnectorPoint PointX="4.5" PointY="6.0571907552083317" />
-          <ConnectorPoint PointX="4.875" PointY="6.4321907552083317" />
-          <ConnectorPoint PointX="4.875" PointY="6.2398893229166674" />
-          <ConnectorPoint PointX="5.916666666666667" PointY="6.2398893229166665" />
-          <ConnectorPoint PointX="6.083333333333333" PointY="6.2398893229166674" />
-          <ConnectorPoint PointX="7.072916666666667" PointY="6.2398893229166665" />
-          <ConnectorPoint PointX="7.239583333333333" PointY="6.2398893229166674" />
-          <ConnectorPoint PointX="7.875" PointY="6.2398893229166674" />
-          <ConnectorPoint PointX="8.25" PointY="5.8648893229166674" />
-        </AssociationConnector>
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation">
-          <ConnectorPoint PointX="7.5" PointY="1.7401432291666659" />
-          <ConnectorPoint PointX="9" PointY="1.7401432291666659" />
-          <ConnectorPoint PointX="9" PointY="3.5" />
-        </AssociationConnector>
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Model.UserProfileUsersGroup">
-          <ConnectorPoint PointX="4.5" PointY="8.9541959049479161" />
-          <ConnectorPoint PointX="5.916666666666667" PointY="8.9541959049479161" />
-          <ConnectorPoint PointX="6.083333333333333" PointY="8.9541959049479161" />
-          <ConnectorPoint PointX="7.15625" PointY="8.9541959049479161" />
-          <ConnectorPoint PointX="7.15625" PointY="2.7302864583333317" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

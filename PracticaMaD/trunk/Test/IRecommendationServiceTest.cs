@@ -83,13 +83,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void CreateRecommendation()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event e1 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", category1.id);
+            Event e1 = Event.CreateEvent(0, "Evento 1", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(e1);
 
             UsersGroup ug = UsersGroup.CreateUsersGroup(0, "Partidos de futbol", "Grupo para partidos de futbol");
@@ -120,13 +114,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [ExpectedException(typeof(UserNotBelongGroupException))]
         public void CreateRecommendationException()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event e1 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", category1.id);
+            Event e1 = Event.CreateEvent(0, "Evento 1", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(e1);
 
             UsersGroup ug = UsersGroup.CreateUsersGroup(0, "Partidos de futbol", "Grupo para partidos de futbol");
@@ -151,16 +139,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void FindRecommendationsForEvent()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event e1 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", category1.id);
+            Event e1 = Event.CreateEvent(0, "Evento 1", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(e1);
 
-            Event e2 = Event.CreateEvent(0, "Evento 2", dateBytes, "Evento de prueba 2", category1.id);
+            Event e2 = Event.CreateEvent(0, "Evento 2", DateTime.Now, "Evento de prueba 2", 1);
             eventDao.Create(e2);
 
             UsersGroup ug = UsersGroup.CreateUsersGroup(0, "Partidos de futbol", "Grupo para partidos de futbol");
@@ -190,13 +172,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void FindRecommendationsForEventPaging()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event e1 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", category1.id);
+            Event e1 = Event.CreateEvent(0, "Evento 1", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(e1);
 
             UsersGroup ug = UsersGroup.CreateUsersGroup(0, "Partidos de futbol", "Grupo para partidos de futbol");
@@ -230,13 +206,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         public void FindRecommendationsReceivedByUserGroupOfUser()
         {
             
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event e1 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", category1.id);
+            Event e1 = Event.CreateEvent(0, "Evento 1", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(e1);
 
             UsersGroup ug = UsersGroup.CreateUsersGroup(0, "Partidos de futbol", "Grupo para partidos de futbol");
@@ -281,13 +251,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void FindRecommendationsReceivedByUserGroupOfUserPaging()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event e1 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", category1.id);
+            Event e1 = Event.CreateEvent(0, "Evento 1", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(e1);
 
             UsersGroup ug = UsersGroup.CreateUsersGroup(0, "Partidos de futbol", "Grupo para partidos de futbol");

@@ -86,10 +86,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <param name="userProfileId">The user profile identifier.</param>
         public void AddComment(long eventId, string text, long userProfileId)
         {
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
 
-            Comment comment = Comment.CreateComment(0, dateBytes, text, eventId, userProfileId);
+            Comment comment = Comment.CreateComment(0, DateTime.Now, text, eventId, userProfileId);
 
             CommentDao.Create(comment);
         }

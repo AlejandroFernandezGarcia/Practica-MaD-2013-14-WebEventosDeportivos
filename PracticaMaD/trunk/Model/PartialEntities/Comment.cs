@@ -20,7 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
             Comment target = (Comment) obj;
 
             return (this.id == target.id)
-                   && (this.date.SequenceEqual(target.date))
+                   && (this.date.CompareTo(target.date) == 0)
                    && (this.text == target.text)
                    && (this.eventId == target.eventId)
                    && (this.userProfileId == target.userProfileId);
