@@ -80,10 +80,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationService
 
             foreach (long i in usersGroupIds)
             {
-                DateTime date = new DateTime();
-                byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-                Recommendation recommendation = Recommendation.CreateRecommendation(0, text, eventId, i, dateBytes);
+                Recommendation recommendation = Recommendation.CreateRecommendation(0, text, eventId, i, DateTime.Now);
 
                 RecommendationDao.Create(recommendation);
             }

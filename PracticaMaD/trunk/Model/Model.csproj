@@ -96,6 +96,8 @@
     <Compile Include="RecommendationDao\RecommendationDaoEntityFramework.cs" />
     <Compile Include="RecommendationService\IRecommendationService.cs" />
     <Compile Include="RecommendationService\RecommendationService.cs" />
+    <Compile Include="TagDao\ITagDao.cs" />
+    <Compile Include="TagDao\TagDaoEntityFramework.cs" />
     <Compile Include="UserProfileDao\IUserProfileDao.cs" />
     <Compile Include="UserProfileDao\UserProfileDaoEntityFramework.cs" />
     <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />

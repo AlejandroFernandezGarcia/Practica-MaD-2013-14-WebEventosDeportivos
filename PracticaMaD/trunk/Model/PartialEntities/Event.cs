@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
 
             return (this.id == target.id)
                    && (this.name == target.name)
-                   && (this.date.SequenceEqual(target.date))
+                   && (this.date.CompareTo(target.date)==0)
                    && (this.description == target.description)
                    && (this.categoryId == target.categoryId);
         }

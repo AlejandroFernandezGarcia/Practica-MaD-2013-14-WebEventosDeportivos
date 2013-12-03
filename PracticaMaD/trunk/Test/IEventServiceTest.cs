@@ -69,43 +69,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             transaction.Dispose();
         }
 
-
-        [TestMethod()]
-        public void Probe()
-        {
-            Category c = Category.CreateCategory(0, "Futbol");
-            Category d = Category.CreateCategory(2, "Basket");
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            
-            Event e1 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", c.id);
-
-            Event e2 = Event.CreateEvent(0, "Evento 1", dateBytes, "Evento de prueba 1", d.id);
-            
-            //Assert.IsTrue(c.Equals(c));
-            //Assert.IsTrue(e1.Equals(e2));
-
-            Asserto.AreEqual(e1, e1);
-        }
-
         [TestMethod()]
         public void SearchByKeywords1()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event e1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
+            Event e1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(e1);
 
-            Event e2 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 2", category1.id);
+            Event e2 = Event.CreateEvent(0, "Evento manzana", DateTime.Now, "Evento de prueba 2", 1);
             eventDao.Create(e2);
 
-            Event e3 = Event.CreateEvent(0, "Evento test", dateBytes, "Evento de prueba 3", category1.id);
+            Event e3 = Event.CreateEvent(0, "Evento test", DateTime.Now, "Evento de prueba 3", 1);
             eventDao.Create(e3);
 
             List<EventCategoryDto> list1 = eventService.FindByKeywords("Evento", 0, 3);
@@ -124,28 +97,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void SearchByKeywordsAndCategory1()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-            Category category2 = Category.CreateCategory(0, "Baloncesto");
-            categoryDao.Create(category2);
-            Category category3 = Category.CreateCategory(0, "Tennis");
-            categoryDao.Create(category3);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event e1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
-            Event e2 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 2", category2.id);
-            Event e3 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 3", category1.id);
+            Event e1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
+            Event e2 = Event.CreateEvent(0, "Evento manzana", DateTime.Now, "Evento de prueba 2", 2);
+            Event e3 = Event.CreateEvent(0, "Evento manzana", DateTime.Now, "Evento de prueba 3", 1);
 
             eventDao.Create(e1);
             eventDao.Create(e2);
             eventDao.Create(e3);
 
-            List<EventCategoryDto> list1 = eventService.FindByKeywords("Evento", category1.id, 0, 3);
-            List<EventCategoryDto> list2 = eventService.FindByKeywords("ven", category2.id, 0, 1);
-            List<EventCategoryDto> list3 = eventService.FindByKeywords("prueba", category2.id, 2, 2);
-            List<EventCategoryDto> list4 = eventService.FindByKeywords("Evento", category3.id, 0, 2);
+            List<EventCategoryDto> list1 = eventService.FindByKeywords("Evento", 1, 0, 3);
+            List<EventCategoryDto> list2 = eventService.FindByKeywords("ven", 2, 0, 1);
+            List<EventCategoryDto> list3 = eventService.FindByKeywords("prueba", 2, 2, 2);
+            List<EventCategoryDto> list4 = eventService.FindByKeywords("Evento", 3, 0, 2);
 
             Assert.AreEqual(list1.Count, 2);
             Assert.AreEqual(list2.Count, 1);
@@ -156,16 +119,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void SearchByKeywords2()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event e1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
+            Event e1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(e1);
 
-            Event e2 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 2", category1.id);
+            Event e2 = Event.CreateEvent(0, "Evento manzana", DateTime.Now, "Evento de prueba 2", 1);
             eventDao.Create(e2);
 
             List<EventCategoryDto> list1 = eventService.FindByKeywords("Evento");
@@ -176,7 +133,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             Assert.AreEqual(list1.Count, 2);
             Assert.AreEqual(list2.Count, 2);
-            Assert.AreEqual(list3.Count, 2);
+            Assert.AreEqual(list3.Count, 4);//por los que ya hay en la bd 
             Assert.AreEqual(list4.Count, 1);
             Assert.AreEqual(list5.Count, 0);
         }
@@ -184,26 +141,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void SearchByKeywordsAndCategory2()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-            Category category2 = Category.CreateCategory(0, "Baloncesto");
-            categoryDao.Create(category2);
-            Category category3 = Category.CreateCategory(0, "Tennis");
-            categoryDao.Create(category3);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event e1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
-            Event e2 = Event.CreateEvent(0, "Evento manzana", dateBytes, "Evento de prueba 1", category2.id);
+            Event e1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
+            Event e2 = Event.CreateEvent(0, "Evento manzana", DateTime.Now, "Evento de prueba 1", 2);
 
             eventDao.Create(e1);
             eventDao.Create(e2);
 
-            List<EventCategoryDto> list1 = eventService.FindByKeywords("Evento", category1.id);
-            List<EventCategoryDto> list2 = eventService.FindByKeywords("ven", category2.id);
-            List<EventCategoryDto> list3 = eventService.FindByKeywords("prueba", category2.id);
-            List<EventCategoryDto> list4 = eventService.FindByKeywords("Evento", category3.id);
+            List<EventCategoryDto> list1 = eventService.FindByKeywords("Evento", 1);
+            List<EventCategoryDto> list2 = eventService.FindByKeywords("ven", 2);
+            List<EventCategoryDto> list3 = eventService.FindByKeywords("prueba", 2);
+            List<EventCategoryDto> list4 = eventService.FindByKeywords("Evento", 3);
 
             Assert.AreEqual(list1.Count, 1);
             Assert.AreEqual(list2.Count, 1);
@@ -215,13 +162,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void AddComment()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event event1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
+            Event event1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(event1);
 
             String encryptedPassword = PasswordEncrypter.Crypt("pass");
@@ -240,32 +181,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void FindCategories()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-            Category category2 = Category.CreateCategory(0, "Baloncesto");
-            categoryDao.Create(category2);
-            Category category3 = Category.CreateCategory(0, "Tennis");
-            categoryDao.Create(category3);
-
             List<Category> list = eventService.FindAllCategories();
 
-            Assert.AreEqual(list.Count, 3);
-            Assert.AreEqual(list[0].id, category1.id);
-            Assert.AreEqual(list[1].name, category2.name);
-            Assert.AreNotEqual(list[2].id, category1.id);
-            Assert.AreEqual(list[2].name, category3.name);
+            Assert.AreEqual(list.Count, 8);
+            Asserto.AreEqual(categoryDao.Find(1),list[0]);
         }
 
         [TestMethod()]
         public void SearchEventComments1()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event event1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
+            Event event1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(event1);
 
             String encryptedPassword = PasswordEncrypter.Crypt("pass");
@@ -287,22 +212,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             List<Comment> list = eventService.FindCommentsForEvent(event1.id);
 
             Assert.AreEqual(list.Count, 4);
-            Assert.AreEqual(list[0].text, commentText4);
-            Assert.AreEqual(list[1].userProfileId, userProfile.id);
-            Assert.AreNotEqual(list[2].userProfileId, userProfile2.id);
             
         }
 
         [TestMethod()]
         public void SearchEventComments2()
         {
-            Category category1 = Category.CreateCategory(0, "Futbol");
-            categoryDao.Create(category1);
-
-            DateTime date = new DateTime();
-            byte[] dateBytes = BitConverter.GetBytes(date.Ticks);
-
-            Event event1 = Event.CreateEvent(0, "Evento prueba", dateBytes, "Evento de prueba 1", category1.id);
+            Event event1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
             eventDao.Create(event1);
 
             String encryptedPassword = PasswordEncrypter.Crypt("pass");
@@ -327,10 +243,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             Assert.AreEqual(list1.Count, 4);
             Assert.AreEqual(list2.Count, 1);
-            Assert.AreEqual(list1[0].text, commentText4);
             Assert.AreEqual(list3.Count, 0);
-            Assert.AreEqual(list1[1].userProfileId, userProfile.id);
-            Assert.AreNotEqual(list1[2].userProfileId, userProfile2.id);
         }
     }
 }

@@ -23,6 +23,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UserProfile_Comment", "UserProfile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfile), "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Comment), true)]
 [assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_Event_Recommendation", "Event", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.Event), "Recommendation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Recommendation), true)]
 [assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "FK_UsersGroup_Recommendation", "UsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Es.Udc.DotNet.PracticaMaD.Model.UsersGroup), "Recommendation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Recommendation), true)]
+[assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "CommentTag", "Comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Comment), "Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.Tag))]
 [assembly: EdmRelationshipAttribute("Es.Udc.DotNet.PracticaMaD.Model", "UserProfileUsersGroup", "UserProfile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.UserProfile), "UsersGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Es.Udc.DotNet.PracticaMaD.Model.UsersGroup))]
 
 #endregion
@@ -142,6 +143,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
+        public ObjectSet<Tag> Tag
+        {
+            get
+            {
+                if ((_Tag == null))
+                {
+                    _Tag = base.CreateObjectSet<Tag>("Tag");
+                }
+                return _Tag;
+            }
+        }
+        private ObjectSet<Tag> _Tag;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
         public ObjectSet<UserProfile> UserProfile
         {
             get
@@ -204,6 +221,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public void AddToRecommendation(Recommendation recommendation)
         {
             base.AddObject("Recommendation", recommendation);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet Tag. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToTag(Tag tag)
+        {
+            base.AddObject("Tag", tag);
         }
     
         /// <summary>
@@ -354,7 +379,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// <param name="text">Valor inicial de la propiedad text.</param>
         /// <param name="eventId">Valor inicial de la propiedad eventId.</param>
         /// <param name="userProfileId">Valor inicial de la propiedad userProfileId.</param>
-        public static Comment CreateComment(global::System.Int64 id, global::System.Byte[] date, global::System.String text, global::System.Int64 eventId, global::System.Int64 userProfileId)
+        public static Comment CreateComment(global::System.Int64 id, global::System.DateTime date, global::System.String text, global::System.Int64 eventId, global::System.Int64 userProfileId)
         {
             Comment comment = new Comment();
             comment.id = id;
@@ -400,23 +425,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte[] date
+        public global::System.DateTime date
         {
             get
             {
-                return StructuralObject.GetValidValue(_date);
+                return _date;
             }
             set
             {
                 OndateChanging(value);
                 ReportPropertyChanging("date");
-                _date = StructuralObject.SetValidValue(value, true);
+                _date = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("date");
                 OndateChanged();
             }
         }
-        private global::System.Byte[] _date;
-        partial void OndateChanging(global::System.Byte[] value);
+        private global::System.DateTime _date;
+        partial void OndateChanging(global::System.DateTime value);
         partial void OndateChanged();
     
         /// <summary>
@@ -570,6 +595,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
                 }
             }
         }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "CommentTag", "Tag")]
+        public EntityCollection<Tag> Tag
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Tag>("Es.Udc.DotNet.PracticaMaD.Model.CommentTag", "Tag");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Tag>("Es.Udc.DotNet.PracticaMaD.Model.CommentTag", "Tag", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -592,7 +639,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// <param name="date">Valor inicial de la propiedad date.</param>
         /// <param name="description">Valor inicial de la propiedad description.</param>
         /// <param name="categoryId">Valor inicial de la propiedad categoryId.</param>
-        public static Event CreateEvent(global::System.Int64 id, global::System.String name, global::System.Byte[] date, global::System.String description, global::System.Int64 categoryId)
+        public static Event CreateEvent(global::System.Int64 id, global::System.String name, global::System.DateTime date, global::System.String description, global::System.Int64 categoryId)
         {
             Event @event = new Event();
             @event.id = id;
@@ -662,23 +709,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte[] date
+        public global::System.DateTime date
         {
             get
             {
-                return StructuralObject.GetValidValue(_date);
+                return _date;
             }
             set
             {
                 OndateChanging(value);
                 ReportPropertyChanging("date");
-                _date = StructuralObject.SetValidValue(value, true);
+                _date = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("date");
                 OndateChanged();
             }
         }
-        private global::System.Byte[] _date;
-        partial void OndateChanging(global::System.Byte[] value);
+        private global::System.DateTime _date;
+        partial void OndateChanging(global::System.DateTime value);
         partial void OndateChanged();
     
         /// <summary>
@@ -836,7 +883,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// <param name="eventId">Valor inicial de la propiedad eventId.</param>
         /// <param name="usersGroupId">Valor inicial de la propiedad usersGroupId.</param>
         /// <param name="date">Valor inicial de la propiedad date.</param>
-        public static Recommendation CreateRecommendation(global::System.Int64 id, global::System.String text, global::System.Int64 eventId, global::System.Int64 usersGroupId, global::System.Byte[] date)
+        public static Recommendation CreateRecommendation(global::System.Int64 id, global::System.String text, global::System.Int64 eventId, global::System.Int64 usersGroupId, global::System.DateTime date)
         {
             Recommendation recommendation = new Recommendation();
             recommendation.id = id;
@@ -954,23 +1001,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Byte[] date
+        public global::System.DateTime date
         {
             get
             {
-                return StructuralObject.GetValidValue(_date);
+                return _date;
             }
             set
             {
                 OndateChanging(value);
                 ReportPropertyChanging("date");
-                _date = StructuralObject.SetValidValue(value, true);
+                _date = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("date");
                 OndateChanged();
             }
         }
-        private global::System.Byte[] _date;
-        partial void OndateChanging(global::System.Byte[] value);
+        private global::System.DateTime _date;
+        partial void OndateChanging(global::System.DateTime value);
         partial void OndateChanged();
 
         #endregion
@@ -1049,6 +1096,112 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UsersGroup>("Es.Udc.DotNet.PracticaMaD.Model.FK_UsersGroup_Recommendation", "UsersGroup", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No hay documentación de metadatos disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Es.Udc.DotNet.PracticaMaD.Model", Name="Tag")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Tag : EntityObject
+    {
+        #region Método de generador
+    
+        /// <summary>
+        /// Crear un nuevo objeto Tag.
+        /// </summary>
+        /// <param name="id">Valor inicial de la propiedad id.</param>
+        /// <param name="tagName">Valor inicial de la propiedad tagName.</param>
+        public static Tag CreateTag(global::System.Int64 id, global::System.String tagName)
+        {
+            Tag tag = new Tag();
+            tag.id = id;
+            tag.tagName = tagName;
+            return tag;
+        }
+
+        #endregion
+        #region Propiedades primitivas
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id;
+        partial void OnidChanging(global::System.Int64 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String tagName
+        {
+            get
+            {
+                return _tagName;
+            }
+            set
+            {
+                OntagNameChanging(value);
+                ReportPropertyChanging("tagName");
+                _tagName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("tagName");
+                OntagNameChanged();
+            }
+        }
+        private global::System.String _tagName;
+        partial void OntagNameChanging(global::System.String value);
+        partial void OntagNameChanged();
+
+        #endregion
+    
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Es.Udc.DotNet.PracticaMaD.Model", "CommentTag", "Comment")]
+        public EntityCollection<Comment> Comment
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Comment>("Es.Udc.DotNet.PracticaMaD.Model.CommentTag", "Comment");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Comment>("Es.Udc.DotNet.PracticaMaD.Model.CommentTag", "Comment", value);
                 }
             }
         }

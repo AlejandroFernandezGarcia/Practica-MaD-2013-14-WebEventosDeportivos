@@ -72,7 +72,7 @@ GO
 
 /*Category: Tabla creation*/
 CREATE TABLE Category(
-	id BIGINT IDENTITY(1,1) NOT NULL,
+	id BIGINT NOT NULL,
 	name VARCHAR(50) NOT NULL,
 
 	CONSTRAINT [PK_Category] PRIMARY KEY (id)
@@ -83,7 +83,7 @@ GO
 CREATE TABLE Event(
 	id BIGINT IDENTITY(1,1) NOT NULL,
 	name VARCHAR(50) NOT NULL,
-	date TIMESTAMP NOT NULL,
+	date datetime2 NOT NULL,
 	description VARCHAR(1000) NOT NULL,
 	categoryId BIGINT NOT NULL,
 
@@ -94,7 +94,7 @@ GO
 /*Comment: Tabla creation*/
 CREATE TABLE Comment(
 	id BIGINT IDENTITY(1,1) NOT NULL,
-	date TIMESTAMP NOT NULL,
+	date datetime2 NOT NULL,
 	text VARCHAR(1000) NOT NULL,
 	eventId BIGINT NOT NULL,
 	userProfileId BIGINT NOT NULL,
@@ -119,7 +119,7 @@ CREATE TABLE Recommendation(
 	text VARCHAR(1000) NOT NULL,
 	eventId BIGINT NOT NULL,
 	usersGroupId BIGINT NOT NULL,
-	date TIMESTAMP NOT NULL,
+	date datetime2 NOT NULL,
 
 	CONSTRAINT [PK_Recommendation] PRIMARY KEY (id)
 )
@@ -146,10 +146,28 @@ CREATE TABLE UserProfileUsersGroup(
 	userId BIGINT NOT NULL,
 	groupId BIGINT NOT NULL,
 
-	CONSTRAINT [PK_UserProfile_UsersGroup] PRIMARY KEY (userId,groupId),
-	CONSTRAINT [ROW_UNIQUE] UNIQUE (userId, groupId)
+	CONSTRAINT [PK_UserProfile_UsersGroup] PRIMARY KEY (userId,groupId)
 )
 GO
+
+CREATE TABLE Tag(
+	id BIGINT IDENTITY(1,1) NOT NULL,
+	tagName VARCHAR(50) NOT NULL,
+
+	CONSTRAINT [PK_Tag] PRIMARY KEY (id),
+	CONSTRAINT [ROW_UNIQUE_TAG] UNIQUE (tagName)
+)
+GO
+
+
+CREATE TABLE CommentTag(
+	tagId BIGINT NOT NULL,
+	commentId BIGINT NOt NULL,
+
+	CONSTRAINT [PK_CommentTag] PRIMARY KEY (tagId, commentId)
+)
+GO
+
 
 /*Add constraints for all the tables*/
 ALTER TABLE Event ADD CONSTRAINT [FK_Category_Event] FOREIGN KEY (categoryId) REFERENCES Category (id)
@@ -173,10 +191,77 @@ GO
 ALTER TABLE UserProfileUsersGroup ADD CONSTRAINT [FK_UserProfile_UsersGroup_UsersGroup] FOREIGN KEY (groupId) REFERENCES UsersGroup (id)
 GO
 
+ALTER TABLE CommentTag ADD CONSTRAINT [FK_Tag_CommentTag] FOREIGN KEY (tagId) REFERENCES Tag(id)
+GO
+
+ALTER TABLE CommentTag ADD CONSTRAINT [FK_Comment_CommentTag] FOREIGN KEY (commentId) REFERENCES Comment(id)
+GO
 
 
+INSERT INTO Category (id,name) VALUES (1,'Futbol'),(2,'Baloncesto'),(3,'Tenis'),(4,'Balonmano'),(5,'Petanca'),(6,'Volleyball'),(7,'Golf'),(8,'Lucha en el barro')
+GO
 
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Final de petanca Gilberto-Tomás',CONVERT(datetime2,'18-10-13 10:34:09 PM',5),
+				'Final del torneo Asserto de petanca. Lugar: Camponaraya .Entradas 3€',5)
 
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Champions-Semifinal',CONVERT(datetime2,'18-09-16 10:05:45 PM',5),
+				'Semifinal de la champions Levante - Betis. Lugar: Benito Villamarin',1)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Partido de liga',CONVERT(datetime2,'25-06-14 01:02:09 PM',5),
+				'Jornada 21. Lakers - Boston. Lugar: Stapless Center',2)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Wimbledon',CONVERT(datetime2,'25-01-14 11:10:09 PM',5),
+				'Vanesa Furlanetto - Maria Sharapova. Lugar: Yan Wanq',3)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Partido liga Asobal',CONVERT(datetime2,'30-03-13 11:40:16 PM',5),
+				'Ademar León - Barcelona. Lugar: Barcelona',4)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Partido de Extraliga',CONVERT(datetime2,'09-06-14 08:36:25 PM',5),
+				'SPPCZ Brno - FATRA Zlim. Lugar: Brno ',6)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Partido  Liga de Campeones',CONVERT(datetime2,'02-08-14 05:34:45 PM',5),
+				'Lokomotiv Novosibirsk - Lube Banca Marche Macerata.  Lugar: Rusia',6)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Partido Northwestern Mutual World Challenge',CONVERT(datetime2,'07-08-14 10:25:09 PM',5),
+				'Tigers Woods quiere revalidar su titulo. Entradas 10€',7)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Enfrentamiento de Sollheim Cup',CONVERT(datetime2,'26-02-14 09:34:12 PM',5),
+				'Anja Rubik - Bridget Hall. Lugar: FIC. Entrada: 20€',8)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Enfrentamiento de Sollheim Cup',CONVERT(datetime2,'13-06-12 10:25:09 PM',5),
+				'Katie Price - Abigail Clancy. Lugar: FIC. Entrada: 19€',8)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Copa del Rey',CONVERT(datetime2,'18-09-12 10:56:09 PM',5),
+				'Ponferradina - Deportivo . Lugar: Toralin.',1)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Liga Calcio',CONVERT(datetime2,'18-06-15 06:12:09 PM',5),
+				'Lazio - Napoli. Lugar: Lazio Stadium',1)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Champions',CONVERT(datetime2,'01-06-13 02:34:15 PM',5),
+				'Bayern - Deportivo. Lugar: Riazor',1)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Baloncesto',CONVERT(datetime2,'02-11-14 09:25:09 PM',5),
+				'EA7 Emporio Armani Milano - Real Madrid. Lugar: Vistalegre',2)
+
+INSERT INTO Event (name, date, description, categoryId) 
+		VALUES ('Final de petanca World Cup',CONVERT(datetime2,'21-09-13 09:25:09 PM',5),
+				'Evaristo - Elias. Lugar: Playa Riazor',5)
+
+GO
 
 
 
