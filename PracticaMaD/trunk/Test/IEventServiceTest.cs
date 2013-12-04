@@ -16,6 +16,7 @@ using System.Data.Objects.DataClasses;
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
 
+    //TODO Arreglar todos los test donde aparece algun comentario, no es necesario cambiar el new List<string> por algo que tenga sentido ya que ese metodo se probara en ITagService
     [TestClass()]
     public class IEventServiceTest
     {
@@ -170,7 +171,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             userProfileDao.Create(userProfile);
 
             String expectedText = "Prueba de comentarios";
-            eventService.AddComment(event1.id, expectedText, userProfile.id);
+            eventService.AddComment(event1.id, expectedText, userProfile.id,new List<string>());
             Comment comment1 = event1.Comment.ToList()[0];
 
             Assert.AreEqual(comment1.text, expectedText);
@@ -201,13 +202,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             userProfileDao.Create(userProfile2);
 
             String commentText1 = "Prueba de comentarios 1";
-            eventService.AddComment(event1.id, commentText1, userProfile.id);
+            eventService.AddComment(event1.id, commentText1, userProfile.id, new List<string>());
             String commentText2 = "Prueba de comentarios 2";
-            eventService.AddComment(event1.id, commentText2, userProfile.id);
+            eventService.AddComment(event1.id, commentText2, userProfile.id, new List<string>());
             String commentText3 = "Prueba de comentarios 3";
-            eventService.AddComment(event1.id, commentText3, userProfile.id);
+            eventService.AddComment(event1.id, commentText3, userProfile.id, new List<string>());
             String commentText4 = "Prueba de comentarios 4";
-            eventService.AddComment(event1.id, commentText4, userProfile2.id);
+            eventService.AddComment(event1.id, commentText4, userProfile2.id, new List<string>());
 
             List<Comment> list = eventService.FindCommentsForEvent(event1.id);
 
@@ -229,13 +230,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             userProfileDao.Create(userProfile2);
 
             String commentText1 = "Prueba de comentarios 1";
-            eventService.AddComment(event1.id, commentText1, userProfile.id);
+            eventService.AddComment(event1.id, commentText1, userProfile.id, new List<string>());
             String commentText2 = "Prueba de comentarios 2";
-            eventService.AddComment(event1.id, commentText2, userProfile.id);
+            eventService.AddComment(event1.id, commentText2, userProfile.id, new List<string>());
             String commentText3 = "Prueba de comentarios 3";
-            eventService.AddComment(event1.id, commentText3, userProfile.id);
+            eventService.AddComment(event1.id, commentText3, userProfile.id, new List<string>());
             String commentText4 = "Prueba de comentarios 4";
-            eventService.AddComment(event1.id, commentText4, userProfile2.id);
+            eventService.AddComment(event1.id, commentText4, userProfile2.id, new List<string>());
 
             List<Comment> list1 = eventService.FindCommentsForEvent(event1.id, 0, 5);
             List<Comment> list2 = eventService.FindCommentsForEvent(event1.id, 3, 5);

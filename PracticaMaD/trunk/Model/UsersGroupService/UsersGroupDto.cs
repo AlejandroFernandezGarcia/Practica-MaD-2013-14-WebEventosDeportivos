@@ -4,7 +4,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
 {
     /// <summary>
     /// A DTO that can allow to return in the same object, an usersGroup 
-    /// the numer of users in this group and the number of recommendation for this group.
+    /// the number of users in this group and the number of recommendation for this group.
     /// </summary>
     [Serializable()]
     public class UsersGroupDto

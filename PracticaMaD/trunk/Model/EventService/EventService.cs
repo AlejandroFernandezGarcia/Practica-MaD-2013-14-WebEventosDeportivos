@@ -4,6 +4,7 @@ using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 {
@@ -39,6 +40,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         [Dependency]
         public ICategoryDao CategoryDao { private get; set; }
 
+        /// <summary>
+        /// Sets the tag service.
+        /// </summary>
+        /// <value>
+        /// The tag service.
+        /// </value>
+        [Dependency]
+        public ITagService TagService { private get; set; }
         /// <summary>
         /// Finds the by keywords.
         /// </summary>
@@ -84,12 +93,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <param name="eventId">The event identifier.</param>
         /// <param name="text">The text.</param>
         /// <param name="userProfileId">The user profile identifier.</param>
-        public void AddComment(long eventId, string text, long userProfileId)
+        /// <param name="tags">The tags.</param>
+        public void AddComment(long eventId, string text, long userProfileId, List<string> tags)
         {
 
             Comment comment = Comment.CreateComment(0, DateTime.Now, text, eventId, userProfileId);
 
             CommentDao.Create(comment);
+
+            TagService.AddTagsToComment(tags, comment.id);
         }
 
         /// <summary>

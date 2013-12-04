@@ -85,6 +85,7 @@
     <Compile Include="PartialEntities\Comment.cs" />
     <Compile Include="PartialEntities\Event.cs" />
     <Compile Include="PartialEntities\Recommendation.cs" />
+    <Compile Include="PartialEntities\Tag.cs" />
     <Compile Include="PartialEntities\UsersGroup.cs" />
     <Compile Include="PracticaMaDEntities.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -98,6 +99,9 @@
     <Compile Include="RecommendationService\RecommendationService.cs" />
     <Compile Include="TagDao\ITagDao.cs" />
     <Compile Include="TagDao\TagDaoEntityFramework.cs" />
+    <Compile Include="TagService\ITagService.cs" />
+    <Compile Include="TagService\TagDto.cs" />
+    <Compile Include="TagService\TagService.cs" />
     <Compile Include="UserProfileDao\IUserProfileDao.cs" />
     <Compile Include="UserProfileDao\UserProfileDaoEntityFramework.cs" />
     <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />
