@@ -123,6 +123,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         {
             List<Tag> listOfAllTags = TagDao.FindAllTags();
             List<long> numberOfOcurrences = new List<long>();
+            //TODO Cambiar float por double
             float ocurrences = 0;
 
 
