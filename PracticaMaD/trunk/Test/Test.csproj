@@ -67,7 +67,7 @@
     <Compile Include="Asserto.cs" />
     <Compile Include="IEventServiceTest.cs" />
     <Compile Include="IRecommendationServiceTest.cs" />
-    <Compile Include="ITagService.cs" />
+    <Compile Include="ITagServiceTest.cs" />
     <Compile Include="IUserServiceTest.cs" />
     <Compile Include="IUsersGroupServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

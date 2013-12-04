@@ -25,7 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         /// <value>
         /// The percent.
         /// </value>
-        public long percent { get; private set; }
+        public float percent { get; private set; }
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         /// </summary>
         /// <param name="tag">The tag.</param>
         /// <param name="percent">The percent.</param>
-        public TagDto(Tag tag, long percent)
+        public TagDto(Tag tag, float percent)
         {
             this.tag = tag;
             this.percent = percent;
