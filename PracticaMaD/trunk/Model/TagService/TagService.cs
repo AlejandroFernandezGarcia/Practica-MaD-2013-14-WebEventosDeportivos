@@ -61,12 +61,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
 
             foreach (Tag tagObj in listOfObjectTags)
             {
-                comment.Tag.Add(tagObj);
-                tagObj.Comment.Add(comment);
+                if (!comment.Tag.Contains(tagObj))
+                {
+                    comment.Tag.Add(tagObj);
+                    tagObj.Comment.Add(comment);
 
-                CommentDao.Update(comment);
-                TagDao.Update(tagObj);
-
+                    CommentDao.Update(comment);
+                    TagDao.Update(tagObj);
+                }
+                //DUDA Lanzar excepcion?
                 //DUDA Hay que actualizar cada vez el objeto o vale actualizarlo una vez todos este metidos?.
             }
         }
@@ -99,12 +102,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
 
             foreach (Tag tagObj in listOfObjectTags)
             {
-                comment.Tag.Remove(tagObj);
-                tagObj.Comment.Remove(comment);
+                if (comment.Tag.Contains(tagObj))
+                {
+                    comment.Tag.Remove(tagObj);
+                    tagObj.Comment.Remove(comment);
 
-                CommentDao.Update(comment);
-                TagDao.Update(tagObj);
-
+                    CommentDao.Update(comment);
+                    TagDao.Update(tagObj);
+                }
+                //DUDA Lanzar excepcion?
                 //DUDA Hay que actualizar cada vez el objeto o vale actualizarlo una vez todos este metidos?.
             }
         }
@@ -117,7 +123,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         {
             List<Tag> listOfAllTags = TagDao.FindAllTags();
             List<long> numberOfOcurrences = new List<long>();
-            long ocurrences = 0;
+            float ocurrences = 0;
 
 
             foreach (Tag t in listOfAllTags)
@@ -131,9 +137,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
             for (int i = 0; i < listOfAllTags.Count; i++)
             {
                 Tag t = listOfAllTags[i];
-                long number = numberOfOcurrences[i];
-
-                result.Add(new TagDto(t, number / ocurrences * 100));
+                float number = numberOfOcurrences[i];
+                
+                result.Add(new TagDto(t, (number / ocurrences) * 100));
             }
 
             return result;

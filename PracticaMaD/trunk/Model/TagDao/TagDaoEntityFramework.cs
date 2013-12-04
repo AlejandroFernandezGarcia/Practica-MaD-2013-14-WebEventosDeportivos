@@ -36,7 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         {
             Tag tag = null;
             
-            String query = "SELECT VALUE t FROM FROM PracticaMaDEntities.Tag AS t" +
+            String query = "SELECT VALUE t FROM PracticaMaDEntities.Tag AS t " +
                            "WHERE t.tagName LIKE @name";
 
             ObjectParameter param = new ObjectParameter("name", name);
