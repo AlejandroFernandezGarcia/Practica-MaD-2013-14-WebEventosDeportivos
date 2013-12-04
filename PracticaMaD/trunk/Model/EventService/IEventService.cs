@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
@@ -23,6 +22,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// </value>
         [Dependency]
         IEventDao EventDao { set; }
+
+        /// <summary>
+        /// Sets the tag service.
+        /// </summary>
+        /// <value>
+        /// The tag service.
+        /// </value>
+        [Dependency]
+        ITagService TagService { set; }
 
         /// <summary>
         /// Sets the comment DAO.
@@ -83,8 +91,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <param name="eventId">The event identifier.</param>
         /// <param name="text">The text.</param>
         /// <param name="userProfileId">The user profile identifier.</param>
+        /// <param name="tags">The tags.</param>
         [Transactional]
-        void AddComment(long eventId, String text, long userProfileId);
+        void AddComment(long eventId, String text, long userProfileId, List<string> tags);
 
         /// <summary>
         /// Finds all categories.
