@@ -93,6 +93,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             Assert.AreEqual(list3.Count, 1);
             Assert.AreEqual(list4.Count, 1);
             Assert.AreEqual(list5.Count, 0);
+
+            Asserto.AreEqual(list1[0].evento, e3);
+            Asserto.AreEqual(list1[1].evento, e2);
+            Asserto.AreEqual(list1[2].evento, e1);
+
+            Asserto.AreEqual(list2[0].evento, e2);
+            Asserto.AreEqual(list2[1].evento, e1);
+
+            Asserto.AreEqual(list3[0].evento, e3);
+            Assert.AreEqual(list3[0].evento.name, e3.name);
+
+            Asserto.AreEqual(list4[0].evento, e2);
+            Assert.AreEqual(list4[0].evento.description, e2.description);
+
         }
 
         [TestMethod()]
@@ -100,7 +114,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             Event e1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
             Event e2 = Event.CreateEvent(0, "Evento manzana", DateTime.Now, "Evento de prueba 2", 2);
-            Event e3 = Event.CreateEvent(0, "Evento manzana", DateTime.Now, "Evento de prueba 3", 1);
+            Event e3 = Event.CreateEvent(0, "Evento test", DateTime.Now, "Evento de prueba 3", 1);
 
             eventDao.Create(e1);
             eventDao.Create(e2);
@@ -109,12 +123,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             List<EventCategoryDto> list1 = eventService.FindByKeywords("Evento", 1, 0, 3);
             List<EventCategoryDto> list2 = eventService.FindByKeywords("ven", 2, 0, 1);
             List<EventCategoryDto> list3 = eventService.FindByKeywords("prueba", 2, 2, 2);
-            List<EventCategoryDto> list4 = eventService.FindByKeywords("Evento", 3, 0, 2);
+            List<EventCategoryDto> list4 = eventService.FindByKeywords("Even", 3, 0, 2);
 
             Assert.AreEqual(list1.Count, 2);
             Assert.AreEqual(list2.Count, 1);
             Assert.AreEqual(list3.Count, 0);
             Assert.AreEqual(list4.Count, 0);
+
+            Asserto.AreEqual(list1[0].evento, e1);
+            Assert.AreEqual(list1[1].evento, e3);
+            Assert.AreEqual(list1[0].evento.name, e1.name);
+            Asserto.AreEqual(list2[0].evento, e2);
         }
 
         [TestMethod()]
@@ -137,6 +156,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             Assert.AreEqual(list3.Count, 4);//por los que ya hay en la bd 
             Assert.AreEqual(list4.Count, 1);
             Assert.AreEqual(list5.Count, 0);
+
+            Asserto.AreEqual(list1[0].evento, e2);
+            Asserto.AreEqual(list1[1].evento, e1);
+            Assert.AreEqual(list1[1].evento.description, e1.description);
+            Asserto.AreEqual(list2[0].evento, e2);
+            Assert.AreEqual(list2[0].evento.name, e2.name);
         }
 
         [TestMethod()]
@@ -157,6 +182,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             Assert.AreEqual(list2.Count, 1);
             Assert.AreEqual(list3.Count, 0);
             Assert.AreEqual(list4.Count, 0);
+
+            Asserto.AreEqual(list1[0].evento, e1);
+            Assert.AreEqual(list1[0].evento.name, e1.name);
+            Asserto.AreEqual(list2[0].evento, e2);
 
         }
 
@@ -186,6 +215,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             Assert.AreEqual(list.Count, 8);
             Asserto.AreEqual(categoryDao.Find(1),list[0]);
+            Asserto.AreEqual(categoryDao.Find(8),list[7]);
         }
 
         [TestMethod()]
@@ -213,6 +243,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             List<Comment> list = eventService.FindCommentsForEvent(event1.id);
 
             Assert.AreEqual(list.Count, 4);
+            Assert.AreEqual(list[0].userProfileId, userProfile2.id);
             
         }
 
