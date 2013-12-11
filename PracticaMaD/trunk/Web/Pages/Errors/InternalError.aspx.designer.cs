@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.MiniPortal.Web.Pages.Errors {
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Errors {
     
     
     public partial class InternalError {

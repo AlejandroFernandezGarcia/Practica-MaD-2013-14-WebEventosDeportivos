@@ -1,5 +1,5 @@
-<%@ Page Language="C#" MasterPageFile="~/Miniportal.Master" AutoEventWireup="true"
-    Codebehind="Register.aspx.cs" Inherits="Es.Udc.DotNet.MiniPortal.Web.Pages.User.Register" 
+<%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
+    Codebehind="Register.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.Register" 
     meta:resourcekey="Page" culture="auto" uiculture="auto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Es.Udc.DotNet.MiniPortal.Web.Pages.User {
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User {
     
     
     public partial class UpdateUserProfile {

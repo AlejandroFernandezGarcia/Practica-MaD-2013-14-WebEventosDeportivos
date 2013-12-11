@@ -1,5 +1,5 @@
-<%@ Page Language="C#" MasterPageFile="~/Miniportal.Master" AutoEventWireup="true"
-    Codebehind="ChangePassword.aspx.cs" Inherits="Es.Udc.DotNet.MiniPortal.Web.Pages.User.ChangePassword"
+<%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
+    Codebehind="ChangePassword.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.ChangePassword"
     meta:resourcekey="Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"

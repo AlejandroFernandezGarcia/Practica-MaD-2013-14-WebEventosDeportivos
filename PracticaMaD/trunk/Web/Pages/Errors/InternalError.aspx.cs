@@ -1,8 +1,8 @@
 using System;
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 
-namespace Es.Udc.DotNet.MiniPortal.Web.Pages.Errors
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Errors
 {
 
     public partial class InternalError : SpecificCulturePage

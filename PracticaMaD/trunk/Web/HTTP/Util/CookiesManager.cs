@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Security;
 
 
-namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Util
+namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util
 {
     public class CookiesManager
     {

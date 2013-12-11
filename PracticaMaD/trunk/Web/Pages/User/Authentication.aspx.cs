@@ -1,12 +1,12 @@
 using System;
 using System.Web.Security;
 
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.MiniPortal.Model.UserService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 
 
-namespace Es.Udc.DotNet.MiniPortal.Web.Pages.User
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
 
     public partial class Authentication : SpecificCulturePage

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Session
+namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 {
     public class UserSession
     {

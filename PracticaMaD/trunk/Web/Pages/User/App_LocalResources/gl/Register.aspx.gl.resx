@@ -154,7 +154,7 @@
     <value>Nome de usuario</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Miniportal - Rexistro de Usuario</value>
+    <value>PracticaMaD - Rexistro de Usuario</value>
   </data>
   <data name="revEmail.ErrorMessage" xml:space="preserve">
     <value>Sintaxis de email incorrecta</value>
