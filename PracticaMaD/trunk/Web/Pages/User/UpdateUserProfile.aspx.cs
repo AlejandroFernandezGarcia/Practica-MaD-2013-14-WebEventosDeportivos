@@ -1,9 +1,9 @@
 using System;
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.Session;
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.MiniPortal.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 
-namespace Es.Udc.DotNet.MiniPortal.Web.Pages.User
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
 
     public partial class UpdateUserProfile : SpecificCulturePage
@@ -18,7 +18,7 @@ namespace Es.Udc.DotNet.MiniPortal.Web.Pages.User
                     SessionManager.FindUserProfileDetails(Context);
 
                 txtFirstName.Text = userProfileDetails.FirstName;
-                txtSurname.Text = userProfileDetails.Lastname;
+                txtSurname.Text = userProfileDetails.Surname;
                 txtEmail.Text = userProfileDetails.Email;
 
                 /* Combo box initialization */

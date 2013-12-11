@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Web.UI.WebControls;
 
-namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.View.ApplicationObjects
+namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
 {
     /// <summary>
     /// Summary description for Countries

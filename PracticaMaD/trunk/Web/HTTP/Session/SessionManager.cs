@@ -3,14 +3,14 @@ using System.Web;
 using System.Web.Security;
 using Microsoft.Practices.Unity;
 
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.Util;
-using Es.Udc.DotNet.MiniPortal.Model.UserService.Exceptions;
-using Es.Udc.DotNet.MiniPortal.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Microsoft.Practices.Unity.InterceptionExtension;
 
-namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Session
+namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 {
 
 

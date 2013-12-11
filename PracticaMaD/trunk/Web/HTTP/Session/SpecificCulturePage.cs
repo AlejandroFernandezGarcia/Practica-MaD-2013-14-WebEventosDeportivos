@@ -1,12 +1,12 @@
 using System;
 using System.Web.UI;
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.ModelUtil.Log;
 using System.Threading;
 using System.Globalization;
 
 
-namespace Es.Udc.DotNet.MiniPortal.Web.HTTP.Session
+namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
 {
 
     /// <summary>

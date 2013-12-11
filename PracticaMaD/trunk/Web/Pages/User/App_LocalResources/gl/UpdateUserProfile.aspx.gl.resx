@@ -142,7 +142,7 @@
     <value>Cambiar contrasinal</value>
   </data>
   <data name="Page.Title" xml:space="preserve">
-    <value>Miniportal - Actualizar información de usuario</value>
+    <value>PracticaMaD - Actualizar información de usuario</value>
   </data>
   <data name="revEmail.ErrorMessage" xml:space="preserve">
     <value>Sintaxis de email incorrecta</value>

@@ -1,13 +1,13 @@
 using System;
 using System.Globalization;
 
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.MiniPortal.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.ModelUtil.Log;
 
-namespace Es.Udc.DotNet.MiniPortal.Web.Pages.User
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
 
     public partial class Register : SpecificCulturePage

@@ -1,5 +1,5 @@
-<%@ Page Language="C#" MasterPageFile="~/Miniportal.Master" AutoEventWireup="true"
-    Codebehind="UpdateUserProfile.aspx.cs" Inherits="Es.Udc.DotNet.MiniPortal.Web.Pages.User.UpdateUserProfile"
+<%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
+    Codebehind="UpdateUserProfile.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.UpdateUserProfile"
     meta:resourcekey="Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"

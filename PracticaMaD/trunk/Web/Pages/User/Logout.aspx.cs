@@ -1,8 +1,8 @@
 using System;
 
-using Es.Udc.DotNet.MiniPortal.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
-namespace Es.Udc.DotNet.MiniPortal.Web.Pages.User
+namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
 
     public partial class Logout : System.Web.UI.Page

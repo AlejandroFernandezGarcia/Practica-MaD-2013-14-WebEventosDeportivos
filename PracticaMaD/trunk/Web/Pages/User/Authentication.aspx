@@ -1,5 +1,5 @@
-<%@ Page Language="C#" MasterPageFile="~/Miniportal.Master" AutoEventWireup="true"
-    Codebehind="Authentication.aspx.cs" Inherits="Es.Udc.DotNet.MiniPortal.Web.Pages.User.Authentication"
+<%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
+    Codebehind="Authentication.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.Authentication"
     meta:resourcekey="Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"
