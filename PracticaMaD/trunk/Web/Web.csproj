@@ -169,7 +169,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="PracticaMaD.Master" />
   </ItemGroup>
