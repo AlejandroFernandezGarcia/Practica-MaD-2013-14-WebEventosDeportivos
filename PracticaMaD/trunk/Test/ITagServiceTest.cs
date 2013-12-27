@@ -93,9 +93,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             tagService.AddTagsToComment(listOfTags, e.Comment.ToList()[0].id);
 
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0],tagDao.FindByTagName("Tag1"));
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[1],tagDao.FindByTagName("Tag2"));
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[2],tagDao.FindByTagName("Tag3"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0],tagDao.FindByTagName("Tag1"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[1],tagDao.FindByTagName("Tag2"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[2],tagDao.FindByTagName("Tag3"));
             Assert.AreEqual(e.Comment.ToList()[0].Tag.Count,3);
 
         }
@@ -121,12 +121,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             tagService.RemoveTagsFromComment(listOfTags, e.Comment.ToList()[0].id);
 
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag2"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag2"));
             Assert.AreEqual(e.Comment.ToList()[0].Tag.Count, 1);
 
             tagService.RemoveTagsFromComment(new List<string>(), e.Comment.ToList()[0].id);
 
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag2"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag2"));
             Assert.AreEqual(e.Comment.ToList()[0].Tag.Count, 1);
         }
     
@@ -151,16 +151,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             tagService.AddTagsToComment(listOfTags, e.Comment.ToList()[0].id);
 
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag1"));
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[1], tagDao.FindByTagName("Tag2"));
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[2], tagDao.FindByTagName("Tag3"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag1"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[1], tagDao.FindByTagName("Tag2"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[2], tagDao.FindByTagName("Tag3"));
             Assert.AreEqual(e.Comment.ToList()[0].Tag.Count, 3);
 
             tagService.AddTagsToComment(listOfTags, e.Comment.ToList()[0].id);
 
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag1"));
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[1], tagDao.FindByTagName("Tag2"));
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[2], tagDao.FindByTagName("Tag3"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag1"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[1], tagDao.FindByTagName("Tag2"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[2], tagDao.FindByTagName("Tag3"));
             Assert.AreEqual(e.Comment.ToList()[0].Tag.Count, 3);
         }
 
@@ -212,12 +212,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             tagService.RemoveTagsFromComment(listOfTags, e.Comment.ToList()[0].id);
 
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag2"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag2"));
             Assert.AreEqual(e.Comment.ToList()[0].Tag.Count, 1);
 
             tagService.RemoveTagsFromComment(listOfTags, e.Comment.ToList()[0].id);
 
-            Asserto.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag2"));
+            Assert.AreEqual(e.Comment.ToList()[0].Tag.ToList()[0], tagDao.FindByTagName("Tag2"));
             Assert.AreEqual(e.Comment.ToList()[0].Tag.Count, 1);
         }
 
@@ -253,9 +253,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
 
             List<TagDto> listCloud = tagService.FindTagsPercent();
 
-            Asserto.AreEqual(listCloud[0].tag,tagDao.FindByTagName("Tag1"));
-            Asserto.AreEqual(listCloud[1].tag, tagDao.FindByTagName("Tag2"));
-            Asserto.AreEqual(listCloud[2].tag, tagDao.FindByTagName("Tag3"));
+            Assert.AreEqual(listCloud[0].tag,tagDao.FindByTagName("Tag1"));
+            Assert.AreEqual(listCloud[1].tag, tagDao.FindByTagName("Tag2"));
+            Assert.AreEqual(listCloud[2].tag, tagDao.FindByTagName("Tag3"));
 
             Assert.AreEqual(listCloud[0].percent, 50);
             Assert.AreEqual(listCloud[1].percent, 33,3333320617676);

@@ -94,17 +94,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             Assert.AreEqual(list4.Count, 1);
             Assert.AreEqual(list5.Count, 0);
 
-            Asserto.AreEqual(list1[0].evento, e3);
-            Asserto.AreEqual(list1[1].evento, e2);
-            Asserto.AreEqual(list1[2].evento, e1);
+            Assert.AreEqual(list1[0].evento, e3);
+            Assert.AreEqual(list1[1].evento, e2);
+            Assert.AreEqual(list1[2].evento, e1);
 
-            Asserto.AreEqual(list2[0].evento, e2);
-            Asserto.AreEqual(list2[1].evento, e1);
+            Assert.AreEqual(list2[0].evento, e2);
+            Assert.AreEqual(list2[1].evento, e1);
 
-            Asserto.AreEqual(list3[0].evento, e3);
+            Assert.AreEqual(list3[0].evento, e3);
             Assert.AreEqual(list3[0].evento.name, e3.name);
 
-            Asserto.AreEqual(list4[0].evento, e2);
+            Assert.AreEqual(list4[0].evento, e2);
             Assert.AreEqual(list4[0].evento.description, e2.description);
 
         }
@@ -130,10 +130,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             Assert.AreEqual(list3.Count, 0);
             Assert.AreEqual(list4.Count, 0);
 
-            Asserto.AreEqual(list1[0].evento, e1);
+            Assert.AreEqual(list1[0].evento, e1);
             Assert.AreEqual(list1[1].evento, e3);
             Assert.AreEqual(list1[0].evento.name, e1.name);
-            Asserto.AreEqual(list2[0].evento, e2);
+            Assert.AreEqual(list2[0].evento, e2);
         }
 
         [TestMethod()]
@@ -157,10 +157,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             Assert.AreEqual(list4.Count, 1);
             Assert.AreEqual(list5.Count, 0);
 
-            Asserto.AreEqual(list1[0].evento, e2);
-            Asserto.AreEqual(list1[1].evento, e1);
+            Assert.AreEqual(list1[0].evento, e2);
+            Assert.AreEqual(list1[1].evento, e1);
             Assert.AreEqual(list1[1].evento.description, e1.description);
-            Asserto.AreEqual(list2[0].evento, e2);
+            Assert.AreEqual(list2[0].evento, e2);
             Assert.AreEqual(list2[0].evento.name, e2.name);
         }
 
@@ -183,9 +183,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             Assert.AreEqual(list3.Count, 0);
             Assert.AreEqual(list4.Count, 0);
 
-            Asserto.AreEqual(list1[0].evento, e1);
+            Assert.AreEqual(list1[0].evento, e1);
             Assert.AreEqual(list1[0].evento.name, e1.name);
-            Asserto.AreEqual(list2[0].evento, e2);
+            Assert.AreEqual(list2[0].evento, e2);
 
         }
 
@@ -214,8 +214,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             List<Category> list = eventService.FindAllCategories();
 
             Assert.AreEqual(list.Count, 8);
-            Asserto.AreEqual(categoryDao.Find(1),list[0]);
-            Asserto.AreEqual(categoryDao.Find(8),list[7]);
+            Assert.AreEqual(categoryDao.Find(1),list[0]);
+            Assert.AreEqual(categoryDao.Find(8),list[7]);
         }
 
         [TestMethod()]

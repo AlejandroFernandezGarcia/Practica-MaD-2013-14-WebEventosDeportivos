@@ -81,10 +81,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             long id = usersGroupService.Create(name, description, up1.id);
             UsersGroup ug = usersGroupDao.Find(id);
 
-            Asserto.AreEqual(ug.id, id);
-            Asserto.AreEqual(ug.name, name);
-            Asserto.AreEqual(ug.description, description);
-            Asserto.AreEqual(usersGroupDao.GetNumberOfUsersForGroup(ug.id), 1);
+            Assert.AreEqual(ug.id, id);
+            Assert.AreEqual(ug.name, name);
+            Assert.AreEqual(ug.description, description);
+            Assert.AreEqual(usersGroupDao.GetNumberOfUsersForGroup(ug.id), 1);
             Assert.IsTrue(usersGroupDao.IsUsersBelongGroup(ug, up1));
 
             // add
@@ -92,14 +92,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             userProfileDao.Create(up2);
             usersGroupService.AddUserToGroup(ug.id, up2.id);
 
-            Asserto.AreEqual(usersGroupDao.GetNumberOfUsersForGroup(ug.id), 2);
+            Assert.AreEqual(usersGroupDao.GetNumberOfUsersForGroup(ug.id), 2);
             Assert.IsTrue(usersGroupDao.IsUsersBelongGroup(ug, up1));
             Assert.IsTrue(usersGroupDao.IsUsersBelongGroup(ug, up2));
 
             // remove
             usersGroupService.RemoveUserFromGroup(ug.id, up1.id);
 
-            Asserto.AreEqual(usersGroupDao.GetNumberOfUsersForGroup(ug.id), 1);
+            Assert.AreEqual(usersGroupDao.GetNumberOfUsersForGroup(ug.id), 1);
             Assert.IsFalse(usersGroupDao.IsUsersBelongGroup(ug, up1));
             Assert.IsTrue(usersGroupDao.IsUsersBelongGroup(ug, up2));
         }
