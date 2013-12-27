@@ -64,7 +64,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asserto.cs" />
     <Compile Include="IEventServiceTest.cs" />
     <Compile Include="IRecommendationServiceTest.cs" />
     <Compile Include="ITagServiceTest.cs" />

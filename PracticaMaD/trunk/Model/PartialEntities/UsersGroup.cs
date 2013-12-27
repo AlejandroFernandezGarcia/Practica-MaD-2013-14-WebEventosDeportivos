@@ -8,7 +8,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     public partial class UsersGroup
     {
         /// <summary>
-        /// Determines whether the specified <see cref="System.Object" }, is equal to this instance.
+        /// Equalses the specified other.
+        /// </summary>
+        /// <param name="other">The other.</param>
+        /// <returns></returns>
+        protected bool Equals(UsersGroup other)
+        {
+            return _id == other._id && string.Equals(_name, other._name) && string.Equals(_description, other._description);
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashCode = _id.GetHashCode();
+                hashCode = (hashCode*397) ^ (_name != null ? _name.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (_description != null ? _description.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
         /// </summary>
         /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
         /// <returns>
@@ -16,11 +43,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         /// </returns>
         public override bool Equals(object obj)
         {
-            UsersGroup target = (UsersGroup) obj;
-
-            return (this.id == target.id)
-                   && (this.name == target.name)
-                   && (this.description == target.description);
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((UsersGroup) obj);
         }
     }
 }
