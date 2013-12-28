@@ -121,6 +121,60 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         protected global::System.Web.UI.WebControls.HyperLink lnkLogout;
         
         /// <summary>
+        /// Control ContentPlaceHolder_MainMenuLinks.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_MainMenuLinks;
+        
+        /// <summary>
+        /// Control lnkSearchEvents.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkSearchEvents;
+        
+        /// <summary>
+        /// Control lnkCreateGroups.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkCreateGroups;
+        
+        /// <summary>
+        /// Control lnkMyGroups.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkMyGroups;
+        
+        /// <summary>
+        /// Control lnkViewGroups.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkViewGroups;
+        
+        /// <summary>
+        /// Control lnkRecommendations.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkRecommendations;
+        
+        /// <summary>
         /// Control ContentPlaceHolder_BodyContent.
         /// </summary>
         /// <remarks>

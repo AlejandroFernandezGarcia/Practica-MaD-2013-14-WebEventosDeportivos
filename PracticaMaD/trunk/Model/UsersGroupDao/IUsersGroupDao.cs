@@ -22,6 +22,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         List<UsersGroup> FindByUserId(UserProfile userProfile, int startIndex, int count);
 
         /// <summary>
+        /// Finds a group searching by name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        UsersGroup FindByName(string name);
+
+        /// <summary>
         /// Returns the number of groups which the user is member of.
         /// </summary>
         /// <param name="userProfile">The user profile.</param>
