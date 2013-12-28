@@ -117,40 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblWelcome.Hello.Text" xml:space="preserve">
-    <value>Hello</value>
+  <data name="btnCreateGroup.Text" xml:space="preserve">
+    <value>Create group</value>
   </data>
-  <data name="lblWelcome.Text" xml:space="preserve">
-    <value>Welcome to PracticaMaD</value>
+  <data name="lblGroupDescriptionError.Text" xml:space="preserve">
+    <value />
   </data>
-  <data name="lclFooter.Text" xml:space="preserve">
-    <value>Copyright &amp;copy; 2013 - 2014 University of A Coruña</value>
+  <data name="lblGroupNameError.Text" xml:space="preserve">
+    <value>The group name is already in use</value>
   </data>
-  <data name="lclPageTitle.Text" xml:space="preserve">
-    <value>PracticaMaD: An Sports Events Web Application with .NET</value>
+  <data name="lclGroupDescription.Text" xml:space="preserve">
+    <value>Group description</value>
   </data>
-  <data name="lnkAuthenticate.Text" xml:space="preserve">
-    <value>Authentication</value>
+  <data name="lclGroupName.Text" xml:space="preserve">
+    <value>Group name</value>
   </data>
-  <data name="lnkLogout.Text" xml:space="preserve">
-    <value>Logout</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Create Group Page</value>
   </data>
-  <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Update Profile</value>
-  </data>
-  <data name="lnkSearchEvents.Text" xml:space="preserve">
-    <value>Search Events</value>
-  </data>
-  <data name="lnkCreateGroups.Text" xml:space="preserve">
-    <value>Create Groups</value>
-  </data>
-  <data name="lnkMyGroups.Text" xml:space="preserve">
-    <value>My Groups</value>
-  </data>
-  <data name="lnkViewGroups.Text" xml:space="preserve">
-    <value>View Groups</value>
-  </data>
-  <data name="lnkRecommendations.Text" xml:space="preserve">
-    <value>Recommendations</value>
+  <data name="lblGroupCreated.Text" xml:space="preserve">
+    <value>Group successfully created</value>
   </data>
 </root>

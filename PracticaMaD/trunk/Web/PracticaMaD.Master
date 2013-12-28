@@ -1,7 +1,7 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PracticaMaD.master.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.PracticaMaD" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PracticaMaD.master.cs"
+    Inherits="Es.Udc.DotNet.PracticaMaD.Web.PracticaMaD" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>PracticaMaD</title>
@@ -19,44 +19,53 @@
         <!-- Menu. -->
         <div id="menu">
             <span id="menuWelcome">
-            
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_MenuWelcome" runat="server">
                     <asp:Label ID="lblWelcome" runat="server" meta:resourcekey="lblWelcome" />
                 </asp:ContentPlaceHolder>
-                
-            </span>
-            
-            <span id="menuExplanation">
+            </span><span id="menuExplanation">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_MenuExplanation" runat="server">
                 </asp:ContentPlaceHolder>
-            </span>
-            
-            <span id="menuLinks">
-                
+            </span><span id="menuLinks">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_MenuLinks" runat="server">
                     <asp:Label ID="lblDash1" runat="server" Text="-" />
-                    <asp:HyperLink ID="lnkAuthenticate" runat="server" 
-                        NavigateUrl="~/Pages/User/Authentication.aspx"
-                         meta:resourcekey="lnkAuthenticate" />
+                    <asp:HyperLink ID="lnkAuthenticate" runat="server" NavigateUrl="~/Pages/User/Authentication.aspx"
+                        meta:resourcekey="lnkAuthenticate" />
                     <asp:Label ID="lblDash2" runat="server" Text="-" />
-                    <asp:HyperLink ID="lnkUpdate" runat="server" 
-                        NavigateUrl="~/Pages/User/UpdateUserProfile.aspx"
+                    <asp:HyperLink ID="lnkUpdate" runat="server" NavigateUrl="~/Pages/User/UpdateUserProfile.aspx"
                         meta:resourcekey="lnkUpdate" />
                     <asp:Label ID="lblDash3" runat="server" Text="-" />
-                    <asp:HyperLink ID="lnkLogout" runat="server"
-                        NavigateUrl="~/Pages/User/Logout.aspx" 
+                    <asp:HyperLink ID="lnkLogout" runat="server" NavigateUrl="~/Pages/User/Logout.aspx"
                         meta:resourcekey="lnkLogout" />
                 </asp:ContentPlaceHolder>
             </span>
         </div>
-        
-        <!-- Body content. -->
-        <div id="content">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server" >
-
-            </asp:ContentPlaceHolder>
-
-        </div>
+        <!-- Body content & main menu. -->
+        <table id="bodyContentAndMainMenu" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <!-- Main menu. -->
+                    <td id="mainMenu">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder_MainMenuLinks" runat="server">
+                            <asp:HyperLink ID="lnkSearchEvents" runat="server" NavigateUrl="~/Pages/User/Authentication.aspx"
+                                meta:resourcekey="lnkSearchEvents" />
+                            <asp:HyperLink ID="lnkCreateGroups" runat="server" NavigateUrl="~/Pages/Group/CreateGroup.aspx"
+                                meta:resourcekey="lnkCreateGroups" />
+                            <asp:HyperLink ID="lnkMyGroups" runat="server" NavigateUrl="~/Pages/User/Authentication.aspx"
+                                meta:resourcekey="lnkMyGroups" />
+                            <asp:HyperLink ID="lnkViewGroups" runat="server" NavigateUrl="~/Pages/User/Authentication.aspx"
+                                meta:resourcekey="lnkViewGroups" />
+                            <asp:HyperLink ID="lnkRecommendations" runat="server" NavigateUrl="~/Pages/User/Authentication.aspx"
+                                meta:resourcekey="lnkRecommendations" />
+                        </asp:ContentPlaceHolder>
+                    </td>
+                    <!-- Body content. -->
+                    <td id="bodyContent">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder_BodyContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <!-- Footer. -->
         <div id="footer">
             <asp:Localize ID="lclFooter" runat="server" meta:resourcekey="lclFooter" />

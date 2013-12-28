@@ -127,15 +127,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <param name="description">The description.</param>
         /// <param name="userProfileId">The user profile identifier.</param>
         /// <returns></returns>
+        /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.DuplicateInstanceException"></exception>
         public long Create(string name, string description, long userProfileId)
         {
-            UsersGroup ug = UsersGroup.CreateUsersGroup(0, name, description);
+            try
+            {
+                UsersGroupDao.FindByName(name);
 
-            UsersGroupDao.Create(ug);
+                throw new DuplicateInstanceException(name,
+                    typeof(UsersGroup).FullName);
+            }
+            catch (InstanceNotFoundException)
+            {
+                UsersGroup ug = UsersGroup.CreateUsersGroup(0, name, description);
 
-            AddUserToGroup(ug.id, userProfileId);
+                UsersGroupDao.Create(ug);
 
-            return ug.id;
+                AddUserToGroup(ug.id, userProfileId);
+
+                return ug.id;
+            }
         }
 
         /// <summary>

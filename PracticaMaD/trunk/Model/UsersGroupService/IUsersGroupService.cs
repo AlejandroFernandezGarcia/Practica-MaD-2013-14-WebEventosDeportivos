@@ -48,6 +48,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <param name="description">The description.</param>
         /// <param name="userProfileId">The user profile identifier.</param>
         /// <returns></returns>
+        /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.DuplicateInstanceException"></exception>
         [Transactional]
         long Create(String name, String description, long userProfileId);
 

@@ -109,7 +109,8 @@ CREATE TABLE UsersGroup(
 	name VARCHAR(50) NOT NULL,
 	description VARCHAR(1000) NOT NULL,
 
-	CONSTRAINT [PK_UsersGroup] PRIMARY KEY (id)
+	CONSTRAINT [PK_UsersGroup] PRIMARY KEY (id),
+	CONSTRAINT [UniqueKey_UsersGroup_Name] UNIQUE (name)
 )
 GO
 

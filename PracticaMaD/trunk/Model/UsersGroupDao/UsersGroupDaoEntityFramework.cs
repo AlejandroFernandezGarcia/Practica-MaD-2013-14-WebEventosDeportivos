@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
 {
@@ -23,6 +25,38 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         public List<UsersGroup> FindByUserId(UserProfile userProfile, int startIndex, int count)
         {
             return userProfile.UsersGroup.Skip(startIndex).Take(count).ToList();
+        }
+
+        /// <summary>
+        /// Finds a group searching by name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.InstanceNotFoundException"></exception>
+        public UsersGroup FindByName(string name)
+        {
+            UsersGroup usersGroup = null;
+
+            String query =
+                "SELECT VALUE g FROM PracticaMaDEntities.UsersGroup AS g WHERE g.name=@name";
+
+            ObjectParameter param = new ObjectParameter("name", name);
+
+            ObjectResult<UsersGroup> result =
+                this.Context.CreateQuery<UsersGroup>(query, param).Execute(MergeOption.AppendOnly);
+
+            try
+            {
+                usersGroup = result.First<UsersGroup>();
+            }
+            catch (Exception)
+            {
+                usersGroup = null;
+            }
+
+            if (usersGroup == null)
+                throw new InstanceNotFoundException(name, typeof(UsersGroup).FullName);
+            return usersGroup;
         }
 
         /// <summary>
