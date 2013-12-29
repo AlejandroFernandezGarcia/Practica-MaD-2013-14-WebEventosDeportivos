@@ -149,7 +149,7 @@
       <DependentUpon>PracticaMaD.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services.cs" />
+    <Compile Include="UnityResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
