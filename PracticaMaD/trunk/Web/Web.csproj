@@ -99,6 +99,13 @@
     <Compile Include="Pages\Group\CreateGroup.aspx.designer.cs">
       <DependentUpon>CreateGroup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Group\MyGroups.aspx.cs">
+      <DependentUpon>MyGroups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Group\MyGroups.aspx.designer.cs">
+      <DependentUpon>MyGroups.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Group\ViewGroups.aspx.cs">
       <DependentUpon>ViewGroups.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -169,6 +176,7 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\Group\CreateGroup.aspx" />
+    <Content Include="Pages\Group\MyGroups.aspx" />
     <Content Include="Pages\Group\ViewGroups.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
@@ -273,6 +281,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Group\App_LocalResources\en-default\ViewGroups.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Group\App_LocalResources\en-default\MyGroups.aspx.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
