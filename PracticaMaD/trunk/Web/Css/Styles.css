@@ -200,7 +200,8 @@ input, select, textarea
 }
 
 .feedbackSuccess,
-.feedbackFailure
+.feedbackFailure,
+.feedbackInfo
 {
     border: 2px solid #00BB00;
     border-radius: 4px;
@@ -208,13 +209,54 @@ input, select, textarea
     display: block;
     height: 30px;
     line-height: 30px;
-    margin: 0 0 10px;
+    margin: 0 0 20px;
     font-weight: bold;
     text-align: center;
+}
+
+.feedbackInfo {
+    border-color: #00AAAA;
+    color: #00AAAA;
 }
 
 .feedbackFailure
 {
     border-color: #FF0000;
     color: #FF0000;
+}
+
+table.dataView
+{
+    width: 99%;
+}
+
+table.dataView th,
+table.dataView td
+{
+    text-align: center;
+}
+
+table.dataView input
+{
+    display: inline;
+}
+
+table.dataView tr.alt td
+{
+    background: #DDEEEF;
+}
+
+table.dataView thead th {
+    background: #0AA0AA;
+    height: 1.7em;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+table.dataView thead th:first-child {
+    border-radius: 5px 0 0 0;
+}
+
+table.dataView thead th:last-child {
+    border-radius: 0 5px 0 0;
 }

@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
@@ -189,6 +190,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         private ObjectSet<UsersGroup> _UsersGroup;
 
         #endregion
+
         #region Métodos AddTo
     
         /// <summary>
@@ -248,11 +250,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entidades
     
     /// <summary>
@@ -279,6 +281,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -333,6 +336,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OnnameChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -359,6 +363,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -391,6 +396,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -517,6 +523,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OnuserProfileIdChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -619,6 +626,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -651,6 +659,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -777,6 +786,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OncategoryIdChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -863,6 +873,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -895,6 +906,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1021,6 +1033,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OndateChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -1101,6 +1114,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1127,6 +1141,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1181,6 +1196,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OntagNameChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -1207,6 +1223,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1245,6 +1262,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1443,6 +1461,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OncountryChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -1491,6 +1510,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1519,6 +1539,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
         #region Propiedades primitivas
     
         /// <summary>
@@ -1597,6 +1618,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         partial void OndescriptionChanged();
 
         #endregion
+
     
         #region Propiedades de navegación
     
@@ -1645,8 +1667,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         }
 
         #endregion
+
     }
 
     #endregion
+
     
 }
