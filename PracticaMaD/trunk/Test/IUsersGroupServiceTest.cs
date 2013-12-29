@@ -139,5 +139,35 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             // add an user that is already in the group
             usersGroupService.AddUserToGroup(ug.id, up1.id);
         }
+
+        [TestMethod()]
+        [ExpectedException(typeof (DuplicateInstanceException))]
+        public void CreateRepeatNameGroup()
+        {
+            const string name = "Grupo futbol";
+            String description = null;
+            UserProfile up2 = null;
+            try
+            {
+                // create & find
+                String encryptedPassword = PasswordEncrypter.Crypt("pass");
+                description = "Grupo para hablar de futbol";
+                UserProfile up1 = UserProfile.CreateUserProfile(0, "Pepe.com", encryptedPassword, "Pepe", "Garcia", "pepe@udc.es", "es", "ES");
+                userProfileDao.Create(up1);
+                long id1 = usersGroupService.Create(name, description, up1.id);
+                UsersGroup ug1 = usersGroupDao.Find(id1);
+
+                // create other user
+                up2 = UserProfile.CreateUserProfile(0, "Pepe2.com", encryptedPassword, "Pepe2", "Garcia2", "pepe2@udc.es", "es", "ES");
+                userProfileDao.Create(up2);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail();
+            }
+            // create other group with the same name
+            long id2 = usersGroupService.Create(name, description + "2", up2.id);
+            UsersGroup ug2 = usersGroupDao.Find(id2);
+        }
     }
 }

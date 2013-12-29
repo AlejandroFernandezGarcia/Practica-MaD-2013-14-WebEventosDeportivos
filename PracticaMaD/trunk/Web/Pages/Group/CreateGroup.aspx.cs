@@ -13,6 +13,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
     public partial class CreateGroup : SpecificCulturePage
     {
 
+        protected readonly IUsersGroupService UsersGroupService =
+            UnityResolver.Resolve<IUsersGroupService>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // hide labels
@@ -30,7 +33,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
                 try
                 {
                     // try to create the new group
-                    Services.UsersGroupService.Create(txtGroupName.Text, txtGroupDescription.Text,
+                    UsersGroupService.Create(txtGroupName.Text, txtGroupDescription.Text,
                         SessionManager.GetUserSession(Context).UserProfileId);
 
                     // show success feedback
