@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Contexts;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService.Exceptions;
@@ -51,17 +52,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         public void RemoveUserFromGroup(long usersGroupId, long userProfileId)
         {
             UsersGroup ug = UsersGroupDao.Find(usersGroupId);
-
-            List<UserProfile> listOfUsers = ug.UserProfile.ToList();
-
             UserProfile up = UserProfileDao.Find(userProfileId);
 
-            if (!listOfUsers.Contains(up))
+            if (!UsersGroupDao.IsUsersBelongGroup(ug, up))
             {
                 throw new UserNotBelongGroupException(usersGroupId, userProfileId);
             }
 
+            ug.UserProfile.Load();
             ug.UserProfile.Remove(up);
+            up.UsersGroup.Load();
             up.UsersGroup.Remove(ug);
 
             UsersGroupDao.Update(ug);
@@ -169,6 +169,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         }
 
         /// <summary>
+        /// Finds all groups.
+        /// </summary>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
+        public List<UsersGroupDto> FindAllGroups(int startIndex, int count)
+        {
+            List<UsersGroup> listOfGroups = UsersGroupDao.FindAllGroups(startIndex, count);
+
+            List<UsersGroupDto> result = new List<UsersGroupDto>();
+
+            foreach (UsersGroup i in listOfGroups)
+            {
+                result.Add(new UsersGroupDto(i, UsersGroupDao.GetNumberOfUsersForGroup(i.id),
+                                             UsersGroupDao.GetNumberOfRecommendationsForGroup(i.id)));
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Finds the by user identifier.
         /// </summary>
         /// <param name="userProfileId">The user profile identifier.</param>
@@ -176,6 +197,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         public List<UsersGroupDto> FindByUserId(long userProfileId)
         {
             List<UsersGroup> listOfGroups = UsersGroupDao.FindByUserId(UserProfileDao.Find(userProfileId));
+
+            List<UsersGroupDto> result = new List<UsersGroupDto>();
+
+            foreach (UsersGroup i in listOfGroups)
+            {
+                result.Add(new UsersGroupDto(i, UsersGroupDao.GetNumberOfUsersForGroup(i.id),
+                                             UsersGroupDao.GetNumberOfRecommendationsForGroup(i.id)));
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Finds the by user identifier.
+        /// </summary>
+        /// <param name="userProfileId">The user profile identifier.</param>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
+        public List<UsersGroupDto> FindByUserId(long userProfileId, int startIndex, int count)
+        {
+            List<UsersGroup> listOfGroups = UsersGroupDao.FindByUserId(
+                UserProfileDao.Find(userProfileId), startIndex, count);
 
             List<UsersGroupDto> result = new List<UsersGroupDto>();
 

@@ -91,11 +91,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         List<UsersGroupDto> FindAllGroups();
 
         /// <summary>
+        /// Finds all groups.
+        /// </summary>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
+        List<UsersGroupDto> FindAllGroups(int startIndex, int count);
+
+        /// <summary>
         /// Finds the by user identifier.
         /// </summary>
         /// <param name="userProfileId">The user profile identifier.</param>
         /// <returns></returns>
         List<UsersGroupDto> FindByUserId(long userProfileId);
+
+        /// <summary>
+        /// Finds the by user identifier.
+        /// </summary>
+        /// <param name="userProfileId">The user profile identifier.</param>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
+        List<UsersGroupDto> FindByUserId(long userProfileId, int startIndex, int count);
 
         /// <summary>
         /// Users the belong group.
