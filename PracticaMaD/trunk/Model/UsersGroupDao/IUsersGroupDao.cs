@@ -44,6 +44,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         List<UsersGroup> FindAllGroups();
 
         /// <summary>
+        /// Finds all groups.
+        /// </summary>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
+        List<UsersGroup> FindAllGroups(int startIndex, int count);
+
+        /// <summary>
         /// Finds the by user identifier.
         /// </summary>
         /// <param name="userProfile">The user profile.</param>

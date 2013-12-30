@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Objects;
 using System.Linq;
+using System.Net.Sockets;
+using System.Security.Cryptography;
 using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 
@@ -24,7 +26,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// </returns>
         public List<UsersGroup> FindByUserId(UserProfile userProfile, int startIndex, int count)
         {
-            return userProfile.UsersGroup.Skip(startIndex).Take(count).ToList();
+            //return userProfile.UsersGroup.Skip(startIndex).Take(count).ToList();
+
+            ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
+
+            var result = (from g in usersGroups
+                          where (from u in g.UserProfile select u.id).Contains(userProfile.id)
+                          select g).Skip(startIndex).Take(count).ToList();
+
+            return result;
         }
 
         /// <summary>
@@ -68,9 +78,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// </returns>
         public int GetNumberOfUserGroups(UserProfile userProfile)
         {
-            return userProfile.UsersGroup.Count();
-        }
+            ////Context.LoadProperty(userProfile, "UsersGroup");
+            //return userProfile.UsersGroup.Count();
 
+            ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
+
+            var result =
+                (from g in usersGroups
+                 select g).Count();
+
+            return result;
+        }
 
         /// <summary>
         /// Finds all groups.
@@ -78,9 +96,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <returns></returns>
         public List<UsersGroup> FindAllGroups()
         {
+            ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
+
+            var result =
+                (from g in usersGroups
+                 orderby g.id
+                 select g).ToList();
+
+            return result;
+
+            //String query = "SELECT VALUE v FROM PracticaMaDEntities.UsersGroup AS v";
+            //return this.Context.CreateQuery<UsersGroup>(query).ToList();
+        }
+
+        /// <summary>
+        /// Finds all groups.
+        /// </summary>
+        /// <param name="startIndex">The start index.</param>
+        /// <param name="count">The count.</param>
+        /// <returns></returns>
+        public List<UsersGroup> FindAllGroups(int startIndex, int count)
+        {
             String query = "SELECT VALUE v FROM PracticaMaDEntities.UsersGroup AS v";
 
-            return this.Context.CreateQuery<UsersGroup>(query).ToList();
+            return this.Context.CreateQuery<UsersGroup>(query).Skip(startIndex).Take(count).ToList();
         }
 
         /// <summary>
@@ -90,7 +129,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <returns></returns>
         public List<UsersGroup> FindByUserId(UserProfile userProfile)
         {
-            return userProfile.UsersGroup.ToList();
+            ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
+
+            var result = (from g in usersGroups
+                          where (from u in g.UserProfile select u.id).Contains(userProfile.id)
+                          orderby g.id
+                          select g).ToList();
+
+            return result;
+
+            ////Context.LoadProperty(userProfile, "UsersGroup");
+            //return userProfile.UsersGroup.ToList();
         }
 
 
@@ -101,9 +150,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <returns></returns>
         public int GetNumberOfUsersForGroup(long usersGroupId)
         {
-            UsersGroup usersGroup = Find(usersGroupId);
+            ObjectSet<UserProfile> userProfiles = Context.CreateObjectSet<UserProfile>();
 
-            return usersGroup.UserProfile.Count();
+            var result = (from u in userProfiles
+                          where (from g in u.UsersGroup select g.id).Contains(usersGroupId)
+                          select u).Count();
+
+            return result;
         }
 
         /// <summary>
@@ -113,20 +166,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <returns></returns>
         public int GetNumberOfRecommendationsForGroup(long usersGroupId)
         {
-            UsersGroup usersGroup = Find(usersGroupId);
+            ObjectSet<Recommendation> recommendations = Context.CreateObjectSet<Recommendation>();
 
-            return usersGroup.Recommendation.Count();
+            var result = (from r in recommendations
+                          where r.usersGroupId == usersGroupId
+                          select r).Count();
+
+            return result;
         }
 
         /// <summary>
         /// Determines whether [is users belong group] [the specified users groups].
         /// </summary>
-        /// <param name="usersGroups">The users groups.</param>
+        /// <param name="usersGroup">The users groups.</param>
         /// <param name="userProfile">The user profile.</param>
         /// <returns></returns>
-        public bool IsUsersBelongGroup(UsersGroup usersGroups, UserProfile userProfile)
+        public bool IsUsersBelongGroup(UsersGroup usersGroup, UserProfile userProfile)
         {
-            return usersGroups.UserProfile.ToList().Contains(userProfile);
+            ObjectSet<UserProfile> userProfiles = Context.CreateObjectSet<UserProfile>();
+
+            var result = (from u in userProfiles
+                          where u.id == userProfile.id
+                                && (from g in u.UsersGroup select g.id).Contains(usersGroup.id)
+                          select u).Count();
+
+            return (result>0);
+
+            ////Context.LoadProperty(usersGroups, "UserProfile");
+            //return usersGroups.UserProfile.ToList().Contains(userProfile);
         }
     }
 }
