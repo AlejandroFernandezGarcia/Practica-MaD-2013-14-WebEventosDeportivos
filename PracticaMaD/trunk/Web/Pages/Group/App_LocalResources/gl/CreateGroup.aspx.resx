@@ -117,40 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblWelcome.Hello.Text" xml:space="preserve">
-    <value>Hola</value>
+  <data name="btnCreateGroup.Text" xml:space="preserve">
+    <value>Crear grupo</value>
   </data>
-  <data name="lblWelcome.Text" xml:space="preserve">
-    <value>Benvido a PracticaMaD</value>
+  <data name="lblGroupDescriptionError.Text" xml:space="preserve">
+    <value />
   </data>
-  <data name="lclFooter.Text" xml:space="preserve">
-    <value>Copyright &amp;copy; 2013 - 2014 Universidade da Coruña</value>
+  <data name="lblGroupNameError.Text" xml:space="preserve">
+    <value>O nome do grupo xa está en uso</value>
   </data>
-  <data name="lclPageTitle.Text" xml:space="preserve">
-    <value>PracticaMaD: Unha Aplicación Web de eventos deportivos con .NET</value>
+  <data name="lclGroupDescription.Text" xml:space="preserve">
+    <value>Descrición do grupo</value>
   </data>
-  <data name="lnkAuthenticate.Text" xml:space="preserve">
-    <value>Autenticación</value>
+  <data name="lclGroupName.Text" xml:space="preserve">
+    <value>Nome do grupo</value>
   </data>
-  <data name="lnkCreateGroups.Text" xml:space="preserve">
-    <value>Crear Grupo</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Crear grupos</value>
   </data>
-  <data name="lnkLogout.Text" xml:space="preserve">
-    <value>Saír</value>
-  </data>
-  <data name="lnkMyGroups.Text" xml:space="preserve">
-    <value>Meus Grupos</value>
-  </data>
-  <data name="lnkRecommendations.Text" xml:space="preserve">
-    <value>Recomendacións</value>
-  </data>
-  <data name="lnkSearchEvents.Text" xml:space="preserve">
-    <value>Buscar eventos</value>
-  </data>
-  <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Actualizar información de usuario</value>
-  </data>
-  <data name="lnkViewGroups.Text" xml:space="preserve">
-    <value>Ver eventos</value>
+  <data name="lblGroupCreated.Text" xml:space="preserve">
+    <value>Grupo creado correctamente</value>
   </data>
 </root>

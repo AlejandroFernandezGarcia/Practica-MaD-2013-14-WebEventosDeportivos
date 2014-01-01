@@ -271,8 +271,7 @@
     <Content Include="Pages\App_LocalResources\gl\MainPage.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Group\App_LocalResources\es\" />
-    <Folder Include="Pages\Group\App_LocalResources\gl\" />
+    <Folder Include="Pages\Event\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Group\App_LocalResources\en-default\CreateGroup.aspx.resx">
@@ -286,6 +285,36 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Group\App_LocalResources\en-default\MyGroups.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Group\App_LocalResources\es\CreateGroup.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Group\App_LocalResources\es\ViewGroups.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Group\App_LocalResources\es\MyGroups.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Group\App_LocalResources\gl\CreateGroup.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Group\App_LocalResources\gl\ViewGroups.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Group\App_LocalResources\gl\MyGroups.aspx.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
