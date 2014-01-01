@@ -117,40 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblWelcome.Hello.Text" xml:space="preserve">
-    <value>Hola</value>
+  <data name="btnJoinGroups.Text" xml:space="preserve">
+    <value>Participar grupos seleccionados</value>
   </data>
-  <data name="lblWelcome.Text" xml:space="preserve">
-    <value>Benvido a PracticaMaD</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Visualización de Grupos</value>
   </data>
-  <data name="lclFooter.Text" xml:space="preserve">
-    <value>Copyright &amp;copy; 2013 - 2014 Universidade da Coruña</value>
+  <data name="lclName.Text" xml:space="preserve">
+    <value>Nome</value>
   </data>
-  <data name="lclPageTitle.Text" xml:space="preserve">
-    <value>PracticaMaD: Unha Aplicación Web de eventos deportivos con .NET</value>
+  <data name="lclUserCount.Text" xml:space="preserve">
+    <value>Número de usuarios</value>
   </data>
-  <data name="lnkAuthenticate.Text" xml:space="preserve">
-    <value>Autenticación</value>
+  <data name="lclRecomCount.Text" xml:space="preserve">
+    <value>Número de recomendacións</value>
   </data>
-  <data name="lnkCreateGroups.Text" xml:space="preserve">
-    <value>Crear Grupo</value>
+  <data name="lclJoin.Text" xml:space="preserve">
+    <value>Entrar no grupo</value>
   </data>
-  <data name="lnkLogout.Text" xml:space="preserve">
-    <value>Saír</value>
+  <data name="lblLoginRequired.Text" xml:space="preserve">
+    <value>Autenticación necesaria para unirse aos grupos</value>
   </data>
-  <data name="lnkMyGroups.Text" xml:space="preserve">
-    <value>Meus Grupos</value>
+  <data name="lblUserAdded.Text" xml:space="preserve">
+    <value>Usuario engadido correctamente aos grupos seleccionados</value>
   </data>
-  <data name="lnkRecommendations.Text" xml:space="preserve">
-    <value>Recomendacións</value>
-  </data>
-  <data name="lnkSearchEvents.Text" xml:space="preserve">
-    <value>Buscar eventos</value>
-  </data>
-  <data name="lnkUpdate.Text" xml:space="preserve">
-    <value>Actualizar información de usuario</value>
-  </data>
-  <data name="lnkViewGroups.Text" xml:space="preserve">
-    <value>Ver eventos</value>
+  <data name="lblOperationFailed.Text" xml:space="preserve">
+    <value>Sentímolo, operación de ingreso fallou, proba de novo máis tarde</value>
   </data>
 </root>
