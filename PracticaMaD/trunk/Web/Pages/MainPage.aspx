@@ -6,3 +6,6 @@
 <asp:Content ID="Content_MenuWelcome" ContentPlaceHolderID="ContentPlaceHolder_MenuWelcome"
     runat="server">
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
+    <asp:Label CssClass="welcomeMessage" runat="server" meta:resourcekey="lclWelcome"></asp:Label>
+</asp:Content>

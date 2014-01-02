@@ -49,6 +49,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event {
         protected global::System.Web.UI.WebControls.Localize lclDate;
         
         /// <summary>
+        /// Control lclAddComment.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Localize lclAddComment;
+        
+        /// <summary>
+        /// Control lclViewComments.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Localize lclViewComments;
+        
+        /// <summary>
+        /// Control lclRecommend.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Localize lclRecommend;
+        
+        /// <summary>
         /// Control EventList.
         /// </summary>
         /// <remarks>

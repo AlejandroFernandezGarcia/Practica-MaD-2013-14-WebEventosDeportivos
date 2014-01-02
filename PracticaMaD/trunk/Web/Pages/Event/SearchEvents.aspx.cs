@@ -29,7 +29,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
 
                     if (selectedElement == 0)
                     {
-                        Response.ApplyAppPathModifier("./ResultEventsSearch.aspx" + "?keywords=" + keywords.Replace(" ","+"));
+                        Response.Redirect(Response.ApplyAppPathModifier("./ResultEventsSearch.aspx" 
+                            + "?keywords=" + keywords.Replace(" ", "+")));
                     }
                     else
                     {

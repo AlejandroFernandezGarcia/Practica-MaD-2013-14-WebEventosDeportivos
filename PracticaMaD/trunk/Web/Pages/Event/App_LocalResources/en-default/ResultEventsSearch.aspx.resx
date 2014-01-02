@@ -129,4 +129,13 @@
   <data name="lclDate.Text" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="lclAddComment.Text" xml:space="preserve">
+    <value>Add comment</value>
+  </data>
+  <data name="lclViewComments.Text" xml:space="preserve">
+    <value>View comment</value>
+  </data>
+  <data name="lclRecommend.Text" xml:space="preserve">
+    <value>Add recommendation</value>
+  </data>
 </root>

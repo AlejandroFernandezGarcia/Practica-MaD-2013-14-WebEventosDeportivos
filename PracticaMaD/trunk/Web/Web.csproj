@@ -85,6 +85,20 @@
     <Compile Include="HTTP\View\ApplicationObjects\Countries.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
+    <Compile Include="Pages\Comment\AddComment.aspx.cs">
+      <DependentUpon>AddComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Comment\AddComment.aspx.designer.cs">
+      <DependentUpon>AddComment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Comment\ViewComments.aspx.cs">
+      <DependentUpon>ViewComments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Comment\ViewComments.aspx.designer.cs">
+      <DependentUpon>ViewComments.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Errors\InternalError.aspx.cs">
       <DependentUpon>InternalError.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -133,6 +147,13 @@
     </Compile>
     <Compile Include="Pages\MainPage.aspx.designer.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Recommendation\NewRecommendation.aspx.cs">
+      <DependentUpon>NewRecommendation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Recommendation\NewRecommendation.aspx.designer.cs">
+      <DependentUpon>NewRecommendation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\User\Authentication.aspx.cs">
       <DependentUpon>Authentication.aspx</DependentUpon>
@@ -188,6 +209,8 @@
   <ItemGroup>
     <Content Include="Css\Styles.css" />
     <Content Include="Global.asax" />
+    <Content Include="Pages\Comment\AddComment.aspx" />
+    <Content Include="Pages\Comment\ViewComments.aspx" />
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\Event\ResultEventsSearch.aspx" />
     <Content Include="Pages\Event\SearchEvents.aspx" />
@@ -195,6 +218,7 @@
     <Content Include="Pages\Group\MyGroups.aspx" />
     <Content Include="Pages\Group\ViewGroups.aspx" />
     <Content Include="Pages\MainPage.aspx" />
+    <Content Include="Pages\Recommendation\NewRecommendation.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
     <Content Include="Pages\User\Logout.aspx" />
@@ -278,7 +302,9 @@
     <Content Include="App_LocalResources\gl\PracticaMaD.Master.gl.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\App_LocalResources\en-default\MainPage.aspx.resx" />
+    <Content Include="Pages\App_LocalResources\en-default\MainPage.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\App_LocalResources\es\MainPage.aspx.es.resx" />
@@ -346,6 +372,31 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Event\App_LocalResources\gl\SearchEvents.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Comment\App_LocalResources\es\" />
+    <Folder Include="Pages\Comment\App_LocalResources\gl\" />
+    <Folder Include="Pages\Recommendation\App_LocalResources\es\" />
+    <Folder Include="Pages\Recommendation\App_LocalResources\gl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Recommendation\App_LocalResources\en-default\NewRecommendation.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\en-default\AddComment.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\en-default\ViewComments.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Event\App_LocalResources\es\ResultEventsSearch.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Event\App_LocalResources\gl\ResultEventsSearch.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

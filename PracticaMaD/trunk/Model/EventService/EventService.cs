@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 
             foreach (Event e in listEvent)
             {
-                result.Add(new EventCategoryDto(e, e.Category));
+                result.Add(new EventCategoryDto(e, CategoryDao.Find(e.categoryId)));
             }
 
             return result;
@@ -82,7 +82,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 
             foreach (Event e in listEvent)
             {
-                result.Add(new EventCategoryDto(e, e.Category));
+                result.Add(new EventCategoryDto(e, CategoryDao.Find(e.categoryId)));
             }
 
             return result;
@@ -142,7 +142,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 
             foreach (Event e in listEvent)
             {
-                result.Add(new EventCategoryDto(e, e.Category));
+                result.Add(new EventCategoryDto(e, CategoryDao.Find(e.categoryId)));
             }
 
             return result;
@@ -163,7 +163,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 
             foreach (Event e in listEvent)
             {
-                result.Add(new EventCategoryDto(e, e.Category));
+                result.Add(new EventCategoryDto(e, CategoryDao.Find(e.categoryId)));
             }
 
             return result;
