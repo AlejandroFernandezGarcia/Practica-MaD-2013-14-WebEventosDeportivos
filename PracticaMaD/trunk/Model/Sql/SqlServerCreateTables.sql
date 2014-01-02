@@ -199,7 +199,7 @@ ALTER TABLE CommentTag ADD CONSTRAINT [FK_Comment_CommentTag] FOREIGN KEY (comme
 GO
 
 
-INSERT INTO Category (id,name) VALUES (1,'Futbol'),(2,'Baloncesto'),(3,'Tenis'),(4,'Balonmano'),(5,'Petanca'),(6,'Volleyball'),(7,'Golf'),(8,'Lucha en el barro')
+INSERT INTO Category (id,name) VALUES (0,' '),(1,'Futbol'),(2,'Baloncesto'),(3,'Tenis'),(4,'Balonmano'),(5,'Petanca'),(6,'Volleyball'),(7,'Golf'),(8,'Lucha en el barro')
 GO
 
 INSERT INTO Event (name, date, description, categoryId) 

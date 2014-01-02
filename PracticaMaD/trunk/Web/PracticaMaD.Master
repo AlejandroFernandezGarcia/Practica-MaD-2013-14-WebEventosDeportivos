@@ -46,7 +46,7 @@
                     <!-- Main menu. -->
                     <td id="mainMenu">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder_MainMenuLinks" runat="server">
-                            <asp:HyperLink ID="lnkSearchEvents" runat="server" NavigateUrl="~/Pages/User/Authentication.aspx"
+                            <asp:HyperLink ID="lnkSearchEvents" runat="server" NavigateUrl="~/Pages/Event/SearchEvents.aspx"
                                 meta:resourcekey="lnkSearchEvents" />
                             <asp:HyperLink ID="lnkCreateGroups" runat="server" NavigateUrl="~/Pages/Group/CreateGroup.aspx"
                                 meta:resourcekey="lnkCreateGroups" />
