@@ -13,6 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            Application.Lock();
             /*
              * We read the UnityConfigurationSection from the default 
              * configuration file, Web.config, and then populate the 
@@ -29,6 +30,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             Application["UnityContainer"] = container;
 
             LogManager.RecordMessage("Unity Container started", MessageType.Info);
+
+            Application.UnLock();
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -36,7 +39,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             SessionManager.TouchSession(Context);
         }
 
-        protected void Application_BeginRequest(object sender, EventArgs e)
+        /*protected void Application_BeginRequest(object sender, EventArgs e)
         {
 
         }
@@ -54,7 +57,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
         protected void Session_End(object sender, EventArgs e)
         {
 
-        }
+        }*/
 
         protected void Application_End(object sender, EventArgs e)
         {

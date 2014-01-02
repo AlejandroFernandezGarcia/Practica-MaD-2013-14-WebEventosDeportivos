@@ -56,12 +56,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
 
                 Label lblName = (Label)e.Item.FindControl("lblName");
                 lblName.Text = item.evento.name;
+                lblName.ToolTip = item.evento.description;
 
-                Label lblDescription = (Label) e.Item.FindControl("lblDescription");
-                lblDescription.Text = item.evento.description;
-
+                //Todo Arreglar category
                 Label lblCategory = (Label)e.Item.FindControl("lblCategory");
-                lblCategory.Text = item.category.name;
+                lblCategory.Text = "categorua";//item.category.name;
 
                 Label lblDate = (Label)e.Item.FindControl("lblDate");
                 lblDate.Text = item.evento.date.ToString();
