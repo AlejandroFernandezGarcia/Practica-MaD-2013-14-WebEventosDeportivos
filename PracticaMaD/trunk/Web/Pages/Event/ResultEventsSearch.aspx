@@ -19,8 +19,7 @@
                 <ItemTemplate>
                     <asp:TableRow runat="server" ID="tr">
                         <asp:TableCell ID="TableCell1" runat="server">
-                            <asp:Label runat="server" ID="lblName"></asp:Label>
-                            <asp:Label CssClass="box" runat="server" ID="lblDescription"></asp:Label>
+                            <asp:Label runat="server" ID="lblName" ></asp:Label>
                         </asp:TableCell>
                         <asp:TableCell ID="TableCell2" runat="server">
                             <asp:Label runat="server" ID="lblCategory"></asp:Label>
