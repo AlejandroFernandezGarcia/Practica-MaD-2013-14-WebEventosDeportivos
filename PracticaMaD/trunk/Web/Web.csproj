@@ -92,6 +92,20 @@
     <Compile Include="Pages\Errors\InternalError.aspx.designer.cs">
       <DependentUpon>InternalError.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Event\ResultEventsSearch.aspx.cs">
+      <DependentUpon>ResultEventsSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Event\ResultEventsSearch.aspx.designer.cs">
+      <DependentUpon>ResultEventsSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Event\SearchEvents.aspx.cs">
+      <DependentUpon>SearchEvents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Event\SearchEvents.aspx.designer.cs">
+      <DependentUpon>SearchEvents.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Group\CreateGroup.aspx.cs">
       <DependentUpon>CreateGroup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -175,6 +189,8 @@
     <Content Include="Css\Styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Errors\InternalError.aspx" />
+    <Content Include="Pages\Event\ResultEventsSearch.aspx" />
+    <Content Include="Pages\Event\SearchEvents.aspx" />
     <Content Include="Pages\Group\CreateGroup.aspx" />
     <Content Include="Pages\Group\MyGroups.aspx" />
     <Content Include="Pages\Group\ViewGroups.aspx" />
@@ -271,7 +287,9 @@
     <Content Include="Pages\App_LocalResources\gl\MainPage.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Event\" />
+    <Content Include="Pages\Event\App_LocalResources\en-default\ResultEventsSearch.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Group\App_LocalResources\en-default\CreateGroup.aspx.resx">
@@ -289,34 +307,45 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Group\App_LocalResources\es\CreateGroup.aspx.resx">
+    <Content Include="Pages\Group\App_LocalResources\es\CreateGroup.aspx.es.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Group\App_LocalResources\es\ViewGroups.aspx.resx">
+    <Content Include="Pages\Group\App_LocalResources\es\ViewGroups.aspx.es.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Group\App_LocalResources\es\MyGroups.aspx.resx">
+    <Content Include="Pages\Group\App_LocalResources\es\MyGroups.aspx.es.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Group\App_LocalResources\gl\CreateGroup.aspx.resx">
+    <Content Include="Pages\Group\App_LocalResources\gl\CreateGroup.aspx.gl.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Group\App_LocalResources\gl\ViewGroups.aspx.resx">
+    <Content Include="Pages\Group\App_LocalResources\gl\ViewGroups.aspx.gl.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Group\App_LocalResources\gl\MyGroups.aspx.resx">
+    <Content Include="Pages\Group\App_LocalResources\gl\MyGroups.aspx.gl.resx">
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Event\App_LocalResources\en-default\SearchEvents.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Event\App_LocalResources\es\SearchEvents.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Event\App_LocalResources\gl\SearchEvents.aspx.gl.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
