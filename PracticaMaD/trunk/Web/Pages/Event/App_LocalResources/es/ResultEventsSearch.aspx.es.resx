@@ -117,13 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lclContent.Text" xml:space="preserve">
-    <value>Contido da Páxina Principal de PracticaMaD</value>
+  <data name="lblEmptyList.Text" xml:space="preserve">
+    <value>La búsqueda no produjo ningún resultado</value>
   </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - Páxina Principal</value>
+  <data name="lclName.Text" xml:space="preserve">
+    <value>Nombre</value>
   </data>
-  <data name="lclWelcome.Text" xml:space="preserve">
-    <value>Benvido á páxina principal da PracticaMaD</value>
+  <data name="lclCategory.Text" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="lclDate.Text" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="lclAddComment.Text" xml:space="preserve">
+    <value>Añadir comentarios</value>
+  </data>
+  <data name="lclViewComments.Text" xml:space="preserve">
+    <value>Ver comentarios</value>
+  </data>
+  <data name="lclRecommend.Text" xml:space="preserve">
+    <value>Añadir recomendación</value>
   </data>
 </root>

@@ -1,4 +1,8 @@
-﻿/* Body. */
+﻿.welcomeMessage {
+    text-align: center;
+}
+
+/* Body. */
 
 body
 {

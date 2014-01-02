@@ -123,4 +123,7 @@
   <data name="Page.Title" xml:space="preserve">
     <value>PracticaMaD - Página Principal</value>
   </data>
+  <data name="lclWelcome.Text" xml:space="preserve">
+    <value>Bienvenido a la página principal de la PracticaMaD</value>
+  </data>
 </root>

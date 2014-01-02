@@ -121,9 +121,15 @@
     <value>Atopar</value>
   </data>
   <data name="lblKeywordsError.Text" xml:space="preserve">
-    <value>The field keywords not be empty</value>
+    <value>Ten que escribir as palabras clave</value>
+  </data>
+  <data name="lclCategory.Text" xml:space="preserve">
+    <value>Categoría</value>
   </data>
   <data name="lclSearchKeywords.Text" xml:space="preserve">
-    <value>Keywords</value>
+    <value>Palabras clave</value>
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>PracticaMaD - Atopar eventos</value>
   </data>
 </root>
