@@ -26,15 +26,36 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// </returns>
         public List<UsersGroup> FindByUserId(UserProfile userProfile, int startIndex, int count)
         {
-            //return userProfile.UsersGroup.Skip(startIndex).Take(count).ToList();
+            userProfile.UsersGroup.Load();
+            return userProfile.UsersGroup.Skip(startIndex).Take(count).ToList();
 
-            ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
+            #region Using Entity SQL
+            //// Query no tested
+            //String query =
+            //    "SELECT VALUE g FROM PracticaMaDEntities.UsersGroup AS g " +
+            //    "WHERE @userProfileId IN (SELECT VALUE u.id FROM g.UserProfile) " +
+            //    "ORDER BY g.id SKIP @skip LIMIT @limit";
 
-            var result = (from g in usersGroups
-                          where (from u in g.UserProfile select u.id).Contains(userProfile.id)
-                          select g).Skip(startIndex).Take(count).ToList();
+            //ObjectParameter[] param = new ObjectParameter[3];
+            //param[0] = new ObjectParameter("userProfileId", userProfile.id);
+            //param[1] = new ObjectParameter("skip", startIndex);
+            //param[2] = new ObjectParameter("limit", count);
 
-            return result;
+            //ObjectResult<UsersGroup> result =
+            //    this.Context.CreateQuery<UsersGroup>(query, param).Execute(MergeOption.AppendOnly);
+
+            //return result.ToList();
+            #endregion
+
+            #region Using LINQ
+            //ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
+
+            //var result = (from g in usersGroups
+            //              where (from u in g.UserProfile select u.id).Contains(userProfile.id)
+            //              select g).Skip(startIndex).Take(count).ToList();
+
+            //return result;
+            #endregion
         }
 
         /// <summary>
@@ -45,16 +66,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.InstanceNotFoundException"></exception>
         public UsersGroup FindByName(string name)
         {
-            UsersGroup usersGroup = null;
-
             String query =
                 "SELECT VALUE g FROM PracticaMaDEntities.UsersGroup AS g WHERE g.name=@name";
 
             ObjectParameter param = new ObjectParameter("name", name);
 
             ObjectResult<UsersGroup> result =
-                this.Context.CreateQuery<UsersGroup>(query, param).Execute(MergeOption.AppendOnly);
+                this.Context.CreateQuery<UsersGroup>(query, param).Include("UserProfile")
+                .Include("Recommendation").Execute(MergeOption.AppendOnly);
 
+            UsersGroup usersGroup = null;
             try
             {
                 usersGroup = result.First<UsersGroup>();
@@ -78,16 +99,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// </returns>
         public int GetNumberOfUserGroups(UserProfile userProfile)
         {
-            ////Context.LoadProperty(userProfile, "UsersGroup");
-            //return userProfile.UsersGroup.Count();
+            userProfile.UsersGroup.Load();
+            return userProfile.UsersGroup.Count();
 
-            ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
+            #region Using LINQ
+            //ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
 
-            var result =
-                (from g in usersGroups
-                 select g).Count();
+            //var result =
+            //    (from g in usersGroups
+            //     select g).Count();
 
-            return result;
+            //return result;
+            #endregion
         }
 
         /// <summary>
@@ -96,17 +119,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <returns></returns>
         public List<UsersGroup> FindAllGroups()
         {
-            ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
+            String query = "SELECT VALUE v FROM PracticaMaDEntities.UsersGroup AS v";
+            return this.Context.CreateQuery<UsersGroup>(query).ToList();
 
-            var result =
-                (from g in usersGroups
-                 orderby g.id
-                 select g).ToList();
+            #region Using LINQ
+            //ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
 
-            return result;
+            //var result =
+            //    (from g in usersGroups
+            //     orderby g.id
+            //     select g).ToList();
 
-            //String query = "SELECT VALUE v FROM PracticaMaDEntities.UsersGroup AS v";
-            //return this.Context.CreateQuery<UsersGroup>(query).ToList();
+            //return result;
+            #endregion
         }
 
         /// <summary>
@@ -119,7 +144,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         {
             String query = "SELECT VALUE v FROM PracticaMaDEntities.UsersGroup AS v";
 
-            return this.Context.CreateQuery<UsersGroup>(query).Skip(startIndex).Take(count).ToList();
+            return this.Context.CreateQuery<UsersGroup>(query).Include("UserProfile")
+                .Include("Recommendation").Skip(startIndex).Take(count).ToList();
         }
 
         /// <summary>
@@ -129,17 +155,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <returns></returns>
         public List<UsersGroup> FindByUserId(UserProfile userProfile)
         {
-            ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
+            userProfile.UsersGroup.Load();
+            return userProfile.UsersGroup.ToList();
 
-            var result = (from g in usersGroups
-                          where (from u in g.UserProfile select u.id).Contains(userProfile.id)
-                          orderby g.id
-                          select g).ToList();
+            #region Using LINQ
+            //ObjectSet<UsersGroup> usersGroups = Context.CreateObjectSet<UsersGroup>();
 
-            return result;
+            //var result = (from g in usersGroups
+            //              where (from u in g.UserProfile select u.id).Contains(userProfile.id)
+            //              orderby g.id
+            //              select g).ToList();
 
-            ////Context.LoadProperty(userProfile, "UsersGroup");
-            //return userProfile.UsersGroup.ToList();
+            //return result;
+            # endregion
         }
 
 
@@ -148,15 +176,49 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// </summary>
         /// <param name="usersGroupId">The users group identifier.</param>
         /// <returns></returns>
+        /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.InstanceNotFoundException"></exception>
         public int GetNumberOfUsersForGroup(long usersGroupId)
         {
-            ObjectSet<UserProfile> userProfiles = Context.CreateObjectSet<UserProfile>();
+            UsersGroup usersGroup = Find(usersGroupId);
+            if (usersGroup == null)
+                throw new InstanceNotFoundException(usersGroupId, typeof(UsersGroup).FullName);
+            usersGroup.UserProfile.Load();
+            return usersGroup.UserProfile.Count;
 
-            var result = (from u in userProfiles
-                          where (from g in u.UsersGroup select g.id).Contains(usersGroupId)
-                          select u).Count();
+            # region Using Entity SQL
+            //String query =
+            //    "SELECT VALUE g FROM PracticaMaDEntities.UsersGroup AS g WHERE g.id=@id";
 
-            return result;
+            //ObjectParameter param = new ObjectParameter("id", usersGroupId);
+
+            //ObjectResult<UsersGroup> result =
+            //    this.Context.CreateQuery<UsersGroup>(query, param).Include("UserProfile")
+            //    .Execute(MergeOption.AppendOnly);
+
+            //UsersGroup usersGroup = null;
+            //try
+            //{
+            //    usersGroup = result.First<UsersGroup>();
+            //}
+            //catch (Exception)
+            //{
+            //    usersGroup = null;
+            //}
+
+            //if (usersGroup == null)
+            //    throw new InstanceNotFoundException(usersGroupId, typeof(UsersGroup).FullName);
+            //return usersGroup.UserProfile.Count;
+            # endregion
+
+            #region Using LINQ
+            //ObjectSet<UserProfile> userProfiles = Context.CreateObjectSet<UserProfile>();
+
+            //var result = (from u in userProfiles
+            //              where (from g in u.UsersGroup select g.id).Contains(usersGroupId)
+            //              select u).Count();
+
+            //return result;
+            # endregion
         }
 
         /// <summary>
@@ -164,15 +226,49 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// </summary>
         /// <param name="usersGroupId">The users group identifier.</param>
         /// <returns></returns>
+        /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.InstanceNotFoundException"></exception>
         public int GetNumberOfRecommendationsForGroup(long usersGroupId)
         {
-            ObjectSet<Recommendation> recommendations = Context.CreateObjectSet<Recommendation>();
+            UsersGroup usersGroup = Find(usersGroupId);
+            if (usersGroup == null)
+                throw new InstanceNotFoundException(usersGroupId, typeof(UsersGroup).FullName);
+            usersGroup.Recommendation.Load();
+            return usersGroup.Recommendation.Count;
 
-            var result = (from r in recommendations
-                          where r.usersGroupId == usersGroupId
-                          select r).Count();
+            # region Using Entity SQL
+            //String query =
+            //    "SELECT VALUE g FROM PracticaMaDEntities.UsersGroup AS g WHERE g.id=@id";
 
-            return result;
+            //ObjectParameter param = new ObjectParameter("id", usersGroupId);
+
+            //ObjectResult<UsersGroup> result =
+            //    this.Context.CreateQuery<UsersGroup>(query, param).Include("Recommendation")
+            //    .Execute(MergeOption.AppendOnly);
+
+            //UsersGroup usersGroup = null;
+            //try
+            //{
+            //    usersGroup = result.First<UsersGroup>();
+            //}
+            //catch (Exception)
+            //{
+            //    usersGroup = null;
+            //}
+
+            //if (usersGroup == null)
+            //    throw new InstanceNotFoundException(usersGroupId, typeof(UsersGroup).FullName);
+            //return usersGroup.Recommendation.Count;
+            # endregion
+
+            #region Using LINQ
+            //ObjectSet<Recommendation> recommendations = Context.CreateObjectSet<Recommendation>();
+
+            //var result = (from r in recommendations
+            //              where r.usersGroupId == usersGroupId
+            //              select r).Count();
+
+            //return result;
+            #endregion
         }
 
         /// <summary>
@@ -183,17 +279,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <returns></returns>
         public bool IsUsersBelongGroup(UsersGroup usersGroup, UserProfile userProfile)
         {
-            ObjectSet<UserProfile> userProfiles = Context.CreateObjectSet<UserProfile>();
+            usersGroup.UserProfile.Load();
+            return usersGroup.UserProfile.ToList().Contains(userProfile);
 
-            var result = (from u in userProfiles
-                          where u.id == userProfile.id
-                                && (from g in u.UsersGroup select g.id).Contains(usersGroup.id)
-                          select u).Count();
+            #region Using LINQ
+            //ObjectSet<UserProfile> userProfiles = Context.CreateObjectSet<UserProfile>();
 
-            return (result>0);
+            //var result = (from u in userProfiles
+            //              where u.id == userProfile.id
+            //                    && (from g in u.UsersGroup select g.id).Contains(usersGroup.id)
+            //              select u).Count();
 
-            ////Context.LoadProperty(usersGroups, "UserProfile");
-            //return usersGroups.UserProfile.ToList().Contains(userProfile);
+            //return (result>0);
+            # endregion
         }
     }
 }
