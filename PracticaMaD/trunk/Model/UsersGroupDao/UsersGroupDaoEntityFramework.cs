@@ -27,7 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         public List<UsersGroup> FindByUserId(UserProfile userProfile, int startIndex, int count)
         {
             userProfile.UsersGroup.Load();
-            return userProfile.UsersGroup.Skip(startIndex).Take(count).ToList();
+            return userProfile.UsersGroup.OrderBy(g => g.id).Skip(startIndex).Take(count).ToList();
 
             #region Using Entity SQL
             //// Query no tested
@@ -142,10 +142,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <returns></returns>
         public List<UsersGroup> FindAllGroups(int startIndex, int count)
         {
-            String query = "SELECT VALUE v FROM PracticaMaDEntities.UsersGroup AS v";
+            String query = "SELECT VALUE v FROM PracticaMaDEntities.UsersGroup AS v ORDER BY v.id SKIP " +
+                           startIndex.ToString() + " LIMIT " + count.ToString();
 
-            return this.Context.CreateQuery<UsersGroup>(query).Include("UserProfile")
-                .Include("Recommendation").Skip(startIndex).Take(count).ToList();
+            return this.Context.CreateQuery<UsersGroup>(query).ToList();
         }
 
         /// <summary>
@@ -180,8 +180,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         public int GetNumberOfUsersForGroup(long usersGroupId)
         {
             UsersGroup usersGroup = Find(usersGroupId);
-            if (usersGroup == null)
-                throw new InstanceNotFoundException(usersGroupId, typeof(UsersGroup).FullName);
             usersGroup.UserProfile.Load();
             return usersGroup.UserProfile.Count;
 
@@ -230,8 +228,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         public int GetNumberOfRecommendationsForGroup(long usersGroupId)
         {
             UsersGroup usersGroup = Find(usersGroupId);
-            if (usersGroup == null)
-                throw new InstanceNotFoundException(usersGroupId, typeof(UsersGroup).FullName);
             usersGroup.Recommendation.Load();
             return usersGroup.Recommendation.Count;
 

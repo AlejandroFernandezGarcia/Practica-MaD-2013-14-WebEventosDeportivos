@@ -26,6 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
+        /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.InstanceNotFoundException"></exception>
         UsersGroup FindByName(string name);
 
         /// <summary>
@@ -63,6 +64,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// </summary>
         /// <param name="usersGroupId">The users group identifier.</param>
         /// <returns></returns>
+        /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.InstanceNotFoundException"></exception>
         int GetNumberOfUsersForGroup(long usersGroupId);
 
         /// <summary>
@@ -70,6 +72,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// </summary>
         /// <param name="usersGroupId">The users group identifier.</param>
         /// <returns></returns>
+        /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.InstanceNotFoundException"></exception>
         int GetNumberOfRecommendationsForGroup(long usersGroupId);
 
         /// <summary>
