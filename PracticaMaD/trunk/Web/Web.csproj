@@ -383,7 +383,9 @@
     <Content Include="Pages\Recommendation\App_LocalResources\en-default\NewRecommendation.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Comment\App_LocalResources\en-default\AddComment.aspx.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\en-default\AddComment.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Comment\App_LocalResources\en-default\ViewComments.aspx.resx" />

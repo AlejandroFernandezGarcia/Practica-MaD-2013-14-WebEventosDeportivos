@@ -178,5 +178,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         {
             return CommentDao.FindByEventId(eventId);
         }
+
+
+        public Event FindById(long eventId)
+        {
+            return EventDao.Find(eventId);
+        }
     }
 }
