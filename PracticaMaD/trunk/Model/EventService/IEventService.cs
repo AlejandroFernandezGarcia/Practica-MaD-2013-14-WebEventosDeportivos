@@ -117,6 +117,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         List<Comment> FindCommentsForEvent(long eventId, int startIndex, int count);
 
+        /// <summary>
+        /// Finds the by identifier.
+        /// </summary>
+        /// <param name="eventId">The event identifier.</param>
+        /// <returns></returns>
         Event FindById(long eventId);
     }
 }

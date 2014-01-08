@@ -143,6 +143,62 @@ input, select, textarea
     background-color: #f4f4f4;
 }
 
+/* AddComment Page*/
+div.fieldComment
+{
+    clear: both;
+    padding-top: 1em;
+    width: 100%;
+}
+
+div.fieldComment span.labelLeft
+{
+    float: left;
+    text-align: right;
+    font-weight: bold;
+    vertical-align: middle;
+    padding-top: 0.3em;
+    width: 49.5%;
+}
+
+div.fieldComment span.labelRight
+{
+    float: right;
+    text-align: left;
+    font-weight: bold;
+    vertical-align: middle;
+    padding-top: 0.3em;
+    width: 49.5%;
+}
+
+div.entryBig
+{
+    padding-top: 0.3em;
+    height: 140px;
+    width: 100%;
+}
+div.entryBig textarea
+{
+    height: 100%;
+    width: 100%;
+}
+
+div.entryTags
+{
+    padding-top: 0.3em;
+    height: 20px;
+    width: 100%;
+}
+
+div.entryTags input {
+    height: 100%;
+    width: 100%;
+}
+
+div.buttons input{
+    float: right;
+    padding-left: 0.3em;
+}
 /* Error messages. */
 
 .errorMessage

@@ -9,9 +9,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
-//TODO Colocar CSS
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
+//TODO HAcer return?
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
     public partial class AddComment : System.Web.UI.Page
@@ -25,18 +25,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         {
             String eventStrId = Request.QueryString["eventId"];
             eventId = Convert.ToInt64(eventStrId);
+
             lblEmptyComment.Visible = false;
             lblCommentSuccess.Visible = false;
             lblCommentMaxLength.Visible = false;
             lblTagMaxLenght.Visible = false;
 
             NewComment.ToolTip = (String)GetLocalResourceObject("lclCommentTip.Text");
+            NewComment.Text = "";
             NewTags.ToolTip = (String)GetLocalResourceObject("lclTagInstructions.Text");
+            NewTags.Text = "";
 
             try
             {
                 Model.Event evento = eventService.FindById(Convert.ToInt64(eventStrId));
-                lblEventNameExt.Text = evento.name;
+                lclEventNameExt.Text = evento.name;
                 
             }
             catch (InstanceNotFoundException)
@@ -90,19 +93,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                             lblCommentSuccess.Visible = true;
 
                             Thread.Sleep(1000);
-                            Response.Redirect(Response.ApplyAppPathModifier(Request.UrlReferrer.ToString()));
+                            //Response.Redirect(Response.ApplyAppPathModifier(Request.UrlReferrer.ToString()));
                         }
                     }
                 }
             }
         }
 
-        protected void BtnCancelComment(object sender, EventArgs e)
+        /*protected void BtnCancelComment(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
                 Response.Redirect(Response.ApplyAppPathModifier(Request.UrlReferrer.ToString()));
             }
-        }
+        }*/
     }
 }

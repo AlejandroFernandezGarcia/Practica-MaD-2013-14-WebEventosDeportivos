@@ -69,8 +69,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
                     CommentDao.Update(comment);
                     TagDao.Update(tagObj);
                 }
-                //DUDA Lanzar excepcion?
-                //DUDA Hay que actualizar cada vez el objeto o vale actualizarlo una vez todos este metidos?.
             }
         }
 
@@ -110,8 +108,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
                     CommentDao.Update(comment);
                     TagDao.Update(tagObj);
                 }
-                //DUDA Lanzar excepcion?
-                //DUDA Hay que actualizar cada vez el objeto o vale actualizarlo una vez todos este metidos?.
             }
         }
 

@@ -7,6 +7,8 @@ using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 
+
+//TODO Arreglar findByKeywords
 namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 {
     /// <summary>
@@ -180,6 +182,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         }
 
 
+        /// <summary>
+        /// Finds the by identifier.
+        /// </summary>
+        /// <param name="eventId">The event identifier.</param>
+        /// <returns></returns>
         public Event FindById(long eventId)
         {
             return EventDao.Find(eventId);
