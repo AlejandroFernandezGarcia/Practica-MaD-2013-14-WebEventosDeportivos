@@ -16,7 +16,6 @@ using System.Data.Objects.DataClasses;
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
 
-    //TODO Arreglar todos los test donde aparece algun comentario ya que no se comprueba que se haya añadido bien, no es necesario cambiar el new List<string> por algo que tenga sentido ya que ese metodo se probara en ITagService
     [TestClass()]
     public class IEventServiceTest
     {

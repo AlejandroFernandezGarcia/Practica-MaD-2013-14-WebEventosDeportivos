@@ -67,13 +67,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         protected global::System.Web.UI.WebControls.Localize lclEventName;
         
         /// <summary>
-        /// Control lblEventNameExt.
+        /// Control lclEventNameExt.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lblEventNameExt;
+        protected global::System.Web.UI.WebControls.Localize lclEventNameExt;
         
         /// <summary>
         /// Control NewComment.
@@ -101,14 +101,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSendComment;
-        
-        /// <summary>
-        /// Control btnCancelComment.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelComment;
     }
 }

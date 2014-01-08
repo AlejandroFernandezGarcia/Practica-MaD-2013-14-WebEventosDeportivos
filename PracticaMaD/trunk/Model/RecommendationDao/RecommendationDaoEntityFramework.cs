@@ -42,7 +42,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
         /// <returns></returns>
         public List<Recommendation> FindRecommendationForAnUserUsersGroup(UserProfile userProfile)
         {
-            //COCHADA No se como utilizar IN en esta consulta.
             String query = "SELECT VALUE r " +
                            "FROM PracticaMaDEntities.Recommendation AS r " +
                            "WHERE r.usersGroupId =";
@@ -78,7 +77,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
         public List<Recommendation> FindRecommendationForAnUserUsersGroup(UserProfile userProfile, int startIndex,
                                                                           int count)
         {
-            //COCHADA No se como utilizar IN en esta consulta.
             String query = "SELECT VALUE r " +
                            "FROM PracticaMaDEntities.Recommendation AS r " +
                            "WHERE r.usersGroupId =";

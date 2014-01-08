@@ -14,7 +14,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 
-//TODO Hacer test.
 namespace Es.Udc.DotNet.PracticaMaD.Test
 {
     [TestClass()]
