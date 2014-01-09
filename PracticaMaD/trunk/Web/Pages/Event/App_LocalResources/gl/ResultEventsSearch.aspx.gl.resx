@@ -138,4 +138,7 @@
   <data name="lclRecommend.Text" xml:space="preserve">
     <value>Engadir recomendación</value>
   </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>PracticaMaD - Resultado da procura de eventos</value>
+  </data>
 </root>

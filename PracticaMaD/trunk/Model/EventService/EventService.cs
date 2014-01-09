@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
@@ -106,6 +107,47 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 
             TagService.AddTagsToComment(tags, comment.id);
         }
+        /// <summary>
+        /// Removes the comment.
+        /// </summary>
+        /// <param name="eventId">The event identifier.</param>
+        /// <param name="commentId">The comment identifier.</param>
+        public void RemoveComment(long eventId, long commentId)
+        {
+            Event e = EventDao.Find(eventId);
+            Comment c = CommentDao.Find(commentId);
+
+            e.Comment.Load();
+            e.Comment.Remove(c);
+
+            CommentDao.Remove(commentId);
+        }
+
+        /// <summary>
+        /// Updates the comment.
+        /// </summary>
+        /// <param name="commentId">The comment identifier.</param>
+        /// <param name="text">The text.</param>
+        /// <param name="tags">The tags.</param>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void UpdateComment(long commentId, string text, List<string> tags)
+        {
+            Comment c = CommentDao.Find(commentId);
+
+            c.Tag.Load();
+            c.text = text;
+
+            List<string> tagS = new List<string>();
+            foreach (Tag t in c.Tag)
+            {
+                tags.Add(t.tagName);
+            }
+
+            TagService.RemoveTagsFromComment(tagS,c.id);
+
+            TagService.AddTagsToComment(tags, c.id);
+
+        }
 
         /// <summary>
         /// Finds all categories.
@@ -178,18 +220,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public List<Comment> FindCommentsForEvent(long eventId)
         {
-            return CommentDao.FindByEventId(eventId);
+            //TODO Ordernar por fecha desc (recientes primero)
+            Event e = EventDao.Find(eventId);
+            e.Comment.Load();
+            List<Comment> result = e.Comment.ToList();
+            return result;
         }
 
 
         /// <summary>
-        /// Finds the by identifier.
+        /// Finds the event by identifier.
         /// </summary>
         /// <param name="eventId">The event identifier.</param>
         /// <returns></returns>
-        public Event FindById(long eventId)
+        public Event FindEventById(long eventId)
         {
             return EventDao.Find(eventId);
+        }
+
+        /// <summary>
+        /// Finds the comment by identifier.
+        /// </summary>
+        /// <param name="commentId">The comment identifier.</param>
+        /// <returns></returns>
+        public Comment FindCommentById(long commentId)
+        {
+            return CommentDao.Find(commentId);
         }
     }
 }

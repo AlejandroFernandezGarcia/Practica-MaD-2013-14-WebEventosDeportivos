@@ -117,28 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblEmptyList.Text" xml:space="preserve">
-    <value>Not events to shown</value>
-  </data>
-  <data name="lclName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="lclCategory.Text" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="lclDate.Text" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="lclAddComment.Text" xml:space="preserve">
-    <value>Add comment</value>
-  </data>
-  <data name="lclViewComments.Text" xml:space="preserve">
-    <value>View comment</value>
-  </data>
-  <data name="lclRecommend.Text" xml:space="preserve">
-    <value>Add recommendation</value>
-  </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>PracticaMaD - Result of event search</value>
+    <value>PracticaMaD - View and Edit comments and tags</value>
+  </data>
+  <data name="lblCommentMaxLength.Text" xml:space="preserve">
+    <value>Comment max length allowed are 1000 characters</value>
+  </data>
+  <data name="lblTagMaxLenght.Text" xml:space="preserve">
+    <value>Tag max length allowed are 50 characters</value>
+  </data>
+  <data name="lblCommentSuccess.Text" xml:space="preserve">
+    <value>The comment has created sucesfully</value>
+  </data>
+  <data name="lclEventName.Text" xml:space="preserve">
+    <value>Event name:</value>
+  </data>
+  <data name="btnEdit.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnReturn.Text" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="lblEmptyComment.Text" xml:space="preserve">
+    <value>The comment box, cannot be empty</value>
+  </data>
+  <data name="lclCommentTip.Text" xml:space="preserve">
+    <value>Leave your comment here. Max: 1000 characters</value>
+  </data>
+  <data name="lclTagInstructions.Text" xml:space="preserve">
+    <value>Type the tag, separated by comma. Max length tag: 50 characters</value>
   </data>
 </root>

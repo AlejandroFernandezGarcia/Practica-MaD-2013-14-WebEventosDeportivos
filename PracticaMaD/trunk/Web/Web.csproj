@@ -92,6 +92,13 @@
     <Compile Include="Pages\Comment\AddComment.aspx.designer.cs">
       <DependentUpon>AddComment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Comment\ViewCommentAndTag.aspx.cs">
+      <DependentUpon>ViewCommentAndTag.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Comment\ViewCommentAndTag.aspx.designer.cs">
+      <DependentUpon>ViewCommentAndTag.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Comment\ViewComments.aspx.cs">
       <DependentUpon>ViewComments.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -210,6 +217,7 @@
     <Content Include="Css\Styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Comment\AddComment.aspx" />
+    <Content Include="Pages\Comment\ViewCommentAndTag.aspx" />
     <Content Include="Pages\Comment\ViewComments.aspx" />
     <Content Include="Pages\Errors\InternalError.aspx" />
     <Content Include="Pages\Event\ResultEventsSearch.aspx" />
@@ -388,7 +396,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Comment\App_LocalResources\en-default\ViewComments.aspx.resx" />
+    <Content Include="Pages\Comment\App_LocalResources\en-default\ViewComments.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Event\App_LocalResources\es\ResultEventsSearch.aspx.es.resx">
@@ -397,6 +407,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Event\App_LocalResources\gl\ResultEventsSearch.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\en-default\ViewCommentAndTag.aspx.resx">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

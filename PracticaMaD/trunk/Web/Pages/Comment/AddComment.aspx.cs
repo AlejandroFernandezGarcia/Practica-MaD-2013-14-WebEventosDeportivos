@@ -26,19 +26,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             String eventStrId = Request.QueryString["eventId"];
             eventId = Convert.ToInt64(eventStrId);
 
+            if (!IsPostBack)
+            {
+                ViewState["retUrl"] = "~" + Request.UrlReferrer.ToString().Substring(21);
+            }
+
             lblEmptyComment.Visible = false;
             lblCommentSuccess.Visible = false;
             lblCommentMaxLength.Visible = false;
             lblTagMaxLenght.Visible = false;
-
             NewComment.ToolTip = (String)GetLocalResourceObject("lclCommentTip.Text");
-            NewComment.Text = "";
             NewTags.ToolTip = (String)GetLocalResourceObject("lclTagInstructions.Text");
-            NewTags.Text = "";
+            
 
             try
             {
-                Model.Event evento = eventService.FindById(Convert.ToInt64(eventStrId));
+                Model.Event evento = eventService.FindEventById(Convert.ToInt64(eventStrId));
                 lclEventNameExt.Text = evento.name;
                 
             }
@@ -84,16 +87,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                                     lblTagMaxLenght.Visible = true;
                                     break;
                                 }
-                                tags.Add(t);
+                                tags.Add(t.ToLower());
                             }
                         }
                         if (!lblTagMaxLenght.Visible)
                         {
                             eventService.AddComment(eventId, text, userSession.UserProfileId, tags);
                             lblCommentSuccess.Visible = true;
-
-                            Thread.Sleep(1000);
-                            //Response.Redirect(Response.ApplyAppPathModifier(Request.UrlReferrer.ToString()));
+                            
+                            Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()));
                         }
                     }
                 }
@@ -104,7 +106,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         {
             if (Page.IsValid)
             {
-                Response.Redirect(Response.ApplyAppPathModifier(Request.UrlReferrer.ToString()));
+                Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()));
             }
         }*/
     }

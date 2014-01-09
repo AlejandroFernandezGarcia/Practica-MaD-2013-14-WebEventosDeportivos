@@ -151,7 +151,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         public List<Comment> FindCommentsByTag(long tagId)
         {
             Tag tag = TagDao.Find(tagId);
-
+            
             return tag.Comment.ToList();
         }
 
@@ -177,7 +177,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         public List<Tag> FindTagsOfComment(long commentId)
         {
             Comment comment = CommentDao.Find(commentId);
-
+            comment.Tag.Load();
             return comment.Tag.ToList();
         }
 
