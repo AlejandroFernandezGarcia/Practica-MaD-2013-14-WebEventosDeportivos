@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
 //TODO Falta paginar
+//TODO Si vuelve de addComment, mostrar mensaje de ok!
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
 {
     public partial class ResultEventsSearch : System.Web.UI.Page

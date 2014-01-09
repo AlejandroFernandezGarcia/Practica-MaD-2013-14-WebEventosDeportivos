@@ -144,4 +144,7 @@
   <data name="lblTagMaxLenght.Text" xml:space="preserve">
     <value>Tag max length allowed are 50 characters</value>
   </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>PracticaMaD - Añadir comentario</value>
+  </data>
 </root>

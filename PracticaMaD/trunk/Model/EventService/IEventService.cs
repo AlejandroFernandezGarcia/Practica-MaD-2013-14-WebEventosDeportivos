@@ -96,6 +96,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         void AddComment(long eventId, String text, long userProfileId, List<string> tags);
 
         /// <summary>
+        /// Removes the comment.
+        /// </summary>
+        /// <param name="eventId">The event identifier.</param>
+        /// <param name="commentId">The comment identifier.</param>
+        [Transactional]
+        void RemoveComment(long eventId, long commentId);
+
+        /// <summary>
+        /// Updates the comment.
+        /// </summary>
+        /// <param name="commentId">The comment identifier.</param>
+        /// <param name="text">The text.</param>
+        /// <param name="tags">The tags.</param>
+        [Transactional]
+        void UpdateComment(long commentId, String text, List<string> tags);
+
+        /// <summary>
         /// Finds all categories.
         /// </summary>
         /// <returns></returns>
@@ -118,10 +135,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         List<Comment> FindCommentsForEvent(long eventId, int startIndex, int count);
 
         /// <summary>
-        /// Finds the by identifier.
+        /// Finds the event by identifier.
         /// </summary>
         /// <param name="eventId">The event identifier.</param>
         /// <returns></returns>
-        Event FindById(long eventId);
+        Event FindEventById(long eventId);
+
+        /// <summary>
+        /// Finds the comment by identifier.
+        /// </summary>
+        /// <param name="commentId">The comment identifier.</param>
+        /// <returns></returns>
+        Comment FindCommentById(long commentId);
+        //Todo faltan test de los dos ultimos
     }
 }

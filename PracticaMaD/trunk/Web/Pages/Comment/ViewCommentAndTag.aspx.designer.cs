@@ -10,16 +10,52 @@
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
     
     
-    public partial class ViewComments {
+    public partial class ViewCommentAndTag {
         
         /// <summary>
-        /// Control lblEmptyList.
+        /// Control editCommentWithTags.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmptyList;
+        protected global::System.Web.UI.HtmlControls.HtmlForm editCommentWithTags;
+        
+        /// <summary>
+        /// Control lblEmptyComment.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmptyComment;
+        
+        /// <summary>
+        /// Control lblCommentMaxLength.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCommentMaxLength;
+        
+        /// <summary>
+        /// Control lblTagMaxLenght.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTagMaxLenght;
+        
+        /// <summary>
+        /// Control lblCommentSuccess.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCommentSuccess;
         
         /// <summary>
         /// Control lclEventName.
@@ -40,39 +76,48 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         protected global::System.Web.UI.WebControls.Localize lclEventNameExt;
         
         /// <summary>
-        /// Control lclUserName.
+        /// Control EditComment.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclUserName;
+        protected global::System.Web.UI.WebControls.TextBox EditComment;
         
         /// <summary>
-        /// Control lclDate.
+        /// Control EditTags.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclDate;
+        protected global::System.Web.UI.WebControls.TextBox EditTags;
         
         /// <summary>
-        /// Control lclComment.
+        /// Control btnEdit.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclComment;
+        protected global::System.Web.UI.WebControls.Button btnEdit;
         
         /// <summary>
-        /// Control CommentList.
+        /// Control btnDelete.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CommentList;
+        protected global::System.Web.UI.WebControls.Button btnDelete;
+        
+        /// <summary>
+        /// Control btnReturn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReturn;
     }
 }
