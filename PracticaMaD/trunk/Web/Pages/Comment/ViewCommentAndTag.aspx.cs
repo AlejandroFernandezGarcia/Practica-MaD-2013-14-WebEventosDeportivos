@@ -40,7 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 lclEventNameExt.Text = evento.name;
                 eventId = evento.id;
 
-                EditComment.Text = String.Copy(comment.text);
+                
                 List<Model.Tag> tags = tagService.FindTagsOfComment(commentId).ToList();
 
                 String tagsToText = "";
@@ -53,7 +53,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                     }
                 }
 
-                EditTags.Text = tagsToText;
+                if (!IsPostBack)
+                {
+                    EditComment.Text = String.Copy(comment.text);
+                    EditTags.Text = tagsToText;
+                }
 
                 EditComment.ToolTip = (String)GetLocalResourceObject("lclCommentTip.Text");
                 EditTags.ToolTip = (String)GetLocalResourceObject("lclTagInstructions.Text");
