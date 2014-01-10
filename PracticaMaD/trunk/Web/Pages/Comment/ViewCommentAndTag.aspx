@@ -30,9 +30,9 @@
             </div>
             <div class="fieldComment"></div>
             <div class="buttons">
-                <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit" meta:resourcekey="btnEdit" />
-                <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete" meta:resourcekey="btnDelete"/>
-                <asp:Button ID="btnReturn" runat="server" OnClick="btnReturn" meta:resourcekey="btnReturn"/>
+                <asp:Button ID="btnEdit" runat="server" OnClick="BtnEdit" meta:resourcekey="btnEdit" />
+                <asp:Button ID="btnDelete" runat="server" OnClick="BtnDelete" meta:resourcekey="btnDelete"/>
+                <asp:Button ID="btnReturn" runat="server" OnClick="BtnReturn" meta:resourcekey="btnReturn"/>
             </div>
 
         </form>

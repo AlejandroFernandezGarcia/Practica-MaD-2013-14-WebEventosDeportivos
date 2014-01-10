@@ -74,14 +74,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 lblDate.Text = item.date.ToString();
 
                 HyperLink linkToComment = (HyperLink)e.Item.FindControl("linkToComment");
-                int lengthComment = 80;
+                int lengthComment = 77;
                 if (item.text.Length < lengthComment)
                 {
                     lengthComment = item.text.Length;
                 }
-                char[] partialText = {' '};
-                item.text.CopyTo(0, partialText, 0, 77);
-                linkToComment.Text = partialText.ToString() + "..."; //mostrar 80
+                linkToComment.Text = item.text.Substring(0, lengthComment) + " ...";
                 linkToComment.NavigateUrl = "~/Pages/Comment/ViewCommentAndTag.aspx" + "?commentId=" + item.id;
             }
         }

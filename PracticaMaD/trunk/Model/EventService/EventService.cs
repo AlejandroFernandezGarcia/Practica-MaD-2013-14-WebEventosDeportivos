@@ -147,6 +147,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 
             TagService.AddTagsToComment(tags, c.id);
 
+            CommentDao.Update(c);
+
         }
 
         /// <summary>
