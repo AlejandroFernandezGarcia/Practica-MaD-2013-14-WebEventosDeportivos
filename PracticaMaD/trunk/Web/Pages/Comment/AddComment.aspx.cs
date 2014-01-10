@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             lblTagMaxLenght.Visible = false;
             NewComment.ToolTip = (String)GetLocalResourceObject("lclCommentTip.Text");
             NewTags.ToolTip = (String)GetLocalResourceObject("lclTagInstructions.Text");
-            
+
 
             try
             {

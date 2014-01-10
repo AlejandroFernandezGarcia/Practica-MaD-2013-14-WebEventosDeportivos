@@ -40,7 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 lclEventNameExt.Text = evento.name;
                 eventId = evento.id;
 
-                EditComment.Text = comment.text;
+                EditComment.Text = String.Copy(comment.text);
                 List<Model.Tag> tags = tagService.FindTagsOfComment(commentId).ToList();
 
                 String tagsToText = "";
@@ -92,6 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
             if (Page.IsValid)
             {
+                
                 String text = EditComment.Text;
                 if (text.Length == 0)
                 {
