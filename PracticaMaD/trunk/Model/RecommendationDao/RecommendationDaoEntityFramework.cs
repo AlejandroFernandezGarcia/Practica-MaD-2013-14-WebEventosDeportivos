@@ -42,6 +42,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
         /// <returns></returns>
         public List<Recommendation> FindRecommendationForAnUserUsersGroup(UserProfile userProfile)
         {
+
+            userProfile.UsersGroup.Load();
+
             String query = "SELECT VALUE r " +
                            "FROM PracticaMaDEntities.Recommendation AS r " +
                            "WHERE r.usersGroupId =";
@@ -77,6 +80,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
         public List<Recommendation> FindRecommendationForAnUserUsersGroup(UserProfile userProfile, int startIndex,
                                                                           int count)
         {
+
+            userProfile.UsersGroup.Load();
+
             String query = "SELECT VALUE r " +
                            "FROM PracticaMaDEntities.Recommendation AS r " +
                            "WHERE r.usersGroupId =";

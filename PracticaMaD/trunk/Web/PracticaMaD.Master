@@ -54,7 +54,7 @@
                                 meta:resourcekey="lnkMyGroups" />
                             <asp:HyperLink ID="lnkViewGroups" runat="server" NavigateUrl="~/Pages/Group/ViewGroups.aspx"
                                 meta:resourcekey="lnkViewGroups" />
-                            <asp:HyperLink ID="lnkRecommendations" runat="server" NavigateUrl="~/Pages/User/Authentication.aspx"
+                            <asp:HyperLink ID="lnkRecommendations" runat="server" NavigateUrl="~/Pages/Recommendation/ViewRecomendations.aspx"
                                 meta:resourcekey="lnkRecommendations" />
                         </asp:ContentPlaceHolder>
                     </td>
