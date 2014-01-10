@@ -117,25 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnRecommend.Text" xml:space="preserve">
-    <value>Recommend</value>
+  <data name="lblEmptyList.Text" xml:space="preserve">
+    <value>There are no recommendations</value>
   </data>
-  <data name="lblOperationSucceed.Text" xml:space="preserve">
-    <value>Recommendation successfully created to the selected groups</value>
+  <data name="lclEvent.Text" xml:space="preserve">
+    <value>Event</value>
   </data>
-  <data name="lblRecommendationCreated.Text" xml:space="preserve">
-    <value>Recommendation successfully created</value>
+  <data name="lclGroup.Text" xml:space="preserve">
+    <value>Group</value>
   </data>
-  <data name="lclEventName.Text" xml:space="preserve">
-    <value>Event:</value>
-  </data>
-  <data name="lclName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="lclRecommend.Text" xml:space="preserve">
-    <value>Recommend</value>
-  </data>
-  <data name="lclRecommendationDescription.Text" xml:space="preserve">
-    <value>Description</value>
+  <data name="lclRecomText.Text" xml:space="preserve">
+    <value>Text</value>
   </data>
 </root>

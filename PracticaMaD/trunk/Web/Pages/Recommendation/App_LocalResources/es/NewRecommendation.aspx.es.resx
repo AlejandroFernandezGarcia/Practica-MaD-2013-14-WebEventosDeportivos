@@ -118,24 +118,24 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnRecommend.Text" xml:space="preserve">
-    <value>Recommend</value>
+    <value>Recomendar</value>
   </data>
   <data name="lblOperationSucceed.Text" xml:space="preserve">
-    <value>Recommendation successfully created to the selected groups</value>
+    <value>Recomendación creada satisfactoriamente a los grupos seleccionados</value>
   </data>
   <data name="lblRecommendationCreated.Text" xml:space="preserve">
-    <value>Recommendation successfully created</value>
+    <value>Recomendacion creada satisfactoriamente</value>
   </data>
   <data name="lclEventName.Text" xml:space="preserve">
-    <value>Event:</value>
+    <value>Evento:</value>
   </data>
   <data name="lclName.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Nombre</value>
   </data>
   <data name="lclRecommend.Text" xml:space="preserve">
-    <value>Recommend</value>
+    <value>Recomendar</value>
   </data>
   <data name="lclRecommendationDescription.Text" xml:space="preserve">
-    <value>Description</value>
+    <value>Descripción</value>
   </data>
 </root>

@@ -242,5 +242,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         {
             return UsersGroupDao.IsUsersBelongGroup(UsersGroupDao.Find(usersGroupId), UserProfileDao.Find(userProfileId));
         }
+
+        public UsersGroup FindById(long usersGroupId)
+        {
+            return UsersGroupDao.Find(usersGroupId);
+        }
     }
 }

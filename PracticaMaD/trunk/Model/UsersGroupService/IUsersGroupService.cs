@@ -121,5 +121,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <param name="usersGroupId">The users group identifier.</param>
         /// <returns></returns>
         bool UserBelongGroup(long userProfileId, long usersGroupId);
+
+        UsersGroup FindById(long usersGroupId);
     }
 }
