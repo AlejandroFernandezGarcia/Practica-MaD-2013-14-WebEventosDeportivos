@@ -16,6 +16,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
     {
         private int CommentListCurrentRow { get; set; }
 
+        private const int NUM_COMMENTS_PER_PAGE = 10;
+
         private readonly IEventService eventService =
           UnityResolver.Resolve<IEventService>();
 
@@ -24,10 +26,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            String eventStrId = Request.QueryString["eventId"];
-            long eventId = Convert.ToInt64(eventStrId);
+            linkNext.Visible = false;
+            linkPrevius.Visible = false;
 
-            List<Model.Comment> listComments = eventService.FindCommentsForEvent(eventId);
+            String eventIdStr = Request.QueryString["eventId"];
+
+            long eventId = Convert.ToInt64(eventIdStr);
+
+            String startIndexStr = Request.QueryString["startIndex"];
+
+            if (startIndexStr == null)
+            {
+                ViewState["startIndex"] = 0;
+            }
+            else
+            {
+                ViewState["startIndex"] = Convert.ToInt16(startIndexStr);
+            }
+
+            //aunque se muestren 10 recupero 11 para saber si va a haber siguiente.
+            List<Model.Comment>  listComments = eventService.FindCommentsForEvent(eventId, 
+                    Convert.ToInt32(ViewState["startIndex"].ToString()),
+                    NUM_COMMENTS_PER_PAGE + 1);
+
 
             try
             {
@@ -35,6 +56,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 if (listComments.Count == 0)
                 {
                     lblEmptyList.Visible = true;
+                    linkNext.Visible = false;
+                    linkPrevius.Visible = false;
                 }
                 else
                 {
@@ -45,6 +68,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             {
                 Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
             }
+
+            if (listComments.Count == (NUM_COMMENTS_PER_PAGE + 1))
+            {
+                linkNext.Visible = true;
+                int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) + NUM_COMMENTS_PER_PAGE;
+                linkNext.PostBackUrl = "~/Pages/Comment/ViewComments.aspx" + "?eventId=" + eventId +
+                                       "&startIndex=" + startIndex;
+            }
+            if(Convert.ToInt32(ViewState["startIndex"].ToString()) != 0)
+            {
+                linkPrevius.Visible = true;
+                int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) - NUM_COMMENTS_PER_PAGE;
+                linkPrevius.PostBackUrl = "~/Pages/Comment/ViewComments.aspx" + "?eventId=" + eventId +
+                                       "&startIndex=" + startIndex;
+            }
+
         }
 
         private void populateItems(List<Model.Comment> list)
@@ -83,5 +122,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 linkToComment.NavigateUrl = "~/Pages/Comment/ViewCommentAndTag.aspx" + "?commentId=" + item.id;
             }
         }
+
+        /*protected void linkPrevius_OnClick(object sender, EventArgs e)
+        {
+            ViewState["startIndex"] = Convert.ToInt32(ViewState["startIndex"].ToString()) - NUM_COMMENTS_PER_PAGE;
+
+        }
+
+        protected void linkNext_OnClick(object sender, EventArgs e)
+        {
+            ViewState["startIndex"] = Convert.ToInt32(ViewState["startIndex"].ToString()) + NUM_COMMENTS_PER_PAGE;
+        }*/
     }
 }
