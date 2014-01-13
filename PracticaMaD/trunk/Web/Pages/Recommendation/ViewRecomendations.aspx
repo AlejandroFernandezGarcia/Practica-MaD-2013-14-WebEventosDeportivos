@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="ViewRecomendations.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation.ViewRecomendations" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="ViewRecomendations.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation.ViewRecomendations" meta:resourcekey="Page" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server" >
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <asp:Label ID="lblEmptyList" runat="server" CssClass="feedbackInfo" Visible="False"

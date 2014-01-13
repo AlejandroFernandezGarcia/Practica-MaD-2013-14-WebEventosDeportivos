@@ -7,7 +7,9 @@ using System.Web.UI.WebControls;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
-//TODO Paginar
+
+//TODO Return a result
+//TODO Falta feedback al volver de viewCommentAndTag
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
@@ -123,15 +125,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             }
         }
 
-        /*protected void linkPrevius_OnClick(object sender, EventArgs e)
-        {
-            ViewState["startIndex"] = Convert.ToInt32(ViewState["startIndex"].ToString()) - NUM_COMMENTS_PER_PAGE;
-
-        }
-
-        protected void linkNext_OnClick(object sender, EventArgs e)
-        {
-            ViewState["startIndex"] = Convert.ToInt32(ViewState["startIndex"].ToString()) + NUM_COMMENTS_PER_PAGE;
-        }*/
     }
 }

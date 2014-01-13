@@ -135,4 +135,7 @@
   <data name="lkPrevius.Text" xml:space="preserve">
     <value>Previous</value>
   </data>
+  <data name="Page.tittle" xml:space="preserve">
+    <value>PracticaMaD - View Recomendations</value>
+  </data>
 </root>

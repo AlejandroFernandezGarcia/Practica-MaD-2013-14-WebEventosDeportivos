@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
-//TODO Falta paginar
-//TODO Si vuelve de addComment, mostrar mensaje de ok!
+
+//TODO Paginar
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
 {
     public partial class ResultEventsSearch : System.Web.UI.Page
@@ -23,6 +23,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
             String finallyKeywords = keywords.Replace("+", " ");
 
             List<EventCategoryDto> listEvents;
+
+            String addCommentOk = Request.QueryString["commentAdd"];
+            if (addCommentOk != null)
+            {
+                lblAddComment.Visible = true;
+            }
 
             String category = Request.QueryString["category"];
             if (!Page.IsPostBack)
