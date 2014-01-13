@@ -24,12 +24,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
         protected readonly IUsersGroupService UsersGroupService = 
             UnityResolver.Resolve<IUsersGroupService>();
 
+        private const int NUM_RECOMMENDATIONS_PER_PAGE = 10;
+
         protected int RecommendationListCurrentRow { get; set; }
         protected bool UserIsLogged { get; set; }
         protected long UserProfileId { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            linkNext.Visible = false;
+            linkPrevius.Visible = false;
+
+            String startIndexStr = Request.QueryString["startIndex"];
+
+            if (startIndexStr == null)
+            {
+                ViewState["startIndex"] = 0;
+            }
+            else
+            {
+                ViewState["startIndex"] = Convert.ToInt16(startIndexStr);
+            }
+
             // initialize UserIsLogged & UserProfileId
             UserSession userSession = SessionManager.GetUserSession(Context);
             if (userSession == null)
@@ -40,10 +57,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
             UserProfileId = userSession.UserProfileId;
             UserIsLogged = true;
 
-            // populate RecommendationList repeater
-            if (!Page.IsPostBack)
+            List<Model.Recommendation> listRecommendations =
+                RecommendationService.FindRecommendationsReceivedByUserGroupOfUser
+                (UserProfileId, Convert.ToInt32(ViewState["startIndex"].ToString()), 
+                NUM_RECOMMENDATIONS_PER_PAGE + 1);
+
+            if (listRecommendations.Count == 0)
             {
-                PopulateRecommendationList();
+                lblEmptyList.Visible = true;
+                linkNext.Visible = false;
+                linkPrevius.Visible = false;
+            }
+            else
+            {
+                PopulateRecommendationList(listRecommendations);
+            }
+
+            if (listRecommendations.Count == (NUM_RECOMMENDATIONS_PER_PAGE + 1))
+            {
+                linkNext.Visible = true;
+                int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) + NUM_RECOMMENDATIONS_PER_PAGE;
+                linkNext.PostBackUrl = "~/Pages/Recommendation/ViewRecomendations.aspx" + "?startIndex=" + startIndex;
+            }
+            if (Convert.ToInt32(ViewState["startIndex"].ToString()) != 0)
+            {
+                linkPrevius.Visible = true;
+                int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) - NUM_RECOMMENDATIONS_PER_PAGE;
+                linkPrevius.PostBackUrl = "~/Pages/Recommendation/ViewRecomendations.aspx" + "?startIndex=" + startIndex;
             }
         }
 
@@ -63,7 +103,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
                 HyperLink linkViewCommentButton = (HyperLink)e.Item.FindControl("linkViewComments");
                 linkViewCommentButton.NavigateUrl = "~/Pages/Comment/ViewComments.aspx" + "?eventId=" + item.eventId.ToString();
                 Model.Event evento = EventService.FindEventById(item.eventId);
-                //String eId = item.eventId.ToString();
                 linkViewCommentButton.Text = evento.name;
 
                 Label lclGroup = (Label)e.Item.FindControl("lblGroup");
@@ -76,10 +115,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
         }
 
 
-        private void PopulateRecommendationList()
+        private void PopulateRecommendationList(List<Model.Recommendation> list)
         {
-            RecommendationList.DataSource =
-                RecommendationService.FindRecommendationsReceivedByUserGroupOfUser(UserProfileId);
+            RecommendationList.DataSource = list;
             RecommendationListCurrentRow = 0;
             RecommendationList.DataBind();
         }

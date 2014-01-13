@@ -13,6 +13,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation {
     public partial class ViewRecomendations {
         
         /// <summary>
+        /// Control lblEmptyList.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmptyList;
+        
+        /// <summary>
         /// Control viewRecommendationsForm.
         /// </summary>
         /// <remarks>
@@ -56,5 +65,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater RecommendationList;
+        
+        /// <summary>
+        /// Control linkPrevius.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkPrevius;
+        
+        /// <summary>
+        /// Control linkNext.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkNext;
     }
 }
