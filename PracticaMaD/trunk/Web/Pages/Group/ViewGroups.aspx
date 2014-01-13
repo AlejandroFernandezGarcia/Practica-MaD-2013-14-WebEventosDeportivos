@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
     CodeBehind="ViewGroups.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Group.ViewGroups"
     meta:resourcekey="Page" %>
+<%@ Register TagPrefix="uc" TagName="Paginator" 
+    Src="~/Controls/Paginator.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -48,4 +50,6 @@
         <asp:Button ID="btnJoinGroups" runat="server" OnClick="BtnJoinGroupsClick" meta:resourcekey="btnJoinGroups" />
     </div>
     </form>
+    
+    <uc:Paginator ID="Paginator" runat="server" NavigateUrl="~/Pages/Group/ViewGroups.aspx"></uc:Paginator>
 </asp:Content>

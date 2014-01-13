@@ -101,5 +101,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnJoinGroups;
+        
+        /// <summary>
+        /// Control Paginator.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Es.Udc.DotNet.PracticaMaD.Web.Pages.Controls.Paginator Paginator;
     }
 }
