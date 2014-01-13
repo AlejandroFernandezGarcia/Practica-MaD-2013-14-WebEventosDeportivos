@@ -138,4 +138,7 @@
   <data name="lclRecommendationDescription.Text" xml:space="preserve">
     <value>Descricion</value>
   </data>
+  <data name="Page.tittle" xml:space="preserve">
+    <value>PracticaMaD - Nova Recomendación</value>
+  </data>
 </root>

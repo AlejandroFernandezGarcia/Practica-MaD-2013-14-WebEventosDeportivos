@@ -1,11 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="ResultEventsSearch.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Event.ResultEventsSearch" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="ResultEventsSearch.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Event.ResultEventsSearch" meta:resourcekey="Page" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server" >
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     
     <asp:Label ID="lblEmptyList" runat="server" CssClass="feedbackInfo" Visible="False"
         meta:resourcekey="lblEmptyList" />
-
+    <asp:Label ID="lblAddComment" runat="server" CssClass="feedbackSuccess" Visible="False"
+            meta:resourcekey="lblAddComment" />
     <table class="dataView" cellpadding="0" cellspacing="0">
         <thead>
             <tr>

@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="AddComment.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment.AddComment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="AddComment.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment.AddComment" meta:resourcekey="Page" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server" >
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <div id="form">        
@@ -31,6 +31,7 @@
             <div class="fieldComment"></div>
             <div class="buttons">
                 <asp:Button ID="btnSendComment" runat="server" OnClick="BtnSendComment" meta:resourcekey="btnSendComment" />
+                <asp:Button ID="btnReturn" runat="server" OnClick="BtnReturn" meta:resourcekey="btnReturn" />
             </div>
 
         </form>

@@ -132,8 +132,8 @@
   <data name="lclComment.Text" xml:space="preserve">
     <value>Comment</value>
   </data>
-  <data name="PageResource1.Title" xml:space="preserve">
-    <value>PracticaMaD - Ver comentarios de un evento</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - View comment for event</value>
   </data>
   <data name="lkPrevius.Text" xml:space="preserve">
     <value>Previous</value>

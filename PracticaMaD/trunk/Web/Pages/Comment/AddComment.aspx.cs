@@ -11,13 +11,15 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
-//TODO HAcer return?
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
     public partial class AddComment : System.Web.UI.Page
     {
         private readonly IEventService eventService =
            UnityResolver.Resolve<IEventService>();
+
+        private const int MAX_LENGTH_COMMENT = 1000;
+        private const int MAX_LENGTH_TAG = 50;
 
         private long eventId;
 
@@ -35,6 +37,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             lblCommentSuccess.Visible = false;
             lblCommentMaxLength.Visible = false;
             lblTagMaxLenght.Visible = false;
+            NewComment.MaxLength = MAX_LENGTH_COMMENT;
+            NewTags.MaxLength = MAX_LENGTH_TAG;
+
             NewComment.ToolTip = (String)GetLocalResourceObject("lclCommentTip.Text");
             NewTags.ToolTip = (String)GetLocalResourceObject("lclTagInstructions.Text");
 
@@ -62,7 +67,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 {
                     lblEmptyComment.Visible = true;
                 }
-                else if (text.Length >= 1000)
+                else if (text.Length >= MAX_LENGTH_COMMENT)
                 {
                     lblCommentMaxLength.Visible = true;
                 }else
@@ -82,7 +87,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                             String[] vTags = tagsString.Split(',');
                             foreach (var t in vTags)
                             {
-                                if (t.Length >= 50)
+                                if (t.Length >= MAX_LENGTH_TAG)
                                 {
                                     lblTagMaxLenght.Visible = true;
                                     break;
@@ -95,19 +100,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                             eventService.AddComment(eventId, text, userSession.UserProfileId, tags);
                             lblCommentSuccess.Visible = true;
                             
-                            Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()));
+                            Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()+"&commentAdd=ok"));
                         }
                     }
                 }
             }
         }
 
-        /*protected void BtnCancelComment(object sender, EventArgs e)
+
+        protected void BtnReturn(object sender, EventArgs e)
         {
-            if (Page.IsValid)
-            {
-                Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()));
-            }
-        }*/
+            Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()));
+        }
     }
 }

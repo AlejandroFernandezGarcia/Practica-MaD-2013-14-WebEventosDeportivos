@@ -222,7 +222,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public List<Comment> FindCommentsForEvent(long eventId)
         {
-            //TODO Ordernar por fecha desc (recientes primero)
             Event e = EventDao.Find(eventId);
             e.Comment.Load();
             List<Comment> result = e.Comment.ToList();
