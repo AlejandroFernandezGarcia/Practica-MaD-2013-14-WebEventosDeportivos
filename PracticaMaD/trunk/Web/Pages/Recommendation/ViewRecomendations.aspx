@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
+    <asp:Label ID="lblEmptyList" runat="server" CssClass="feedbackInfo" Visible="False"
+        meta:resourcekey="lblEmptyList" />
     <form id="viewRecommendationsForm" runat="server">
     <table class="dataView" cellpadding="0" cellspacing="0">
         <thead>
@@ -29,5 +31,9 @@
             </asp:Repeater>        
         </tbody>
     </table>    
-    </form>     
+    <div class="nextPrevLinks">
+        <asp:LinkButton runat="server" ID="linkPrevius" meta:resourcekey="lkPrevius"></asp:LinkButton>
+        <asp:LinkButton runat="server" ID="linkNext" meta:resourcekey="lkNext"></asp:LinkButton>
+    </div>        
+    </form>
 </asp:Content>

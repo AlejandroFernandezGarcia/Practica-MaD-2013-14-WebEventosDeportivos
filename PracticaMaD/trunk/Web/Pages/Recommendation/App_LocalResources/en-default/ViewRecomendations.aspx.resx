@@ -129,4 +129,10 @@
   <data name="lclRecomText.Text" xml:space="preserve">
     <value>Text</value>
   </data>
+  <data name="lkNext.Text" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="lkPrevius.Text" xml:space="preserve">
+    <value>Previous</value>
+  </data>
 </root>
