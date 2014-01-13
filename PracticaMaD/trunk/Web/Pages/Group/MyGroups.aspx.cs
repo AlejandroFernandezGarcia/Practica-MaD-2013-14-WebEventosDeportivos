@@ -22,6 +22,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
         protected bool UserIsLogged { get; set; }
         protected long UserProfileId { get; set; }
 
+        private int _currentPage;
+        public static readonly int GROUPS_PER_PAGE = 10;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // initialize UserIsLogged & UserProfileId
@@ -34,14 +37,41 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
             UserProfileId = userSession.UserProfileId;
             UserIsLogged = true;
 
-            // hide labels
-            lblOperationSucceed.Visible = false;
+            // hide/show labels
+            lblOperationSucceed.Visible = ParseInt(Request.QueryString["success"]) == 1;
             lblOperationFailed.Visible = false;
+
+            // last page
+            float count = (float)UsersGroupService.FindByUserId(UserProfileId).Count;
+            float perPage = (float)GROUPS_PER_PAGE;
+            int lastPage = (int)Math.Ceiling(count / perPage);
+            Paginator.LastPage = lastPage;
+
+            // current page
+            _currentPage = 1;
+            if (Request.QueryString["page"] != null)
+            {
+                _currentPage = ParseInt(Request.QueryString["page"]);
+                if (_currentPage > lastPage)
+                {
+                    _currentPage = lastPage;
+                }
+                else if (_currentPage < 1)
+                {
+                    _currentPage = 1;
+                }
+            }
+            Paginator.CurrentPage = _currentPage;
 
             // populate GroupList repeater
             if (!Page.IsPostBack)
             {
-                PopulateGroupList();
+                // my groups
+                var usersGroups = UsersGroupService.FindByUserId(UserProfileId,
+                    (_currentPage - 1) * GROUPS_PER_PAGE, GROUPS_PER_PAGE);
+                GroupList.DataSource = usersGroups;
+                GroupListCurrentRow = 0;
+                GroupList.DataBind();
             }
         }
 
@@ -102,11 +132,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
                     // use service to add the user to the groups
                     UsersGroupService.RemoveUserFromGroup(usersGroupIds, UserProfileId);
 
-                    // show success feedback
-                    lblOperationSucceed.Visible = true;
-
                     // update view
-                    PopulateGroupList();
+                    Response.Redirect(Response.
+                        ApplyAppPathModifier("~/Pages/Group/MyGroups.aspx"
+                        + "?page=" + _currentPage + "&success=1"));
                 }
                 catch (Exception ex)
                 {
@@ -122,7 +151,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
 
         private void PopulateGroupList()
         {
-            GroupList.DataSource = UsersGroupService.FindByUserId(UserProfileId);
+            // last page
+            float count = (float)UsersGroupService.FindByUserId(UserProfileId).Count;
+            float perPage = (float)GROUPS_PER_PAGE;
+            int lastPage = (int)Math.Ceiling(count / perPage);
+            Paginator.LastPage = lastPage;
+
+            // current page
+            int currentPage = 1;
+            if (Request.QueryString["page"] != null)
+            {
+                currentPage = ParseInt(Request.QueryString["page"]);
+                if (currentPage > lastPage)
+                {
+                    currentPage = lastPage;
+                }
+                else if (currentPage < 1)
+                {
+                    currentPage = 1;
+                }
+            }
+            Paginator.CurrentPage = currentPage;
+
+            // my groups
+            var usersGroups = UsersGroupService.FindByUserId(UserProfileId,
+                (currentPage - 1) * GROUPS_PER_PAGE, GROUPS_PER_PAGE);
+            GroupList.DataSource = usersGroups;
             GroupListCurrentRow = 0;
             GroupList.DataBind();
         }
@@ -133,6 +187,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
             Response.Redirect(Response.
                 ApplyAppPathModifier("~/Pages/User/Authentication.aspx"
                 + "?ReturnUrl=%2fPages%2fGroup%2fMyGroups.aspx"));
+        }
+
+        private int ParseInt(String str)
+        {
+            try
+            {
+                return Int32.Parse(str);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
         }
     }
 }

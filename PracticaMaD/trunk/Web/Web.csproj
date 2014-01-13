@@ -197,6 +197,13 @@
     <Compile Include="Pages\User\UpdateUserProfile.aspx.designer.cs">
       <DependentUpon>UpdateUserProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Paginator.ascx.cs">
+      <DependentUpon>Paginator.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Paginator.ascx.designer.cs">
+      <DependentUpon>Paginator.ascx</DependentUpon>
+    </Compile>
     <Compile Include="PracticaMaD.Master.cs">
       <DependentUpon>PracticaMaD.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -232,6 +239,7 @@
     <Content Include="Pages\User\Logout.aspx" />
     <Content Include="Pages\User\Register.aspx" />
     <Content Include="Pages\User\UpdateUserProfile.aspx" />
+    <Content Include="Controls\Paginator.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -382,6 +390,7 @@
     <Content Include="Pages\Event\App_LocalResources\gl\SearchEvents.aspx.gl.resx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controls\App_LocalResources\" />
     <Folder Include="Pages\Comment\App_LocalResources\es\" />
     <Folder Include="Pages\Comment\App_LocalResources\gl\" />
     <Folder Include="Pages\Recommendation\App_LocalResources\es\" />

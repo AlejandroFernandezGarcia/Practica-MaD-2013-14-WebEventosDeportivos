@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
     CodeBehind="MyGroups.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.Group.MyGroups"
     meta:resourcekey="Page" %>
+<%@ Register TagPrefix="uc" TagName="Paginator" 
+    Src="~/Controls/Paginator.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -45,5 +47,6 @@
     <div class="button">
         <asp:Button ID="btnLeaveGroups" runat="server" OnClick="BtnLeaveGroupsClick" meta:resourcekey="btnLeaveGroups" />
     </div>
+    <uc:Paginator ID="Paginator" runat="server" NavigateUrl="~/Pages/Group/MyGroups.aspx"></uc:Paginator>
     </form>
 </asp:Content>

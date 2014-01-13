@@ -314,19 +314,87 @@ table.dataView tr.alt td
     background: #DDEEEF;
 }
 
-table.dataView thead th {
+table.dataView thead th
+{
     background: #0AA0AA;
     height: 1.7em;
     color: #FFFFFF;
     font-weight: bold;
 }
 
-table.dataView thead th:first-child {
+table.dataView thead th:first-child
+{
     border-radius: 5px 0 0 0;
 }
 
-table.dataView thead th:last-child {
+table.dataView thead th:last-child
+{
     border-radius: 0 5px 0 0;
 }
 
+.paginator
+{
+    margin: 20px 0 0 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
 
+.paginator td
+{
+    padding: 0;
+    border: none;
+}
+
+.paginator a,
+.paginator b
+{
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    text-decoration: none;
+    color: #0AA0AA;
+    background: #ffffff;
+    border: 1px solid #BBCCCD;
+    border-width: 1px 1px 1px 0;
+}
+
+.paginator a:hover
+{
+    box-shadow: 1px 1px 2px #BBCCCD;
+    color: #088088;
+}
+
+.paginator td:last-child a:hover
+{
+    border-right-color: #99aaab;
+}
+
+.paginator td.current a,
+.paginator td.current a:hover
+{
+    color: #ffffff;
+    border: 1px solid #0AA0AA;
+    margin-left: -1px;
+    background: #0AA0AA;
+}
+
+.paginator td:first-child a
+{
+    border-width: 1px;
+    border-radius: 5px 0 0 5px;
+}
+
+.paginator td:last-child a
+{
+    border-radius: 0 5px 5px 0;
+}
+
+.paginator td.space b
+{
+    color: #BBCCCD;
+    width: 20px;
+}
