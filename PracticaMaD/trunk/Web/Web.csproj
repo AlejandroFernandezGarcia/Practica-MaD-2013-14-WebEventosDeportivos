@@ -162,6 +162,13 @@
     <Compile Include="Pages\Recommendation\NewRecommendation.aspx.designer.cs">
       <DependentUpon>NewRecommendation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Recommendation\ViewRecomendations.aspx.cs">
+      <DependentUpon>ViewRecomendations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Recommendation\ViewRecomendations.aspx.designer.cs">
+      <DependentUpon>ViewRecomendations.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\User\Authentication.aspx.cs">
       <DependentUpon>Authentication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -234,6 +241,7 @@
     <Content Include="Pages\Group\ViewGroups.aspx" />
     <Content Include="Pages\MainPage.aspx" />
     <Content Include="Pages\Recommendation\NewRecommendation.aspx" />
+    <Content Include="Pages\Recommendation\ViewRecomendations.aspx" />
     <Content Include="Pages\User\Authentication.aspx" />
     <Content Include="Pages\User\ChangePassword.aspx" />
     <Content Include="Pages\User\Logout.aspx" />
@@ -393,8 +401,6 @@
     <Folder Include="Controls\App_LocalResources\" />
     <Folder Include="Pages\Comment\App_LocalResources\es\" />
     <Folder Include="Pages\Comment\App_LocalResources\gl\" />
-    <Folder Include="Pages\Recommendation\App_LocalResources\es\" />
-    <Folder Include="Pages\Recommendation\App_LocalResources\gl\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Recommendation\App_LocalResources\en-default\NewRecommendation.aspx.resx" />
@@ -423,6 +429,21 @@
     <Content Include="Pages\Comment\App_LocalResources\en-default\ViewCommentAndTag.aspx.resx">
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Recommendation\App_LocalResources\es\NewRecommendation.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Recommendation\App_LocalResources\gl\NewRecommendation.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Recommendation\App_LocalResources\en-default\ViewRecomendations.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Recommendation\App_LocalResources\es\ViewRecomendations.aspx.es.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Recommendation\App_LocalResources\gl\ViewRecomendations.aspx.gl.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
