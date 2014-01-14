@@ -243,6 +243,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
             return UsersGroupDao.IsUsersBelongGroup(UsersGroupDao.Find(usersGroupId), UserProfileDao.Find(userProfileId));
         }
 
+        /// <summary>
+        /// Finds the by identifier.
+        /// </summary>
+        /// <param name="usersGroupId">The users group identifier.</param>
+        /// <returns></returns>
         public UsersGroup FindById(long usersGroupId)
         {
             return UsersGroupDao.Find(usersGroupId);
