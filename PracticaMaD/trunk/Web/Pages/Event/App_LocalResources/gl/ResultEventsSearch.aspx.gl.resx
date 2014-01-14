@@ -144,4 +144,10 @@
   <data name="lblAddComment.Text" xml:space="preserve">
     <value>Engadido o comentario correctamente</value>
   </data>
+  <data name="lkNext.Text" xml:space="preserve">
+    <value>Seguinte</value>
+  </data>
+  <data name="lkPrevius.Text" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
 </root>

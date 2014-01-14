@@ -42,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
         /// <returns></returns>
         public List<Recommendation> FindRecommendationForAnUserUsersGroup(UserProfile userProfile)
         {
-
+            //UNDONE Fortes: Este metodo falla cuando no existen grupos de usuarios en la aplicación.
             userProfile.UsersGroup.Load();
 
             String query = "SELECT VALUE r " +
@@ -80,7 +80,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao
         public List<Recommendation> FindRecommendationForAnUserUsersGroup(UserProfile userProfile, int startIndex,
                                                                           int count)
         {
-
+            //UNDONE Fortes: Este metodo falla cuando no existen grupos de usuarios en la aplicación.
             userProfile.UsersGroup.Load();
 
             String query = "SELECT VALUE r " +
