@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
 
-//TODO Paginar
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
 {
     public partial class ResultEventsSearch : System.Web.UI.Page
@@ -15,14 +14,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
         private readonly IEventService eventService =
            UnityResolver.Resolve<IEventService>();
 
+        private const int NUM_EVENTS_PER_PAGE = 10;
+
         private int EventListCurrentRow { get; set; }
+
+        private bool morePages = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            linkNext.Visible = false;
+            linkPrevius.Visible = false;
+
             String keywords = Request.QueryString["keywords"];
             String finallyKeywords = keywords.Replace("+", " ");
 
-            List<EventCategoryDto> listEvents;
+            List<EventCategoryDto> listEvents = new List<EventCategoryDto>();
 
             String addCommentOk = Request.QueryString["commentAdd"];
             if (addCommentOk != null)
@@ -30,28 +36,70 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
                 lblAddComment.Visible = true;
             }
 
-            String category = Request.QueryString["category"];
-            if (!Page.IsPostBack)
-            {
-                
-                if (category == null)
-                {
-                    listEvents = eventService.FindByKeywords(keywords);
-                }
-                else
-                {
-                    long categoryId = Convert.ToInt64(category);
+            String startIndexStr = Request.QueryString["startIndex"];
 
-                    listEvents = eventService.FindByKeywords(finallyKeywords, categoryId);
-                }
-                if (listEvents.Count == 0)
+            if (startIndexStr == null)
+            {
+                ViewState["startIndex"] = 0;
+            }
+            else
+            {
+                ViewState["startIndex"] = Convert.ToInt16(startIndexStr);
+            }
+
+            String category = Request.QueryString["category"];
+            if (category == null)
+            {
+                listEvents = eventService.FindByKeywords(keywords, 
+                    Convert.ToInt32(ViewState["startIndex"].ToString()),
+                    NUM_EVENTS_PER_PAGE + 1);
+            }
+            else
+            {
+                long categoryId = Convert.ToInt64(category);
+
+                listEvents = eventService.FindByKeywords(finallyKeywords, categoryId, 
+                    Convert.ToInt32(ViewState["startIndex"].ToString()),
+                    NUM_EVENTS_PER_PAGE + 1);
+            }
+            if (listEvents.Count == 0)
+            {
+                lblEmptyList.Visible = true;
+            }
+            else
+            {
+                if (listEvents.Count == (NUM_EVENTS_PER_PAGE + 1))
                 {
-                    lblEmptyList.Visible = true;
+                    morePages = true;
+                    listEvents.Remove(listEvents.Last());
                 }
-                else
+                populateItems(listEvents);
+            }
+            
+            if (morePages)
+            {
+                linkNext.Visible = true;
+                int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) + NUM_EVENTS_PER_PAGE;
+                String url = "~/Pages/Event/ResultEventsSearch.aspx" + "?keywords=" + keywords;
+                if (category != null)
                 {
-                    populateItems(listEvents);
+                    url += "&category=" + category;
                 }
+                url += "&startIndex=" + startIndex;
+                linkNext.PostBackUrl = url;
+                
+            }
+            if (Convert.ToInt32(ViewState["startIndex"].ToString()) != 0)
+            {
+                linkPrevius.Visible = true;
+                int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) - NUM_EVENTS_PER_PAGE;
+                String url = "~/Pages/Event/ResultEventsSearch.aspx" + "?keywords=" + keywords;
+                if (category != null)
+                {
+                    url += "&category=" + category;
+                }
+                url += "&startIndex=" + startIndex;
+                linkPrevius.PostBackUrl = url;
             }
         }
 

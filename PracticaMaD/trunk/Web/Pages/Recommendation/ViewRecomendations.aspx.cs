@@ -30,6 +30,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
         protected bool UserIsLogged { get; set; }
         protected long UserProfileId { get; set; }
 
+        private bool morePages = false;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -70,14 +72,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
             }
             else
             {
+                if (listRecommendations.Count == (NUM_RECOMMENDATIONS_PER_PAGE + 1))
+                {
+                    morePages = true;
+                    listRecommendations.Remove(listRecommendations.Last());
+                }
                 PopulateRecommendationList(listRecommendations);
             }
 
-            if (listRecommendations.Count == (NUM_RECOMMENDATIONS_PER_PAGE + 1))
+            if (morePages)
             {
                 linkNext.Visible = true;
                 int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) + NUM_RECOMMENDATIONS_PER_PAGE;
                 linkNext.PostBackUrl = "~/Pages/Recommendation/ViewRecomendations.aspx" + "?startIndex=" + startIndex;
+                listRecommendations.Remove(listRecommendations.Last());
             }
             if (Convert.ToInt32(ViewState["startIndex"].ToString()) != 0)
             {

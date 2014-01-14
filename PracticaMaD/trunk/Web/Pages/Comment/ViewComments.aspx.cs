@@ -26,6 +26,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         private readonly IUserService userService =
           UnityResolver.Resolve<IUserService>();
 
+        private bool morePages = false;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             linkNext.Visible = false;
@@ -63,6 +65,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 }
                 else
                 {
+                    if (listComments.Count == (NUM_COMMENTS_PER_PAGE + 1))
+                    {
+                        morePages = true;
+                        listComments.Remove(listComments.Last());
+                    }
                     populateItems(listComments);
                 }
             }
@@ -71,7 +78,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                 Response.Redirect(Response.ApplyAppPathModifier("~/Pages/Errors/InternalError.aspx"));
             }
 
-            if (listComments.Count == (NUM_COMMENTS_PER_PAGE + 1))
+            if (morePages)
             {
                 linkNext.Visible = true;
                 int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) + NUM_COMMENTS_PER_PAGE;
