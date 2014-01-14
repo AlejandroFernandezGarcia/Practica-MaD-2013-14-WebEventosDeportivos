@@ -19,8 +19,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
         /// <returns></returns>
         public List<Event> FindByKeywords(String keywords, long categoryId)
         {
+            String[] vKeywords = keywords.Split(' ');
+
             String query = "SELECT VALUE e FROM PracticaMaDEntities.Event AS e " +
-                           "WHERE e.name LIKE '%' + @keywords + '%' ";
+                           "WHERE e.name ";
+
+            foreach (var s in vKeywords)
+            {
+                if (!vKeywords.First().Equals(s))
+                {
+                    query += "AND e.name ";
+                }
+                query += "LIKE '%" + s + "%' ";
+            }
             if (categoryId != -1)
             {
                 query += "AND e.categoryId = @categoryId ";
@@ -28,18 +39,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 
             query += "ORDER BY e.date DESC";
 
-            ObjectParameter param = new ObjectParameter("keywords", keywords);
-
             List<Event> result;
 
             if (categoryId != -1)
             {
                 ObjectParameter param2 = new ObjectParameter("categoryId", categoryId);
-                result = this.Context.CreateQuery<Event>(query, param, param2).ToList();
+                result = this.Context.CreateQuery<Event>(query, param2).ToList();
             }
             else
             {
-                result = this.Context.CreateQuery<Event>(query, param).ToList();
+                result = this.Context.CreateQuery<Event>(query).ToList();
             }
 
             return result;
@@ -55,8 +64,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
         /// <returns></returns>
         public List<Event> FindByKeywords(String keywords, long categoryId, int startIndex, int count)
         {
+            String[] vKeywords = keywords.Split(' ');
+
             String query = "SELECT VALUE e FROM PracticaMaDEntities.Event AS e " +
-                           "WHERE e.name LIKE '%' + @keywords + '%' ";
+                           "WHERE e.name ";
+
+            foreach (var s in vKeywords)
+            {
+                if (!vKeywords.First().Equals(s))
+                {
+                    query += "AND e.name ";
+                }
+                query += "LIKE '%" + s + "%' ";
+            }
             if (categoryId != -1)
             {
                 query += "AND e.categoryId = @categoryId ";
@@ -64,18 +84,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventDao
 
             query += "ORDER BY e.date DESC";
 
-            ObjectParameter param = new ObjectParameter("keywords", keywords);
-
             List<Event> result;
 
             if (categoryId != -1)
             {
                 ObjectParameter param2 = new ObjectParameter("categoryId", categoryId);
-                result = this.Context.CreateQuery<Event>(query, param, param2).Skip(startIndex).Take(count).ToList();
+                result = this.Context.CreateQuery<Event>(query, param2).Skip(startIndex).Take(count).ToList();
             }
             else
             {
-                result = this.Context.CreateQuery<Event>(query, param).Skip(startIndex).Take(count).ToList();
+                result = this.Context.CreateQuery<Event>(query).Skip(startIndex).Take(count).ToList();
             }
 
             return result;

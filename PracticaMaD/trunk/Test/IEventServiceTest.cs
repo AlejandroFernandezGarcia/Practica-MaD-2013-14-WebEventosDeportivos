@@ -72,39 +72,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void SearchByKeywords1()
         {
-            Event e1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
-            eventDao.Create(e1);
+            Event e = eventDao.Find(1);
+            Event e1 = eventDao.Find(15);
 
-            Event e2 = Event.CreateEvent(0, "Evento manzana", DateTime.Now, "Evento de prueba 2", 1);
-            eventDao.Create(e2);
+            List<EventCategoryDto> list1 = eventService.FindByKeywords("Petanca", 0, 1);
+            List<EventCategoryDto> list12 = eventService.FindByKeywords("Petanca", 1, 1);
+            List<EventCategoryDto> list2 = eventService.FindByKeywords("Gilberto", 0, 1);
+            List<EventCategoryDto> list3 = eventService.FindByKeywords("Final petanca", 0, 2);
 
-            Event e3 = Event.CreateEvent(0, "Evento test", DateTime.Now, "Evento de prueba 3", 1);
-            eventDao.Create(e3);
+            Assert.AreEqual(list1.Count, 1);
+            Assert.AreEqual(list12.Count, 1);
+            Assert.AreEqual(list2.Count, 1);
+            Assert.AreEqual(list3.Count, 2);
+            
 
-            List<EventCategoryDto> list1 = eventService.FindByKeywords("Evento", 0, 3);
-            List<EventCategoryDto> list2 = eventService.FindByKeywords("Even", 1, 2);
-            List<EventCategoryDto> list3 = eventService.FindByKeywords("ento", 1, 1);
-            List<EventCategoryDto> list4 = eventService.FindByKeywords("man", 0, 2);
-            List<EventCategoryDto> list5 = eventService.FindByKeywords("vacio", 0, 3);
+            Assert.AreEqual(list1[0].evento, e);
 
-            Assert.AreEqual(list1.Count, 3);
-            Assert.AreEqual(list2.Count, 2);
-            Assert.AreEqual(list3.Count, 1);
-            Assert.AreEqual(list4.Count, 1);
-            Assert.AreEqual(list5.Count, 0);
+            Assert.AreEqual(list12[0].evento, e1);
 
-            Assert.AreEqual(list1[0].evento, e3);
-            Assert.AreEqual(list1[1].evento, e2);
-            Assert.AreEqual(list1[2].evento, e1);
+            Assert.AreEqual(list2[0].evento, e);
 
-            Assert.AreEqual(list2[0].evento, e2);
-            Assert.AreEqual(list2[1].evento, e1);
-
-            Assert.AreEqual(list3[0].evento, e3);
-            Assert.AreEqual(list3[0].evento.name, e3.name);
-
-            Assert.AreEqual(list4[0].evento, e2);
-            Assert.AreEqual(list4[0].evento.description, e2.description);
+            Assert.AreEqual(list3[0].evento, e);
+            Assert.AreEqual(list3[1].evento, e1);
 
         }
 
@@ -138,29 +127,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         [TestMethod()]
         public void SearchByKeywords2()
         {
-            Event e1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
-            eventDao.Create(e1);
+            Event e = eventDao.Find(1);
+            Event e1 = eventDao.Find(15);
 
-            Event e2 = Event.CreateEvent(0, "Evento manzana", DateTime.Now, "Evento de prueba 2", 1);
-            eventDao.Create(e2);
-
-            List<EventCategoryDto> list1 = eventService.FindByKeywords("Evento");
-            List<EventCategoryDto> list2 = eventService.FindByKeywords("Even");
-            List<EventCategoryDto> list3 = eventService.FindByKeywords("ento");
-            List<EventCategoryDto> list4 = eventService.FindByKeywords("man");
-            List<EventCategoryDto> list5 = eventService.FindByKeywords("vacio");
+            List<EventCategoryDto> list1 = eventService.FindByKeywords("Petanca");
+            List<EventCategoryDto> list2 = eventService.FindByKeywords("Gilberto");
+            List<EventCategoryDto> list3 = eventService.FindByKeywords("Final petanca");
 
             Assert.AreEqual(list1.Count, 2);
-            Assert.AreEqual(list2.Count, 2);
-            Assert.AreEqual(list3.Count, 4);//por los que ya hay en la bd 
-            Assert.AreEqual(list4.Count, 1);
-            Assert.AreEqual(list5.Count, 0);
+            Assert.AreEqual(list2.Count, 1);
+            Assert.AreEqual(list3.Count, 2);
 
-            Assert.AreEqual(list1[0].evento, e2);
-            Assert.AreEqual(list1[1].evento, e1);
-            Assert.AreEqual(list1[1].evento.description, e1.description);
-            Assert.AreEqual(list2[0].evento, e2);
-            Assert.AreEqual(list2[0].evento.name, e2.name);
+
+            Assert.AreEqual(list1[0].evento, e);
+
+            Assert.AreEqual(list2[0].evento, e);
+
+            Assert.AreEqual(list3[0].evento, e);
+            Assert.AreEqual(list3[1].evento, e1);
         }
 
         [TestMethod()]
@@ -212,9 +196,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
         {
             List<Category> list = eventService.FindAllCategories();
 
-            Assert.AreEqual(list.Count, 8);
-            Assert.AreEqual(categoryDao.Find(1),list[0]);
-            Assert.AreEqual(categoryDao.Find(8),list[7]);
+            Assert.AreEqual(list.Count, 9);
+            Assert.AreEqual(categoryDao.Find(1),list[1]);
+            Assert.AreEqual(categoryDao.Find(8),list[8]);
         }
 
         [TestMethod()]
@@ -237,12 +221,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             String commentText3 = "Prueba de comentarios 3";
             eventService.AddComment(event1.id, commentText3, userProfile.id, new List<string>());
             String commentText4 = "Prueba de comentarios 4";
-            eventService.AddComment(event1.id, commentText4, userProfile2.id, new List<string>());
+            eventService.AddComment(event1.id, commentText4, userProfile.id, new List<string>());
 
             List<Comment> list = eventService.FindCommentsForEvent(event1.id);
 
             Assert.AreEqual(list.Count, 4);
-            Assert.AreEqual(list[0].userProfileId, userProfile2.id);
+            Assert.AreEqual(list[0].UserProfile, userProfile);
             
         }
 
@@ -275,6 +259,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Test
             Assert.AreEqual(list1.Count, 4);
             Assert.AreEqual(list2.Count, 1);
             Assert.AreEqual(list3.Count, 0);
+
+            Assert.AreEqual(list1[0], eventService.FindCommentById(list1[0].id));
+        }
+
+        [TestMethod()]
+        public void FindEventById()
+        {
+            Event event1 = Event.CreateEvent(0, "Evento prueba", DateTime.Now, "Evento de prueba 1", 1);
+            eventDao.Create(event1);
+
+            Assert.AreEqual(eventService.FindEventById(event1.id),event1);
         }
     }
 }

@@ -9,7 +9,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 
 
-//TODO Arreglar findByKeywords
 namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
 {
     /// <summary>
@@ -222,10 +221,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public List<Comment> FindCommentsForEvent(long eventId)
         {
-            Event e = EventDao.Find(eventId);
-            e.Comment.Load();
-            List<Comment> result = e.Comment.ToList();
-            return result;
+            return CommentDao.FindByEventId(eventId);
         }
 
 

@@ -147,6 +147,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <param name="commentId">The comment identifier.</param>
         /// <returns></returns>
         Comment FindCommentById(long commentId);
-        //Todo faltan test de los dos ultimos
     }
 }
