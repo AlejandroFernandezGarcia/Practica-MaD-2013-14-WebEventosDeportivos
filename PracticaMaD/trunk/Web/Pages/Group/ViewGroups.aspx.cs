@@ -60,7 +60,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
             lblUserAdded.Visible = false;
             lblOperationFailed.Visible = false;
 
-            // populate GroupList repeater and Paginator
+            // populate GroupList repeater 
             if (IsPostBack)
             {
                 if (!UserIsLogged)
