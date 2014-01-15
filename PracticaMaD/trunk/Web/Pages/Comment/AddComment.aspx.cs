@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
@@ -87,12 +88,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                             String[] vTags = tagsString.Split(',');
                             foreach (var t in vTags)
                             {
-                                if (t.Length >= MAX_LENGTH_TAG)
+                                var tmp = t.Trim();
+                                if (tmp.Length >= MAX_LENGTH_TAG)
                                 {
                                     lblTagMaxLenght.Visible = true;
                                     break;
                                 }
-                                tags.Add(t.ToLower());
+                                if (tmp.Length != 0)
+                                {
+                                    tags.Add(tmp.ToLower());
+                                }
                             }
                         }
                         if (!lblTagMaxLenght.Visible)
@@ -112,5 +117,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         {
             Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()));
         }
+
     }
 }

@@ -141,4 +141,10 @@
   <data name="Page.Title" xml:space="preserve">
     <value>PracticaMaD - Nova Recomendación</value>
   </data>
+  <data name="lblNoGroupSelected.Text" xml:space="preserve">
+    <value>Hai que seleccionar al menos un grupo</value>
+  </data>
+  <data name="lblMaxRecomendationLength.Text" xml:space="preserve">
+    <value>A máxima lonxitudo para unha recomendación es 1000 caracteres</value>
+  </data>
 </root>

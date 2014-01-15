@@ -129,12 +129,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                             String[] vTags = tagsString.Split(',');
                             foreach (var t in vTags)
                             {
-                                if (t.Length >= 50)
+                                var tmp = t.Trim();
+                                if (tmp.Length >= 50)
                                 {
                                     lblTagMaxLenght.Visible = true;
                                     break;
                                 }
-                                tags.Add(t.ToLower());
+                                if (tmp.Length != 0)
+                                {
+                                    tags.Add(tmp.ToLower());
+                                }
+                                
                             }
                         }
                         if (!lblTagMaxLenght.Visible)
