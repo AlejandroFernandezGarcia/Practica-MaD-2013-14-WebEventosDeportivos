@@ -6,6 +6,10 @@
         <form id="NewRecommendationForm" method="POST" runat="server">
         <asp:Label ID="lblOperationSucceed" runat="server" CssClass="feedbackSuccess" Visible="False"
             meta:resourcekey="lblOperationSucceed" />
+        <asp:Label ID="lblNoGroupSelected" runat="server" CssClass="feedbackInfo" Visible="False"
+            meta:resourcekey="lblNoGroupSelected" />
+        <asp:Label ID="lblMaxRecomendationLength" runat="server" CssClass="feedbackFailure" Visible="False"
+            meta:resourcekey="lblMaxRecomendationLength" />
         <div class="fieldComment" >
             <span class="labelLeft">
             <asp:Localize ID="lclEventName" runat="server" meta:resourcekey="lclEventName" /></span>

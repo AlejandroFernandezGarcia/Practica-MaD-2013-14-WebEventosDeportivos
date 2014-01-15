@@ -13,6 +13,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService;
 using Es.Udc.DotNet.PracticaMaD.Model.RecommendationService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
+//UNDONE Redimensionar el textBox de la recomendation
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
 {
     public partial class NewRecommendation : System.Web.UI.Page
@@ -95,6 +96,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
 
         protected void BtnRecommendClick(object sender, EventArgs e)
         {
+            lblNoGroupSelected.Visible = false;
+            lblOperationSucceed.Visible = false;
+            lblMaxRecomendationLength.Visible = false;
+
             List<long> usersGroupIds = new List<long>();
             List<RepeaterItem> addedItems = new List<RepeaterItem>();
 
@@ -116,37 +121,48 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
                     }
                 }
             }
-
-            if (usersGroupIds.Count > 0)
+            txtRecommendation.MaxLength = 1000;
+            if (txtRecommendation.Text.Length >= 1000)
             {
-                try
+                lblMaxRecomendationLength.Visible = true;
+            }
+            else
+            {
+                if (usersGroupIds.Count > 0)
                 {
-                    RecommendationService.Create(EventId, usersGroupIds, txtRecommendation.Text,
-                        SessionManager.GetUserSession(Context).UserProfileId);
-
-                    // show success feedback
-                    lblOperationSucceed.Visible = true;
-
-                    // update view
-                    foreach (RepeaterItem item in addedItems)
+                    try
                     {
-                        // disable checkbox
-                        ((CheckBox)item.FindControl("cbRecommend")).Enabled = false;
+                        RecommendationService.Create(EventId, usersGroupIds, txtRecommendation.Text,
+                            SessionManager.GetUserSession(Context).UserProfileId);
+
+                        // show success feedback
+                        lblOperationSucceed.Visible = true;
+
+                        // update view
+                        foreach (RepeaterItem item in addedItems)
+                        {
+                            // disable checkbox
+                            ((CheckBox) item.FindControl("cbRecommend")).Enabled = false;
+                        }
+
+                        // update view
+                        PopulateGroupList();
+
+                        txtRecommendation.Text = "";
                     }
-
-                    // update view
-                    PopulateGroupList();
-
-                    txtRecommendation.Text = "";
+                    catch (NullReferenceException)
+                    {
+                        // this happens when SessionManager.GetUserSession returns null,
+                        // so we force logout and redirect to the authentication page
+                        SessionManager.Logout(Context);
+                        Response.Redirect(Response.
+                            ApplyAppPathModifier("~/Pages/User/Authentication.aspx"
+                                                 + "?ReturnUrl=%2fPages%2fRecommend%2fNewRecommendation.aspx"));
+                    }
                 }
-                catch (NullReferenceException)
+                else
                 {
-                    // this happens when SessionManager.GetUserSession returns null,
-                    // so we force logout and redirect to the authentication page
-                    SessionManager.Logout(Context);
-                    Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/User/Authentication.aspx"
-                        + "?ReturnUrl=%2fPages%2fRecommend%2fNewRecommendation.aspx"));
+                    lblNoGroupSelected.Visible = true;
                 }
             }
 

@@ -11,6 +11,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.EventService;
 
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
+//UNDONE Recomendacion muy larga
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
 {
     public partial class ViewRecomendations : System.Web.UI.Page

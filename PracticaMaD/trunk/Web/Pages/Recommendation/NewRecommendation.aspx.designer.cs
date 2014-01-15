@@ -31,6 +31,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation {
         protected global::System.Web.UI.WebControls.Label lblOperationSucceed;
         
         /// <summary>
+        /// Control lblNoGroupSelected.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNoGroupSelected;
+        
+        /// <summary>
+        /// Control lblMaxRecomendationLength.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMaxRecomendationLength;
+        
+        /// <summary>
         /// Control lclEventName.
         /// </summary>
         /// <remarks>

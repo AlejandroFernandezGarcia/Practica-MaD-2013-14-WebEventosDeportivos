@@ -206,13 +206,6 @@
     <Compile Include="Pages\User\UpdateUserProfile.aspx.designer.cs">
       <DependentUpon>UpdateUserProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Paginator.ascx.cs">
-      <DependentUpon>Paginator.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\Paginator.ascx.designer.cs">
-      <DependentUpon>Paginator.ascx</DependentUpon>
-    </Compile>
     <Compile Include="PracticaMaD.Master.cs">
       <DependentUpon>PracticaMaD.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -249,7 +242,6 @@
     <Content Include="Pages\User\Logout.aspx" />
     <Content Include="Pages\User\Register.aspx" />
     <Content Include="Pages\User\UpdateUserProfile.aspx" />
-    <Content Include="Controls\Paginator.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -399,11 +391,11 @@
   <ItemGroup>
     <Content Include="Pages\Event\App_LocalResources\gl\SearchEvents.aspx.gl.resx" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Controls\App_LocalResources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Pages\Recommendation\App_LocalResources\en-default\NewRecommendation.aspx.resx" />
+    <Content Include="Pages\Recommendation\App_LocalResources\en-default\NewRecommendation.aspx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Comment\App_LocalResources\en-default\AddComment.aspx.resx">
@@ -483,7 +475,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>4561</DevelopmentServerPort>
+          <DevelopmentServerPort>4563</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -139,7 +139,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
             List<string> tagS = new List<string>();
             foreach (Tag t in c.Tag)
             {
-                tags.Add(t.tagName);
+                tagS.Add(t.tagName);
             }
 
             TagService.RemoveTagsFromComment(tagS,c.id);
