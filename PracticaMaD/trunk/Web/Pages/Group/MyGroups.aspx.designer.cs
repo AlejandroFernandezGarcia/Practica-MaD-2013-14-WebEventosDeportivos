@@ -94,12 +94,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group {
         protected global::System.Web.UI.WebControls.Button btnLeaveGroups;
         
         /// <summary>
-        /// Control Paginator.
+        /// Control linkPrevius.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Es.Udc.DotNet.PracticaMaD.Web.Pages.Controls.Paginator Paginator;
+        protected global::System.Web.UI.WebControls.HyperLink linkPrevius;
+        
+        /// <summary>
+        /// Control linkNext.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink linkNext;
     }
 }

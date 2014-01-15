@@ -86,7 +86,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
                     url += "&category=" + category;
                 }
                 url += "&startIndex=" + startIndex;
-                linkNext.PostBackUrl = url;
+                linkNext.NavigateUrl = url;
                 
             }
             if (Convert.ToInt32(ViewState["startIndex"].ToString()) != 0)
@@ -99,7 +99,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
                     url += "&category=" + category;
                 }
                 url += "&startIndex=" + startIndex;
-                linkPrevius.PostBackUrl = url;
+                linkPrevius.NavigateUrl = url;
             }
         }
 

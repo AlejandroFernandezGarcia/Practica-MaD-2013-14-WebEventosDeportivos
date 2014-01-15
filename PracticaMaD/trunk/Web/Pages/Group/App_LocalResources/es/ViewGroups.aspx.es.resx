@@ -144,4 +144,10 @@
   <data name="lblOperationFailed.Text" xml:space="preserve">
     <value>Lo sentimos, no se ha podido unir al grupo, pruebe más tarde</value>
   </data>
+  <data name="lkNext.Text" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="lkPrevius.Text" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
 </root>

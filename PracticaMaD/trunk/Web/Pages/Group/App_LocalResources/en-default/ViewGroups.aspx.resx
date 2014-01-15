@@ -144,4 +144,10 @@
   <data name="lblOperationFailed.Text" xml:space="preserve">
     <value>Sorry, join operation failed, try again later</value>
   </data>
+  <data name="lkPrevius.Text" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="lkNext.Text" xml:space="preserve">
+    <value>Next</value>
+  </data>
 </root>

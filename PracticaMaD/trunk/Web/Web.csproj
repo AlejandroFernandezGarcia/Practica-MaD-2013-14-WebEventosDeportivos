@@ -401,8 +401,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\App_LocalResources\" />
-    <Folder Include="Pages\Comment\App_LocalResources\es\" />
-    <Folder Include="Pages\Comment\App_LocalResources\gl\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Recommendation\App_LocalResources\en-default\NewRecommendation.aspx.resx" />
@@ -446,6 +444,36 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\Recommendation\App_LocalResources\gl\ViewRecomendations.aspx.gl.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\es\ViewComments.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\es\AddComment.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\es\ViewCommentAndTag.aspx.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\gl\ViewComments.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\gl\AddComment.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\Comment\App_LocalResources\gl\ViewCommentAndTag.aspx.gl.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

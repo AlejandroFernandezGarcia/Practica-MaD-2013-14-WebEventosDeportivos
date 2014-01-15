@@ -45,8 +45,11 @@
         </tbody>
     </table>
     <div class="button">
-        <asp:Button ID="btnLeaveGroups" runat="server" OnClick="BtnLeaveGroupsClick" meta:resourcekey="btnLeaveGroups" />
+        <asp:Button ID="btnLeaveGroups" runat="server"  meta:resourcekey="btnLeaveGroups" />
     </div>
-    <uc:Paginator ID="Paginator" runat="server" NavigateUrl="~/Pages/Group/MyGroups.aspx"></uc:Paginator>
     </form>
+    <div class="nextPrevLinks">
+        <asp:HyperLink runat="server" ID="linkPrevius" meta:resourcekey="lkPrevius"></asp:HyperLink>
+        <asp:HyperLink runat="server" ID="linkNext" meta:resourcekey="lkNext"></asp:HyperLink>
+    </div>
 </asp:Content>

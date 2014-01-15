@@ -26,8 +26,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
 
         public const int GROUPS_PER_PAGE = 10;
 
+        private bool morePages = false;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            linkNext.Visible = false;
+            linkPrevius.Visible = false;
+
+            String startIndexStr = Request.QueryString["startIndex"];
+
+            if (startIndexStr == null)
+            {
+                ViewState["startIndex"] = 0;
+            }
+            else
+            {
+                ViewState["startIndex"] = Convert.ToInt16(startIndexStr);
+            }
             // initialize UserIsLogged & UserProfileId
             UserSession userSession = SessionManager.GetUserSession(Context);
             if (userSession == null)
@@ -46,27 +61,101 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
             lblOperationFailed.Visible = false;
 
             // populate GroupList repeater and Paginator
-            if (!Page.IsPostBack)
+            if (IsPostBack)
             {
-                PopulateGroupList();
+                if (!UserIsLogged)
+                {
+                    lblLoginRequired.Visible = true;
+
+                }else
+                {
+                    List<long> usersGroupIds = new List<long>();
+                    List<RepeaterItem> addedItems = new List<RepeaterItem>();
+
+                    foreach (RepeaterItem item in GroupList.Items)
+                    {
+                        if (item.ItemType == ListItemType.Item
+                            || item.ItemType == ListItemType.AlternatingItem)
+                        {
+                            CheckBox cbJoin = (CheckBox) item.FindControl("cbJoin");
+                            if (cbJoin.Checked && cbJoin.Enabled)
+                            {
+                                // remember id (to use the service later)
+                                HiddenField hfId = (HiddenField) item.FindControl("hfId");
+                                long id = Int64.Parse(hfId.Value);
+                                usersGroupIds.Add(id);
+
+                                // remember item (to update view after service use)
+                                addedItems.Add(item);
+                            }
+                        }
+                    }
+
+                    if (usersGroupIds.Count > 0)
+                    {
+                        try
+                        {
+                            // use service to add the user to the groups
+                            UsersGroupService.AddUserToGroup(usersGroupIds, UserProfileId);
+
+                            // show success feedback
+                            lblUserAdded.Visible = true;
+
+                            // update view
+                            foreach (RepeaterItem item in addedItems)
+                            {
+                                // disable checkbox
+                                ((CheckBox) item.FindControl("cbJoin")).Enabled = false;
+                                // increment user count
+                                Label lblUserCount = (Label) item.FindControl("lblUserCount");
+                                lblUserCount.Text = (Int64.Parse(lblUserCount.Text) + 1L).ToString();
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            if (ex is DuplicateInstanceException || ex is UpdateException || ex is SqlException)
+                            {
+                                lblOperationFailed.Visible = true;
+                                return;
+                            }
+                            throw;
+                        }
+                    }
+                }
+            }
+            List<UsersGroupDto> listUsersGroupDtos = UsersGroupService.FindAllGroups(
+                    Convert.ToInt32(ViewState["startIndex"].ToString()),
+                    GROUPS_PER_PAGE + 1);
+
+            if (listUsersGroupDtos.Count == (GROUPS_PER_PAGE + 1))
+            {
+                morePages = true;
+                listUsersGroupDtos.Remove(listUsersGroupDtos.Last());
+            }
+            PopulateGroupList(listUsersGroupDtos);
+
+            if (morePages)
+            {
+                linkNext.Visible = true;
+                int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) + GROUPS_PER_PAGE;
+                linkNext.NavigateUrl = "~/Pages/Group/ViewGroups.aspx" + "?startIndex=" + startIndex;
+            }
+            if (Convert.ToInt32(ViewState["startIndex"].ToString()) != 0)
+            {
+                linkPrevius.Visible = true;
+                int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) - GROUPS_PER_PAGE;
+                linkPrevius.NavigateUrl = "~/Pages/Group/ViewGroups.aspx" + "?startIndex=" + startIndex;
             }
         }
 
-        private void PopulateGroupList()
+        private void PopulateGroupList(List<UsersGroupDto> list )
         {
-            // paginator
-            Paginator.ItemCount = UsersGroupService.FindAllGroups().Count;
-            Paginator.ItemsPerPage = GROUPS_PER_PAGE;
-            Paginator.UpdateView();
-
             // user groups
             MyGroupIdList = UserIsLogged ? GroupDtoListToIdList(UsersGroupService.FindByUserId(
                 UserProfileId)) : new List<long>();
 
-            // all groups
-            var usersGroups = UsersGroupService.FindAllGroups(
-                Paginator.StartIndex, Paginator.ItemsPerPage);
-            GroupList.DataSource = usersGroups;
+            GroupList.DataSource = list;
             GroupListCurrentRow = 0;
             GroupList.DataBind();
         }
@@ -102,68 +191,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
             }
         }
 
-        protected void BtnJoinGroupsClick(object sender, EventArgs e)
-        {
-            if (!UserIsLogged)
-            {
-                lblLoginRequired.Visible = true;
-                return;
-            }
-
-            List<long> usersGroupIds = new List<long>();
-            List<RepeaterItem> addedItems = new List<RepeaterItem>();
-
-            foreach (RepeaterItem item in GroupList.Items)
-            {
-                if (item.ItemType == ListItemType.Item
-                    || item.ItemType == ListItemType.AlternatingItem)
-                {
-                    CheckBox cbJoin = (CheckBox)item.FindControl("cbJoin");
-                    if (cbJoin.Checked && cbJoin.Enabled)
-                    {
-                        // remember id (to use the service later)
-                        HiddenField hfId = (HiddenField)item.FindControl("hfId");
-                        long id = Int64.Parse(hfId.Value);
-                        usersGroupIds.Add(id);
-
-                        // remember item (to update view after service use)
-                        addedItems.Add(item);
-                    }
-                }
-            }
-
-            if (usersGroupIds.Count > 0)
-            {
-                try
-                {
-                    // use service to add the user to the groups
-                    UsersGroupService.AddUserToGroup(usersGroupIds, UserProfileId);
-
-                    // show success feedback
-                    lblUserAdded.Visible = true;
-
-                    // update view
-                    foreach (RepeaterItem item in addedItems)
-                    {
-                        // disable checkbox
-                        ((CheckBox)item.FindControl("cbJoin")).Enabled = false;
-                        // increment user count
-                        Label lblUserCount = (Label)item.FindControl("lblUserCount");
-                        lblUserCount.Text = (Int64.Parse(lblUserCount.Text) + 1L).ToString();
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    if (ex is DuplicateInstanceException || ex is UpdateException || ex is SqlException)
-                    {
-                        lblOperationFailed.Visible = true;
-                        return;
-                    }
-                    throw;
-                }
-            }
-        }
 
         private List<long> GroupDtoListToIdList(List<UsersGroupDto> usersGroupDtoList)
         {

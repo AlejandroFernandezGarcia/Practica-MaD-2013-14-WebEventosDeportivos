@@ -5,6 +5,10 @@
     
     <asp:Label ID="lblEmptyList" runat="server" CssClass="feedbackInfo" Visible="False"
         meta:resourcekey="lblEmptyList" />
+    <asp:Label ID="lblCommendEdited" runat="server" CssClass="feedbackSuccess" Visible="False"
+        meta:resourcekey="lblCommendEdited" />
+    <asp:Label ID="lblCommentDeleted" runat="server" CssClass="feedbackSuccess" Visible="False"
+        meta:resourcekey="lblCommentDeleted" />
         
         
     <div class="fieldComment" >
@@ -39,10 +43,8 @@
             </asp:Repeater>
         </tbody>
     </table>
-    <form runat="server">
-        <div class="nextPrevLinks">
-            <asp:LinkButton runat="server" ID="linkPrevius" meta:resourcekey="lkPrevius"></asp:LinkButton>
-            <asp:LinkButton runat="server" ID="linkNext" meta:resourcekey="lkNext"></asp:LinkButton>
-        </div>
-    </form>
+    <div class="nextPrevLinks">
+        <asp:HyperLink runat="server" ID="linkPrevius" meta:resourcekey="lkPrevius"></asp:HyperLink>
+        <asp:HyperLink runat="server" ID="linkNext" meta:resourcekey="lkNext"></asp:HyperLink>
+    </div>
 </asp:Content>

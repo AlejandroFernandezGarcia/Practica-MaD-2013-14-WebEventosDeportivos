@@ -144,4 +144,10 @@
   <data name="lblOperationFailed.Text" xml:space="preserve">
     <value>Sentímolo, operación de ingreso fallou, proba de novo máis tarde</value>
   </data>
+  <data name="lkNext.Text" xml:space="preserve">
+    <value>Seguinte</value>
+  </data>
+  <data name="lkPrevius.Text" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
 </root>
