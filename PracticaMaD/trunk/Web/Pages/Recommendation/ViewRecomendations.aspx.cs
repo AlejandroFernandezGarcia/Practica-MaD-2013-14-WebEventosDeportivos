@@ -84,14 +84,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
             {
                 linkNext.Visible = true;
                 int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) + NUM_RECOMMENDATIONS_PER_PAGE;
-                linkNext.PostBackUrl = "~/Pages/Recommendation/ViewRecomendations.aspx" + "?startIndex=" + startIndex;
+                linkNext.NavigateUrl = "~/Pages/Recommendation/ViewRecomendations.aspx" + "?startIndex=" + startIndex;
                 listRecommendations.Remove(listRecommendations.Last());
             }
             if (Convert.ToInt32(ViewState["startIndex"].ToString()) != 0)
             {
                 linkPrevius.Visible = true;
                 int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) - NUM_RECOMMENDATIONS_PER_PAGE;
-                linkPrevius.PostBackUrl = "~/Pages/Recommendation/ViewRecomendations.aspx" + "?startIndex=" + startIndex;
+                linkPrevius.NavigateUrl = "~/Pages/Recommendation/ViewRecomendations.aspx" + "?startIndex=" + startIndex;
             }
         }
 

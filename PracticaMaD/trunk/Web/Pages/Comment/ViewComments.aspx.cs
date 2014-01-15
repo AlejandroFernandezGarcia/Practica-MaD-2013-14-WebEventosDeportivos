@@ -8,8 +8,6 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
 
-//TODO Return a result
-//TODO Falta feedback al volver de viewCommentAndTag
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
@@ -32,6 +30,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
         {
             linkNext.Visible = false;
             linkPrevius.Visible = false;
+
+            String vComTag = Request.QueryString["vComTag"];
+            if (vComTag != null)
+            {
+                if (vComTag.Equals("edited"))
+                {
+                    lblCommendEdited.Visible = true;
+                }
+                if (vComTag.Equals("deleted"))
+                {
+                    lblCommentDeleted.Visible = true;
+                }
+            }
 
             String eventIdStr = Request.QueryString["eventId"];
 
@@ -82,14 +93,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
             {
                 linkNext.Visible = true;
                 int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) + NUM_COMMENTS_PER_PAGE;
-                linkNext.PostBackUrl = "~/Pages/Comment/ViewComments.aspx" + "?eventId=" + eventId +
+                linkNext.NavigateUrl = "~/Pages/Comment/ViewComments.aspx" + "?eventId=" + eventId +
                                        "&startIndex=" + startIndex;
             }
             if(Convert.ToInt32(ViewState["startIndex"].ToString()) != 0)
             {
                 linkPrevius.Visible = true;
                 int startIndex = Convert.ToInt32(ViewState["startIndex"].ToString()) - NUM_COMMENTS_PER_PAGE;
-                linkPrevius.PostBackUrl = "~/Pages/Comment/ViewComments.aspx" + "?eventId=" + eventId +
+                linkPrevius.NavigateUrl = "~/Pages/Comment/ViewComments.aspx" + "?eventId=" + eventId +
                                        "&startIndex=" + startIndex;
             }
 

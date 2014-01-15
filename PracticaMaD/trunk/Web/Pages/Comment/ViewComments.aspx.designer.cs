@@ -22,6 +22,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         protected global::System.Web.UI.WebControls.Label lblEmptyList;
         
         /// <summary>
+        /// Control lblCommendEdited.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCommendEdited;
+        
+        /// <summary>
+        /// Control lblCommentDeleted.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCommentDeleted;
+        
+        /// <summary>
         /// Control lclEventName.
         /// </summary>
         /// <remarks>
@@ -82,7 +100,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkPrevius;
+        protected global::System.Web.UI.WebControls.HyperLink linkPrevius;
         
         /// <summary>
         /// Control linkNext.
@@ -91,6 +109,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkNext;
+        protected global::System.Web.UI.WebControls.HyperLink linkNext;
     }
 }

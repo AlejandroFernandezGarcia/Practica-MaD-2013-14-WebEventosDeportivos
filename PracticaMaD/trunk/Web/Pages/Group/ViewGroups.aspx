@@ -47,9 +47,11 @@
         </tbody>
     </table>
     <div class="button">
-        <asp:Button ID="btnJoinGroups" runat="server" OnClick="BtnJoinGroupsClick" meta:resourcekey="btnJoinGroups" />
+        <asp:Button ID="btnJoinGroups" runat="server" meta:resourcekey="btnJoinGroups" />
     </div>
     </form>
-    
-    <uc:Paginator ID="Paginator" runat="server" NavigateUrl="~/Pages/Group/ViewGroups.aspx"></uc:Paginator>
+    <div class="nextPrevLinks">
+        <asp:HyperLink runat="server" ID="linkPrevius" meta:resourcekey="lkPrevius"></asp:HyperLink>
+        <asp:HyperLink runat="server" ID="linkNext" meta:resourcekey="lkNext"></asp:HyperLink>
+    </div>
 </asp:Content>

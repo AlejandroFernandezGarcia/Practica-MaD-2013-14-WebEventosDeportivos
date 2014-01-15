@@ -30,7 +30,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
             if (!IsPostBack)
             {
-                ViewState["retUrl"] = "~" + Request.UrlReferrer.ToString().Substring(21);
+                String tmp = Request.UrlReferrer.ToString().Substring(21);
+                if (tmp.Contains("vComTag"))
+                {
+                    tmp = tmp.Replace("&vComTag=edited", "");
+                    tmp = tmp.Replace("&vComTag=deleted", "");
+                }
+                ViewState["retUrl"] = "~" + tmp;
             }
 
             try
@@ -136,7 +142,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
                             eventService.UpdateComment(commentId, text, tags);
                             lblCommentSuccess.Visible = true;
 
-                            Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()));
+                            Response.Redirect(Response.ApplyAppPathModifier(
+                                ViewState["retUrl"].ToString())+"&vComTag=edited");
                         }
                     }
                 }
@@ -145,20 +152,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
         protected void BtnDelete(object sender, EventArgs e)
         {
-            if (Page.IsValid)
-            {
-                eventService.RemoveComment(eventId,commentId);
-                //TODO feedback al volver en todos
-                Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()));
-            }
+
+            eventService.RemoveComment(eventId,commentId);
+            
+            Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString() + "&vComTag=deleted"));
+            
         }
 
         protected void BtnReturn(object sender, EventArgs e)
         {
-            if (Page.IsValid)
-            {
-                Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()));
-            }
+            Response.Redirect(Response.ApplyAppPathModifier(ViewState["retUrl"].ToString()));
         }
     }
 }

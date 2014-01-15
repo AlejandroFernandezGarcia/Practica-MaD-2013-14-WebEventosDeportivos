@@ -141,4 +141,10 @@
   <data name="btnLeaveGroups.Text" xml:space="preserve">
     <value>Abandonar los grupos seleccionados</value>
   </data>
+  <data name="lkNext.Text" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="lkPrevius.Text" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
 </root>

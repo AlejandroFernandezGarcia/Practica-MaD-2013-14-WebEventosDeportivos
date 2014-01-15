@@ -117,37 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblEmptyList.Text" xml:space="preserve">
-    <value>No comments for this event</value>
+  <data name="Page.Title" xml:space="preserve">
+    <value>PracticaMaD - Ver e Editar comentarios e etiquetas</value>
+  </data>
+  <data name="lblCommentMaxLength.Text" xml:space="preserve">
+    <value>A lonxitude máxima dun comentario permitida é de 1.000 caracteres</value>
+  </data>
+  <data name="lblTagMaxLenght.Text" xml:space="preserve">
+    <value>Tag lonxitude máxima permitida son 50 caracteres</value>
+  </data>
+  <data name="lblCommentSuccess.Text" xml:space="preserve">
+    <value>O comentario foi creada correctamente</value>
   </data>
   <data name="lclEventName.Text" xml:space="preserve">
-    <value>Event name:</value>
+    <value>Nome do evento:</value>
   </data>
-  <data name="lclUserName.Text" xml:space="preserve">
-    <value>User name</value>
+  <data name="btnEdit.Text" xml:space="preserve">
+    <value>Actualizar</value>
   </data>
-  <data name="lclDate.Text" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="lclComment.Text" xml:space="preserve">
-    <value>Comment</value>
-  </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>PracticaMaD - View comment for event</value>
-  </data>
-  <data name="lkPrevius.Text" xml:space="preserve">
-    <value>Previous</value>
-  </data>
-  <data name="lkNext.Text" xml:space="preserve">
-    <value>Next</value>
-  </data>
-  <data name="lblCommendEdited.Text" xml:space="preserve">
-    <value>Comment edited sucessfully</value>
-  </data>
-  <data name="lblCommentDeleted.Text" xml:space="preserve">
-    <value>Comment deleted sucesfully</value>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Eliminar</value>
   </data>
   <data name="btnReturn.Text" xml:space="preserve">
-    <value>Return</value>
+    <value>Retorno</value>
+  </data>
+  <data name="lblEmptyComment.Text" xml:space="preserve">
+    <value>O cadro de comentario, non pode estar baleiro</value>
+  </data>
+  <data name="lclCommentTip.Text" xml:space="preserve">
+    <value>Deixe o seu comentario aquí. Max: 1000 caracteres</value>
+  </data>
+  <data name="lclTagInstructions.Text" xml:space="preserve">
+    <value>Escriba os tag separadas por comas. Max tag lonxitude: 50 caracteres</value>
   </data>
 </root>

@@ -94,22 +94,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event {
         protected global::System.Web.UI.WebControls.Repeater EventList;
         
         /// <summary>
-        /// Control Form1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
-        
-        /// <summary>
         /// Control linkPrevius.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkPrevius;
+        protected global::System.Web.UI.WebControls.HyperLink linkPrevius;
         
         /// <summary>
         /// Control linkNext.
@@ -118,6 +109,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkNext;
+        protected global::System.Web.UI.WebControls.HyperLink linkNext;
     }
 }
