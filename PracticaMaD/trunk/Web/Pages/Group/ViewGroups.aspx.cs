@@ -24,14 +24,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
         protected bool UserIsLogged { get; set; }
         protected long UserProfileId { get; set; }
 
-        public static readonly int GROUPS_PER_PAGE = 10;
+        public const int GROUPS_PER_PAGE = 10;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // hide labels
-            lblUserAdded.Visible = false;
-            lblOperationFailed.Visible = false;
-
             // initialize UserIsLogged & UserProfileId
             UserSession userSession = SessionManager.GetUserSession(Context);
             if (userSession == null)
@@ -45,46 +41,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
                 UserIsLogged = true;
             }
 
-            // last page
-            float count = (float)UsersGroupService.FindAllGroups().Count;
-            float perPage = (float)GROUPS_PER_PAGE;
-            int lastPage = (int)Math.Ceiling(count / perPage);
-            Paginator.LastPage = lastPage;
-
-            // current page
-            int currentPage = 1;
-            if (Request.QueryString["page"] != null)
-            {
-                currentPage = ParseInt(Request.QueryString["page"]);
-                if (currentPage > lastPage)
-                {
-                    currentPage = lastPage;
-                }
-                else if (currentPage < 1)
-                {
-                    currentPage = 1;
-                }
-            }
-            Paginator.CurrentPage = currentPage;
+            // hide labels
+            lblUserAdded.Visible = false;
+            lblOperationFailed.Visible = false;
 
             // populate GroupList repeater and Paginator
             if (!Page.IsPostBack)
             {
-                // user groups
-                MyGroupIdList = UserIsLogged ? GroupDtoListToIdList(UsersGroupService.FindByUserId(
-                    UserProfileId)) : new List<long>();
-
-                // all groups
-                var usersGroups = UsersGroupService.FindAllGroups(
-                    (currentPage - 1) * GROUPS_PER_PAGE, GROUPS_PER_PAGE);
-                GroupList.DataSource = usersGroups;
-                GroupListCurrentRow = 0;
-                GroupList.DataBind();
+                PopulateGroupList();
             }
+        }
 
-            // enable submit only if logged
-            btnJoinGroups.Enabled = UserIsLogged;
-            lblLoginRequired.Visible = !UserIsLogged;
+        private void PopulateGroupList()
+        {
+            // paginator
+            Paginator.ItemCount = UsersGroupService.FindAllGroups().Count;
+            Paginator.ItemsPerPage = GROUPS_PER_PAGE;
+            Paginator.UpdateView();
+
+            // user groups
+            MyGroupIdList = UserIsLogged ? GroupDtoListToIdList(UsersGroupService.FindByUserId(
+                UserProfileId)) : new List<long>();
+
+            // all groups
+            var usersGroups = UsersGroupService.FindAllGroups(
+                Paginator.StartIndex, Paginator.ItemsPerPage);
+            GroupList.DataSource = usersGroups;
+            GroupListCurrentRow = 0;
+            GroupList.DataBind();
         }
 
         protected void GroupList_OnItemDataBound(object sender, RepeaterItemEventArgs e)

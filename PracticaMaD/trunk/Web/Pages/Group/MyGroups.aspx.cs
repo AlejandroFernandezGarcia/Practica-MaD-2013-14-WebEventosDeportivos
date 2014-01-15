@@ -22,8 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
         protected bool UserIsLogged { get; set; }
         protected long UserProfileId { get; set; }
 
-        private int _currentPage;
-        public static readonly int GROUPS_PER_PAGE = 10;
+        public const int GROUPS_PER_PAGE = 10;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,42 +36,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
             UserProfileId = userSession.UserProfileId;
             UserIsLogged = true;
 
-            // hide/show labels
-            lblOperationSucceed.Visible = ParseInt(Request.QueryString["success"]) == 1;
+            // hide feedback labels
+            lblOperationSucceed.Visible = false;
             lblOperationFailed.Visible = false;
 
-            // last page
-            float count = (float)UsersGroupService.FindByUserId(UserProfileId).Count;
-            float perPage = (float)GROUPS_PER_PAGE;
-            int lastPage = (int)Math.Ceiling(count / perPage);
-            Paginator.LastPage = lastPage;
-
-            // current page
-            _currentPage = 1;
-            if (Request.QueryString["page"] != null)
-            {
-                _currentPage = ParseInt(Request.QueryString["page"]);
-                if (_currentPage > lastPage)
-                {
-                    _currentPage = lastPage;
-                }
-                else if (_currentPage < 1)
-                {
-                    _currentPage = 1;
-                }
-            }
-            Paginator.CurrentPage = _currentPage;
-
-            // populate GroupList repeater
+            // populate GroupList repeater and Paginator
             if (!Page.IsPostBack)
             {
-                // my groups
-                var usersGroups = UsersGroupService.FindByUserId(UserProfileId,
-                    (_currentPage - 1) * GROUPS_PER_PAGE, GROUPS_PER_PAGE);
-                GroupList.DataSource = usersGroups;
-                GroupListCurrentRow = 0;
-                GroupList.DataBind();
+                PopulateGroupList();
             }
+        }
+
+        private void PopulateGroupList()
+        {
+            // paginator
+            Paginator.ItemCount = UsersGroupService.FindByUserId(UserProfileId).Count;
+            Paginator.ItemsPerPage = GROUPS_PER_PAGE;
+            Paginator.UpdateView();
+
+            // group list
+            var usersGroups = UsersGroupService.FindByUserId(UserProfileId,
+                Paginator.StartIndex, Paginator.ItemsPerPage);
+            GroupList.DataSource = usersGroups;
+            GroupListCurrentRow = 0;
+            GroupList.DataBind();
         }
 
         protected void GroupList_OnItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -133,9 +120,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
                     UsersGroupService.RemoveUserFromGroup(usersGroupIds, UserProfileId);
 
                     // update view
-                    Response.Redirect(Response.
-                        ApplyAppPathModifier("~/Pages/Group/MyGroups.aspx"
-                        + "?page=" + _currentPage + "&success=1"));
+                    PopulateGroupList();
+
+                    // show success feedback
+                    lblOperationSucceed.Visible = true;
                 }
                 catch (Exception ex)
                 {
@@ -149,56 +137,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Group
             }
         }
 
-        private void PopulateGroupList()
-        {
-            // last page
-            float count = (float)UsersGroupService.FindByUserId(UserProfileId).Count;
-            float perPage = (float)GROUPS_PER_PAGE;
-            int lastPage = (int)Math.Ceiling(count / perPage);
-            Paginator.LastPage = lastPage;
-
-            // current page
-            int currentPage = 1;
-            if (Request.QueryString["page"] != null)
-            {
-                currentPage = ParseInt(Request.QueryString["page"]);
-                if (currentPage > lastPage)
-                {
-                    currentPage = lastPage;
-                }
-                else if (currentPage < 1)
-                {
-                    currentPage = 1;
-                }
-            }
-            Paginator.CurrentPage = currentPage;
-
-            // my groups
-            var usersGroups = UsersGroupService.FindByUserId(UserProfileId,
-                (currentPage - 1) * GROUPS_PER_PAGE, GROUPS_PER_PAGE);
-            GroupList.DataSource = usersGroups;
-            GroupListCurrentRow = 0;
-            GroupList.DataBind();
-        }
-
         private void GoToAuthentication()
         {
             SessionManager.Logout(Context);
             Response.Redirect(Response.
                 ApplyAppPathModifier("~/Pages/User/Authentication.aspx"
                 + "?ReturnUrl=%2fPages%2fGroup%2fMyGroups.aspx"));
-        }
-
-        private int ParseInt(String str)
-        {
-            try
-            {
-                return Int32.Parse(str);
-            }
-            catch (Exception e)
-            {
-                return 0;
-            }
         }
     }
 }
