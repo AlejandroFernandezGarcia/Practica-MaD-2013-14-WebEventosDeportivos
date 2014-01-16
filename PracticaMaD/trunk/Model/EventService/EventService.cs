@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
+using Es.Udc.DotNet.ModelUtil.Log;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.EventDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
@@ -59,6 +60,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public List<EventCategoryDto> FindByKeywords(string keywords, long categoryId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindByKeywords(keywords=" + keywords + ",categoryId=" + categoryId + ") used.", MessageType.Info);
+
             List<Event> listEvent = EventDao.FindByKeywords(keywords, categoryId);
 
             List<EventCategoryDto> result = new List<EventCategoryDto>();
@@ -78,6 +81,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public List<EventCategoryDto> FindByKeywords(string keywords)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindByKeywords(keywords=" + keywords + ") used.", MessageType.Info);
+
             List<Event> listEvent = EventDao.FindByKeywords(keywords, -1);
 
             List<EventCategoryDto> result = new List<EventCategoryDto>();
@@ -99,6 +104,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <param name="tags">The tags.</param>
         public void AddComment(long eventId, string text, long userProfileId, List<string> tags)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".AddComment(eventId=" + eventId + ",text=" + text + ",userProfileId=" + userProfileId + ",tags=" + tags + ") used.", MessageType.Info);
 
             Comment comment = Comment.CreateComment(0, DateTime.Now, text, eventId, userProfileId);
 
@@ -113,6 +119,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <param name="commentId">The comment identifier.</param>
         public void RemoveComment(long eventId, long commentId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".RemoveComment(eventId=" + eventId + ",commentId=" + commentId + ") used.", MessageType.Info);
+
             Event e = EventDao.Find(eventId);
             Comment c = CommentDao.Find(commentId);
 
@@ -131,6 +139,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <exception cref="System.NotImplementedException"></exception>
         public void UpdateComment(long commentId, string text, List<string> tags)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".UpdateComment(commentId=" + commentId + ",text=" + text + ",tags=" + tags + ") used.", MessageType.Info);
+
             Comment c = CommentDao.Find(commentId);
 
             c.Tag.Load();
@@ -156,6 +166,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public List<Category> FindAllCategories()
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindAllCategories() used.", MessageType.Info);
+
             return CategoryDao.FindAllCategories();
         }
 
@@ -168,6 +180,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public List<Comment> FindCommentsForEvent(long eventId, int startIndex, int count)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindCommentsForEvent(eventId=" + eventId + ",startIndex=" + startIndex + ",count=" + count + ") used.", MessageType.Info);
+
             return CommentDao.FindByEventId(eventId, startIndex, count);
         }
 
@@ -181,6 +195,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public List<EventCategoryDto> FindByKeywords(string keywords, long categoryId, int startIndex, int count)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindByKeywords(keywords=" + keywords + ",categoryId=" + categoryId + ",startIndex=" + startIndex + ",count=" + count + ") used.", MessageType.Info);
+
             List<Event> listEvent = EventDao.FindByKeywords(keywords, categoryId, startIndex, count);
 
             List<EventCategoryDto> result = new List<EventCategoryDto>();
@@ -202,6 +218,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public List<EventCategoryDto> FindByKeywords(string keywords, int startIndex, int count)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindByKeywords(keywords=" + keywords + ",startIndex=" + startIndex + ",count=" + count + ") used.", MessageType.Info);
+
             List<Event> listEvent = EventDao.FindByKeywords(keywords, -1, startIndex, count);
 
             List<EventCategoryDto> result = new List<EventCategoryDto>();
@@ -221,6 +239,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public List<Comment> FindCommentsForEvent(long eventId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindCommentsForEvent(eventId="+eventId+") used.", MessageType.Info);
+
             return CommentDao.FindByEventId(eventId);
         }
 
@@ -232,6 +252,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public Event FindEventById(long eventId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindEventById(eventId="+eventId+") used.", MessageType.Info);
+
             return EventDao.Find(eventId);
         }
 
@@ -242,6 +264,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         /// <returns></returns>
         public Comment FindCommentById(long commentId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindCommentById(commentId="+commentId+") used.", MessageType.Info);
+
             return CommentDao.Find(commentId);
         }
     }

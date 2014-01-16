@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.RecommendationService;
 using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
-
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
-//UNDONE Recomendacion muy larga
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
 {
-    public partial class ViewRecomendations : System.Web.UI.Page
+    public partial class ViewRecomendations : SpecificCulturePage
     {
         protected readonly IRecommendationService RecommendationService =
             UnityResolver.Resolve<IRecommendationService>();

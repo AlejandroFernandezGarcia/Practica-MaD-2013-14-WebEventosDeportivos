@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.EnterpriseServices;
-using System.Linq;
-using System.Reflection;
-using System.Resources;
-using System.Threading;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
-    public partial class AddComment : System.Web.UI.Page
+    public partial class AddComment : SpecificCulturePage
     {
         private readonly IEventService eventService =
            UnityResolver.Resolve<IEventService>();

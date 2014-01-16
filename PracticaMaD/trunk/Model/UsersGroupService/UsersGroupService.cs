@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Remoting.Contexts;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.Log;
 using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService.Exceptions;
 using Microsoft.Practices.Unity;
@@ -51,11 +52,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <exception cref="Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService.Exceptions.UserNotBelongGroupException"></exception>
         public void RemoveUserFromGroup(long usersGroupId, long userProfileId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".RemoveUserFromGroup(usersGroupId=" + usersGroupId + ",userProfileId=" + userProfileId + ") used.", MessageType.Info);
+
             UsersGroup ug = UsersGroupDao.Find(usersGroupId);
             UserProfile up = UserProfileDao.Find(userProfileId);
 
             if (!UsersGroupDao.IsUsersBelongGroup(ug, up))
             {
+                LogManager.RecordMessage("new UserNotBelongGroupException(usersGroupId=" + usersGroupId + ",userProfileId=" + userProfileId + ") thrown.", MessageType.Info);
                 throw new UserNotBelongGroupException(usersGroupId, userProfileId);
             }
 
@@ -75,6 +79,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <param name="userProfileId">The user profile identifier.</param>
         public void RemoveUserFromGroup(List<long> usersGroupIds, long userProfileId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".RemoveUserFromGroup(usersGroupIds=" + usersGroupIds + ",userProfileId=" + userProfileId + ") used.", MessageType.Info);
+
             foreach (long i in usersGroupIds)
             {
                 RemoveUserFromGroup(i, userProfileId);
@@ -89,6 +95,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.DuplicateInstanceException">UsersGroupSevice</exception>
         public void AddUserToGroup(long usersGroupId, long userProfileId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".AddUserToGroup(long usersGroupId=" + usersGroupId + ",userProfileId=" + userProfileId + ") used.", MessageType.Info);
+
             UsersGroup ug = UsersGroupDao.Find(usersGroupId);
 
             List<UserProfile> listOfUsers = ug.UserProfile.ToList();
@@ -97,6 +105,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
 
             if (listOfUsers.Contains(up))
             {
+                LogManager.RecordMessage("new DuplicateInstanceException(userProfile=" + up + ",UsersGroupSevice) thrown.", MessageType.Info);
                 throw new DuplicateInstanceException(up, "UsersGroupSevice");
             }
 
@@ -114,6 +123,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <param name="userProfileId">The user profile identifier.</param>
         public void AddUserToGroup(List<long> usersGroupIds, long userProfileId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".AddUserToGroup(long usersGroupIds=" + usersGroupIds + ",userProfileId=" + userProfileId + ") used.", MessageType.Info);
+
             foreach (long i in usersGroupIds)
             {
                 AddUserToGroup(i, userProfileId);
@@ -130,10 +141,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.DuplicateInstanceException"></exception>
         public long Create(string name, string description, long userProfileId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".Create(name="+name+",description=" + description + ",userProfileId=" + userProfileId + ") used.", MessageType.Info);
+
             try
             {
                 UsersGroupDao.FindByName(name);
 
+                LogManager.RecordMessage("new DuplicateInstanceException(name=" + name + ",XXX) thrown.", MessageType.Info);
                 throw new DuplicateInstanceException(name,
                     typeof(UsersGroup).FullName);
             }
@@ -155,6 +169,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <returns></returns>
         public List<UsersGroupDto> FindAllGroups()
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindAllGroups() used.", MessageType.Info);
+
             List<UsersGroup> listOfGroups = UsersGroupDao.FindAllGroups();
 
             List<UsersGroupDto> result = new List<UsersGroupDto>();
@@ -176,6 +192,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <returns></returns>
         public List<UsersGroupDto> FindAllGroups(int startIndex, int count)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindAllGroups(startIndex=" + startIndex + ",count=" + count + ") used.", MessageType.Info);
+
             List<UsersGroup> listOfGroups = UsersGroupDao.FindAllGroups(startIndex, count);
 
             List<UsersGroupDto> result = new List<UsersGroupDto>();
@@ -196,6 +214,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <returns></returns>
         public List<UsersGroupDto> FindByUserId(long userProfileId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindByUserId(userProfileId=" + userProfileId + ") used.", MessageType.Info);
+
             List<UsersGroup> listOfGroups = UsersGroupDao.FindByUserId(UserProfileDao.Find(userProfileId));
 
             List<UsersGroupDto> result = new List<UsersGroupDto>();
@@ -218,6 +238,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <returns></returns>
         public List<UsersGroupDto> FindByUserId(long userProfileId, int startIndex, int count)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindByUserId(userProfileId=" + userProfileId + ",startIndex=" + startIndex + ",count=" + count + ") used.", MessageType.Info);
+
             List<UsersGroup> listOfGroups = UsersGroupDao.FindByUserId(
                 UserProfileDao.Find(userProfileId), startIndex, count);
 
@@ -240,6 +262,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <returns></returns>
         public bool UserBelongGroup(long userProfileId, long usersGroupId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".UserBelongGroup(userProfileId=" + userProfileId + ",usersGroupId=" + usersGroupId + ") used.", MessageType.Info);
+
             return UsersGroupDao.IsUsersBelongGroup(UsersGroupDao.Find(usersGroupId), UserProfileDao.Find(userProfileId));
         }
 
@@ -250,6 +274,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         /// <returns></returns>
         public UsersGroup FindById(long usersGroupId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindById(usersGroupId="+usersGroupId+") used.", MessageType.Info);
+
             return UsersGroupDao.Find(usersGroupId);
         }
     }

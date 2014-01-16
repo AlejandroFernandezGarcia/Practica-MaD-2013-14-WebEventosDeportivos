@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Es.Udc.DotNet.ModelUtil.Log;
 using Es.Udc.DotNet.PracticaMaD.Model.RecommendationDao;
 using Microsoft.Practices.Unity;
 using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao;
@@ -60,6 +61,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationService
         /// <exception cref="UserNotBelongGroupException"></exception>
         public void Create(long eventId, List<long> usersGroupIds, string text, long userProfileId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".Create(eventId=" + eventId + ",usersGroupIds=" + usersGroupIds + ",text=" + text + ",userProfileId=" + userProfileId + ") used.", MessageType.Info);
+
             List<UsersGroup> list = UsersGroupDao.FindByUserId(UserProfileDao.Find(userProfileId));
 
             List<long> listOfIds = new List<long>();
@@ -93,6 +96,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationService
         /// <returns></returns>
         public List<Recommendation> FindRecommendationsForEvent(long eventId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindRecommendationsForEvent(eventId="+eventId+") used.", MessageType.Info);
+
             return RecommendationDao.FindRecommendationsForEvent(EventDao.Find(eventId));
         }
 
@@ -105,6 +110,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationService
         /// <returns></returns>
         public List<Recommendation> FindRecommendationsForEvent(long eventId, int startIndex, int count)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindRecommendationsForEvent(eventId=" + eventId + ",startIndex=" + startIndex + ",count=" + count + ") used.", MessageType.Info);
+
             return RecommendationDao.FindRecommendationsForEvent(EventDao.Find(eventId), startIndex, count);
         }
 
@@ -115,6 +122,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationService
         /// <returns></returns>
         public List<Recommendation> FindRecommendationsReceivedByUserGroupOfUser(long userProfileId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindRecommendationsReceivedByUserGroupOfUser(userProfileId=" + userProfileId + ") used.", MessageType.Info);
+
             UserProfile userProfile = UserProfileDao.Find(userProfileId);
 
             return RecommendationDao.FindRecommendationForAnUserUsersGroup(userProfile);
@@ -127,9 +136,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.RecommendationService
         /// <param name="startIndex">The start index.</param>
         /// <param name="count">The count.</param>
         /// <returns></returns>
-        public List<Recommendation> FindRecommendationsReceivedByUserGroupOfUser(long userProfileId, int startIndex,
-                                                                                 int count)
+        public List<Recommendation> FindRecommendationsReceivedByUserGroupOfUser(long userProfileId, int startIndex, int count)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindRecommendationsReceivedByUserGroupOfUser(userProfileId=" + userProfileId + ",startIndex=" + startIndex + ",count=" + count + ") used.", MessageType.Info);
+
             UserProfile userProfile = UserProfileDao.Find(userProfileId);
 
             return RecommendationDao.FindRecommendationForAnUserUsersGroup(userProfile, startIndex, count);

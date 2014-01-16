@@ -1,5 +1,6 @@
 ﻿using System;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.Log;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
@@ -22,15 +23,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="userProfileDetails">The user profile details.</param>
         /// <returns></returns>
         /// <exception cref="Es.Udc.DotNet.ModelUtil.Exceptions.DuplicateInstanceException"></exception>
-        /// <exception cref="DuplicateInstanceException"/>
         public long RegisterUser(string loginName, string clearPassword, UserProfileDetails userProfileDetails)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".RegisterUser(loginName=" + loginName + ",clearPassword,userProfileDetails=" + userProfileDetails + ") used.", MessageType.Info);
+
             try
             {
                 UserProfileDao.FindByLoginName(loginName);
 
+                LogManager.RecordMessage("new DuplicateInstanceException(loginName=" + loginName + ",XXX) thrown.", MessageType.Info);
                 throw new DuplicateInstanceException(loginName,
-                                                     typeof (UserProfile).FullName);
+                                                     typeof(UserProfile).FullName);
             }
             catch (InstanceNotFoundException)
             {
@@ -52,6 +55,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <exception cref="IncorrectPasswordException"/>
         public LoginResult Login(string loginName, string password, bool passwordIsEncrypted)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".Login(loginName=" + loginName + ",password="+password + ",passwordIsEncrypted) used.", MessageType.Info);
+
             UserProfile userProfile =
                 UserProfileDao.FindByLoginName(loginName);
             String storedPassword = userProfile.enPassword;
@@ -60,6 +65,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             {
                 if (!password.Equals(storedPassword))
                 {
+                    LogManager.RecordMessage("new IncorrectPasswordException(loginName=" + loginName + ") thrown.", MessageType.Info);
                     throw new IncorrectPasswordException(loginName);
                 }
             }
@@ -68,6 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 if (!PasswordEncrypter.IsClearPasswordCorrect(password,
                                                               storedPassword))
                 {
+                    LogManager.RecordMessage("new IncorrectPasswordException(loginName=" + loginName + ") thrown.", MessageType.Info);
                     throw new IncorrectPasswordException(loginName);
                 }
             }
@@ -79,6 +86,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <exception cref="InstanceNotFoundException"/>
         public UserProfileDetails FindUserProfileDetails(long userProfileId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindUserProfileDetails(userProfileId=" + userProfileId + ") used.", MessageType.Info);
+
             UserProfile userProfile = UserProfileDao.Find(userProfileId);
 
             UserProfileDetails userProfileDetails =
@@ -92,6 +101,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <exception cref="InstanceNotFoundException"/>
         public void UpdateUserProfileDetails(long userProfileId, UserProfileDetails userProfileDetails)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".UpdateUserProfileDetails(userProfileId=" + userProfileId + ",userProfileDetails=" + userProfileDetails + ") used.", MessageType.Info);
+
             UserProfile userProfile =
                 UserProfileDao.Find(userProfileId);
             userProfile.firstName = userProfileDetails.FirstName;
@@ -106,6 +117,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <exception cref="InstanceNotFoundException"/>
         public void ChangePassword(long userProfileId, string oldClearPassword, string newClearPassword)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".ChangePassword(userProfileId=" + userProfileId + ",oldClearPassword,newClearPassword) used.", MessageType.Info);
+
             UserProfile userProfile = UserProfileDao.Find(userProfileId);
             String storedPassword = userProfile.enPassword;
 

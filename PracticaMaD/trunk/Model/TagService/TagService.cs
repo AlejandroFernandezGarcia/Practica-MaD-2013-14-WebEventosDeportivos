@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.Log;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
@@ -40,6 +41,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         [Transactional()]
         public void AddTagsToComment(List<string> listOfTags, long commentId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".AddTagsToComment(listOfTags="+listOfTags+",commentId="+commentId+") used.", MessageType.Info);
+
             List<Tag> listOfObjectTags = new List<Tag>();
 
             foreach (String tagName in listOfTags)
@@ -81,6 +84,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         [Transactional()]
         public void RemoveTagsFromComment(List<string> listOfTags, long commentId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".RemoveTagsFromComment(listOfTags=" + listOfTags + ",commentId=" + commentId + ") used.", MessageType.Info);
+
             List<Tag> listOfObjectTags = new List<Tag>();
 
             foreach (String tagName in listOfTags)
@@ -117,6 +122,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         /// <returns></returns>
         public List<TagDto> FindTagsPercent()
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindTagsPercent() used.", MessageType.Info);
+
             List<Tag> listOfAllTags = TagDao.FindAllTags();
             List<long> numberOfOcurrences = new List<long>();
             double ocurrences = 0;
@@ -149,6 +156,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         /// <returns></returns>
         public List<Comment> FindCommentsByTag(long tagId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindCommentsByTag(tagId="+tagId+") used.", MessageType.Info);
+
             Tag tag = TagDao.Find(tagId);
             tag.Comment.Load();
 
@@ -164,6 +173,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         /// <returns></returns>
         public List<Comment> FindCommentsByTag(long tagId, int startIndex, int count)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindCommentsByTag(tagId=" + tagId + ",startIndex=" + startIndex + ",count=" + count + ") used.", MessageType.Info);
+
             Tag tag = TagDao.Find(tagId);
             tag.Comment.Load();
 
@@ -177,6 +188,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         /// <returns></returns>
         public List<Tag> FindTagsOfComment(long commentId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindTagsOfComment(commentId=" + commentId + ") used.", MessageType.Info);
+
             Comment comment = CommentDao.Find(commentId);
             comment.Tag.Load();
             return comment.Tag.ToList();
@@ -191,6 +204,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         /// <returns></returns>
         public List<Tag> FindTagsOfComment(long commentId, int startIndex, int count)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindTagsOfComment(commentId=" + commentId + ",startIndex=" + startIndex + ",count=" + count + ") used.", MessageType.Info);
+
             Comment comment = CommentDao.Find(commentId);
             comment.Tag.Load();
 
@@ -204,6 +219,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         /// <returns></returns>
         public Tag FindTagById(long tagId)
         {
+            LogManager.RecordMessage(this.GetType().Name + ".FindTagById(tagId=" + tagId + ") used.", MessageType.Info);
+
             return TagDao.Find(tagId);
         }
     }

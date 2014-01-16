@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
@@ -11,7 +8,7 @@ using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 {
-    public partial class ViewCommentAndTag : System.Web.UI.Page
+    public partial class ViewCommentAndTag : SpecificCulturePage
     {
 
         private readonly IEventService eventService =
@@ -71,19 +68,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
                 UserSession userSession = SessionManager.GetUserSession(Context);
 
-                if (comment.userProfileId != userSession.UserProfileId)
+                if (userSession == null || comment.userProfileId != userSession.UserProfileId)
                 {
                     EditComment.Enabled = false;
                     EditTags.Enabled = false;
-                    btnDelete.Enabled = false;
-                    btnEdit.Enabled = false;
+                    btnDelete.Visible = false;
+                    btnEdit.Visible = false;
                 }
                 else
                 {
                     EditComment.Enabled = true;
                     EditTags.Enabled = true;
-                    btnDelete.Enabled = true;
-                    btnEdit.Enabled = true;
+                    btnDelete.Visible = true;
+                    btnEdit.Visible = true;
                 }
 
             }
