@@ -3,7 +3,7 @@
 namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
 {
     /// <summary>
-    /// A DTO that can allow to return in the same object, a tag and 
+    /// A DTO that can allow to return in the same object, a tag and
     /// the number of times of this tag is used.
     /// </summary>
     [Serializable()]
@@ -30,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TagDto"/> class.
+        /// Initializes a new instance of the <see cref="TagDto" /> class.
         /// </summary>
         /// <param name="tag">The tag.</param>
         /// <param name="percent">The percent.</param>

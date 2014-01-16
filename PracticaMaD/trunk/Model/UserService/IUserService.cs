@@ -7,6 +7,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     public interface IUserService
     {
+        /// <summary>
+        /// Sets the user profile DAO.
+        /// </summary>
+        /// <value>
+        /// The user profile DAO.
+        /// </value>
         [Dependency]
         IUserProfileDao UserProfileDao { set; }
 

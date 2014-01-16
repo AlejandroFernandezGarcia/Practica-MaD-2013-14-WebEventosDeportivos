@@ -18,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// Returns a list of groups which the user is member of. If the user
         /// is not member of any group, an empty list is returned.
         /// </summary>
-        /// <param name="userProfile"></param>
+        /// <param name="userProfile">The user profile.</param>
         /// <param name="startIndex">the index of the first account to return (starting in 0)</param>
         /// <param name="count">the maximum number of accounts to return</param>
         /// <returns>
@@ -93,7 +93,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupDao
         /// <summary>
         /// Returns the number of groups which the user is member of.
         /// </summary>
-        /// <param name="userProfile"></param>
+        /// <param name="userProfile">The user profile.</param>
         /// <returns>
         /// the number of groups
         /// </returns>
