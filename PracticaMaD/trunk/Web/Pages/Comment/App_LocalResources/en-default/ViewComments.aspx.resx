@@ -150,4 +150,7 @@
   <data name="btnReturn.Text" xml:space="preserve">
     <value>Return</value>
   </data>
+  <data name="lclTagName.Text" xml:space="preserve">
+    <value>Show comments with tag:</value>
+  </data>
 </root>

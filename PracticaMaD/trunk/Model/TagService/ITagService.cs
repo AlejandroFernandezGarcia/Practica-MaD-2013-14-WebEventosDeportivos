@@ -81,5 +81,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         /// <returns></returns>
         List<Tag> FindTagsOfComment(long commentId, int startIndex, int count);
 
+
+        /// <summary>
+        /// Finds the tag by identifier.
+        /// </summary>
+        /// <param name="tagId">The tag identifier.</param>
+        /// <returns></returns>
+        Tag FindTagById(long tagId);
+
     }
 }

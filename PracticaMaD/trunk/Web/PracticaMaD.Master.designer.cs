@@ -184,6 +184,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_BodyContent;
         
         /// <summary>
+        /// Control ContentPlaceHolder_CloudOfTags.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder_CloudOfTags;
+        
+        /// <summary>
         /// Control lclFooter.
         /// </summary>
         /// <remarks>

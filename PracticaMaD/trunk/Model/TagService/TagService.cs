@@ -119,12 +119,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         {
             List<Tag> listOfAllTags = TagDao.FindAllTags();
             List<long> numberOfOcurrences = new List<long>();
-            //TODO Cambiar float por double
-            float ocurrences = 0;
-
+            double ocurrences = 0;
 
             foreach (Tag t in listOfAllTags)
             {
+                t.Comment.Load();
                 numberOfOcurrences.Add(t.Comment.Count);
                 ocurrences += t.Comment.Count;
             }
@@ -134,7 +133,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
             for (int i = 0; i < listOfAllTags.Count; i++)
             {
                 Tag t = listOfAllTags[i];
-                float number = numberOfOcurrences[i];
+                double number = numberOfOcurrences[i];
                 
                 result.Add(new TagDto(t, (number / ocurrences) * 100));
             }
@@ -151,7 +150,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         public List<Comment> FindCommentsByTag(long tagId)
         {
             Tag tag = TagDao.Find(tagId);
-            
+            tag.Comment.Load();
+
             return tag.Comment.ToList();
         }
 
@@ -165,6 +165,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         public List<Comment> FindCommentsByTag(long tagId, int startIndex, int count)
         {
             Tag tag = TagDao.Find(tagId);
+            tag.Comment.Load();
 
             return tag.Comment.Skip(startIndex).Take(count).ToList();
         }
@@ -191,8 +192,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         public List<Tag> FindTagsOfComment(long commentId, int startIndex, int count)
         {
             Comment comment = CommentDao.Find(commentId);
+            comment.Tag.Load();
 
             return comment.Tag.Skip(startIndex).Take(count).ToList();
+        }
+
+        /// <summary>
+        /// Finds the tag by identifier.
+        /// </summary>
+        /// <param name="tagId">The tag identifier.</param>
+        /// <returns></returns>
+        public Tag FindTagById(long tagId)
+        {
+            return TagDao.Find(tagId);
         }
     }
 }

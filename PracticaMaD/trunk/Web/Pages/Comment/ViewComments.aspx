@@ -13,7 +13,8 @@
         
     <div class="fieldComment" >
         <span class="labelLeft">
-        <asp:Localize ID="lclEventName" runat="server" meta:resourcekey="lclEventName" /></span>
+        <asp:Localize ID="lclEventName" runat="server" meta:resourcekey="lclEventName" Visible="False"/>
+        <asp:Localize ID="lclTagName" runat="server" meta:resourcekey="lclTagName" Visible="False"/></span>
         <span class="labelRight">
         <asp:Localize ID="lclEventNameExt" runat="server"/></span>
     </div>
