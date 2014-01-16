@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.EventService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Event
 {
-    public partial class ResultEventsSearch : System.Web.UI.Page
+    public partial class ResultEventsSearch : SpecificCulturePage
     {
         private readonly IEventService eventService =
            UnityResolver.Resolve<IEventService>();
