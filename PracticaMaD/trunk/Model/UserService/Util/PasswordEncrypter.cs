@@ -14,8 +14,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Util
         /// Method to encrypt with a SHA 256 Algorithm
         /// </summary>
         /// <param name="password">String to encrypt</param>
-        /// <returns>Returns a String with the <paramref name="password"/> encrypted
-        /// </returns>                       
+        /// <returns>
+        /// Returns a String with the <paramref name="password" /> encrypted
+        /// </returns>
         public static String Crypt(String password)
         {
             HashAlgorithm hashAlg = new SHA256Managed();
@@ -30,6 +31,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Util
         }
 
 
+        /// <summary>
+        /// Determines whether [is clear password correct] [the specified clear password].
+        /// </summary>
+        /// <param name="clearPassword">The clear password.</param>
+        /// <param name="encryptedPassword">The encrypted password.</param>
+        /// <returns></returns>
         public static Boolean IsClearPasswordCorrect(String clearPassword,
                                                      String encryptedPassword)
         {

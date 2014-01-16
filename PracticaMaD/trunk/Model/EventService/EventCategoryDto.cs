@@ -29,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.EventService
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventCategoryDto"/> class.
+        /// Initializes a new instance of the <see cref="EventCategoryDto" /> class.
         /// </summary>
         /// <param name="evento">The evento.</param>
         /// <param name="category">The category.</param>

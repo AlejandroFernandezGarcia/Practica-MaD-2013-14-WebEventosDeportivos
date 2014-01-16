@@ -24,7 +24,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService.Exceptions
         public long UserId { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserNotBelongGroupException"/> class.
+        /// Initializes a new instance of the <see cref="UserNotBelongGroupException" /> class.
         /// </summary>
         /// <param name="groupId">The group identifier.</param>
         /// <param name="userId">The user identifier.</param>

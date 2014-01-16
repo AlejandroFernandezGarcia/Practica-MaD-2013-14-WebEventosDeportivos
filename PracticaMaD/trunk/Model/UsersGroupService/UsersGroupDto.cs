@@ -3,7 +3,7 @@
 namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
 {
     /// <summary>
-    /// A DTO that can allow to return in the same object, an usersGroup 
+    /// A DTO that can allow to return in the same object, an usersGroup
     /// the number of users in this group and the number of recommendation for this group.
     /// </summary>
     [Serializable()]
@@ -38,7 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UsersGroupDto"/> class.
+        /// Initializes a new instance of the <see cref="UsersGroupDto" /> class.
         /// </summary>
         /// <param name="usersGroup">The users group.</param>
         /// <param name="numOfUsers">The number of users.</param>

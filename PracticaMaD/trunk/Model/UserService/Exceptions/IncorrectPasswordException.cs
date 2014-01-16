@@ -4,14 +4,14 @@ using Es.Udc.DotNet.ModelUtil.Log;
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions
 {
     /// <summary>
-    /// Public <c>ModelException</c> which captures the error 
+    /// Public <c>ModelException</c> which captures the error
     /// with the passwords of the users.
     /// </summary>
     public class IncorrectPasswordException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the 
-        /// <see cref="IncorrectPasswordException"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="IncorrectPasswordException" /> class.
         /// </summary>
         /// <param name="loginName"><c>loginName</c> that causes the error.</param>
         public IncorrectPasswordException(String loginName)
@@ -23,7 +23,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions
         /// <summary>
         /// Stores the User login name of the exception
         /// </summary>
-        /// <value>The name of the login.</value>
+        /// <value>
+        /// The name of the login.
+        /// </value>
         public String LoginName { get; private set; }
 
         #region Test Code Region. Uncomment for testing.

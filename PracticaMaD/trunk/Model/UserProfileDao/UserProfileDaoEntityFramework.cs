@@ -12,7 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
     internal class UserProfileDaoEntityFramework : GenericDaoEntityFramework<UserProfile, Int64>, IUserProfileDao
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserProfileDaoEntityFramework"/> class.
+        /// Initializes a new instance of the <see cref="UserProfileDaoEntityFramework" /> class.
         /// </summary>
         public UserProfileDaoEntityFramework()
         {
