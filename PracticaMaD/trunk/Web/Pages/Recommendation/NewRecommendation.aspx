@@ -16,16 +16,15 @@
             <span class="labelRight">
             <asp:Localize ID="lclEventNameExt" runat="server"/></span>
         </div>        
-        <div class="field">
-            <span class="label">
-                <asp:Localize ID="lclRecommendationDescription" runat="server" meta:resourcekey="lclRecommendationDescription" />
-            </span>
+        
+        <div class="entryBig">
             <span class="entry">
                 <asp:TextBox ID="txtRecommendation" runat="server" CssClass="entryBig" TextMode="MultiLine" ></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvRecommendationDescription" runat="server" ControlToValidate="txtRecommendation"
                         Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>" />
             </span>
         </div>
+        <div class="fieldComment"></div>
         <div class="field">
         <table class="dataView" cellpadding="0" cellspacing="0">
             <thead>

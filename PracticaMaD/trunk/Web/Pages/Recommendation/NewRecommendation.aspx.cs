@@ -13,7 +13,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.UsersGroupService;
 using Es.Udc.DotNet.PracticaMaD.Model.RecommendationService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 
-//UNDONE Redimensionar el textBox de la recomendation
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation
 {
     public partial class NewRecommendation : System.Web.UI.Page

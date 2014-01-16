@@ -67,15 +67,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Recommendation {
         protected global::System.Web.UI.WebControls.Localize lclEventNameExt;
         
         /// <summary>
-        /// Control lclRecommendationDescription.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclRecommendationDescription;
-        
-        /// <summary>
         /// Control txtRecommendation.
         /// </summary>
         /// <remarks>
