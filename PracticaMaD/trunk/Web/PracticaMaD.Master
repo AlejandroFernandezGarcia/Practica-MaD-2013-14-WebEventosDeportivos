@@ -67,6 +67,10 @@
                 </tr>
             </tbody>
         </table>
+        <!-- CloudTags no se me ocurrre otro sitio donde ponerla -->
+        <div id="cloudOfTags">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder_CloudOfTags" runat="server" ></asp:ContentPlaceHolder>
+        </div>
         <!-- Footer. -->
         <div id="footer">
             <asp:Localize ID="lclFooter" runat="server" meta:resourcekey="lclFooter" />
