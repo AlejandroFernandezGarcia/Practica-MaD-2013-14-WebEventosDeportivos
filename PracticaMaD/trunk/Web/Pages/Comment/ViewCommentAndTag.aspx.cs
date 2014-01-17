@@ -64,7 +64,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.Comment
 
                 EditComment.ToolTip = (String)GetLocalResourceObject("lclCommentTip.Text");
                 EditTags.ToolTip = (String)GetLocalResourceObject("lclTagInstructions.Text");
-
+                EditComment.MaxLength = 1000;
 
                 UserSession userSession = SessionManager.GetUserSession(Context);
 
