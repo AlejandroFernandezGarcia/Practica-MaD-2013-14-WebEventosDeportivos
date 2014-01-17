@@ -67,6 +67,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
         }
 
+        /// <summary>
+        /// Asignates the CSS to HyperLinks.
+        /// </summary>
+        /// <param name="hyperlink">The hyperlink.</param>
+        /// <param name="percent">The percent.</param>
         private void asignateCss(HyperLink hyperlink, double percent)
         {
             //Para realizar una mejor distribución, se considera el
@@ -130,6 +135,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             }
         }
 
+        /// <summary>
+        /// Searches the maximum percent in tagDto list.
+        /// </summary>
+        /// <param name="list">The list.</param>
         private void searchMaxPercent(List<TagDto> list)
         {
             //Busca el porcentaje, del tag que más se repite
